@@ -13,7 +13,7 @@ import os
 # ----------------------------------------------------------------------------
 
 NOTION_SECRET = os.getenv("NOTION_INTERNAL_INTEGRATION_SECRET")
-NOTION_DS_ID = "25b22a3e-ef57-8147-ae65-000b8dd610e3"
+NOTION_DS_ID = os.getenv("NOTION_DATA_SOURCE_ID")
 
 notion_url = f"https://api.notion.com/v1/data_sources/{NOTION_DS_ID}/query"
 notion_headers = {
