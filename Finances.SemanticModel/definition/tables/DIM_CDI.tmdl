@@ -1,0 +1,39 @@
+table DIM_CDI
+	lineageTag: 71ec0039-7ecc-4509-b9da-1d93fb8c6e09
+
+	column DATA
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 169d4ab4-9827-41ae-be9a-b685e26bddd0
+		summarizeBy: none
+		sourceColumn: DATA
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column TAXA
+		dataType: double
+		lineageTag: bb551e0d-1d6b-4a35-83c2-32ec362b2874
+		summarizeBy: sum
+		sourceColumn: TAXA
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition DIM_CDI = m
+		mode: import
+		source =
+				let
+				    Fonte = Python.Execute("import requests#(lf)import json#(lf)import pandas as pd#(lf)#(lf)cdi_url = ""https://api.bcb.gov.br/dados/serie/bcdata.sgs.12/dados""#(lf)cdi_params = {#(lf)    ""formato"": ""json"",#(lf)    ""dataInicial"": ""01/01/2025""#(lf)}#(lf)cdi_request = requests.get(url=cdi_url, params=cdi_params)#(lf)cdi_json = cdi_request.json()#(lf)cdi_data = []#(lf)cdi_columns = [""DATA"", ""TAXA""]#(lf)#(lf)for tx in cdi_json:#(lf)    date = tx.get(""data"")#(lf)    taxa = tx.get(""valor"")#(lf)#(lf)    cdi_data.append((date, taxa))#(lf)#(lf)df_cdi = pd.DataFrame(cdi_data, columns=cdi_columns)"),
+				    df_cdi1 = Fonte{[Name="df_cdi"]}[Value],
+				    #"Tipo Alterado" = Table.TransformColumnTypes(df_cdi1,{{"DATA", type date}}),
+				    #"Tipo Alterado com Localidade" = Table.TransformColumnTypes(#"Tipo Alterado", {{"TAXA", type number}}, "en-US")
+				in
+				    #"Tipo Alterado com Localidade"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

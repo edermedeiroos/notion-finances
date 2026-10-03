@@ -1,0 +1,23 @@
+table DIM_CALENDARIO
+	lineageTag: 03469ec2-9fc2-426e-b676-52ba0b65354d
+
+	column Date
+		formatString: General Date
+		lineageTag: 8d2b440d-07ac-49c5-9a5e-ab15905481f0
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		variation Variation
+			isDefault
+			relationship: 6f7f9234-155e-48b9-b0a2-e777026a5638
+			defaultHierarchy: LocalDateTable_95cf5ef6-1f34-44ad-9b15-19816fd1546a.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DIM_CALENDARIO = calculated
+		mode: import
+		source = CALENDAR(MIN(FAT_FINANCES[DATE]), MAX(FAT_FINANCES[DATE]))
+
+	annotation PBI_Id = 546bf7a5e32842d2929d700920287fb0
+

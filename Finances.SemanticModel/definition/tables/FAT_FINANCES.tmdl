@@ -1,0 +1,98 @@
+table FAT_FINANCES
+	lineageTag: 18909533-702b-441a-b5f4-beee789ace01
+
+	column ID
+		dataType: string
+		lineageTag: 6587cd0f-6893-4b1c-aed0-0bf19f2bbae0
+		summarizeBy: none
+		sourceColumn: ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column NAME
+		dataType: string
+		lineageTag: 0fb90f0c-4c90-4817-8e98-5624202d5856
+		summarizeBy: none
+		sourceColumn: NAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column VALUE
+		dataType: double
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: c5109a37-a0fb-4ef0-bc2e-70384a46f293
+		summarizeBy: sum
+		sourceColumn: VALUE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	column TYPE
+		dataType: string
+		lineageTag: 4e670e14-666a-4e43-8283-55ab00ff11fc
+		summarizeBy: none
+		sourceColumn: TYPE
+
+		annotation SummarizationSetBy = Automatic
+
+	column CATEGORY
+		dataType: string
+		lineageTag: 187041c3-40b8-4d1f-9461-e730f7f99b58
+		summarizeBy: none
+		sourceColumn: CATEGORY
+
+		annotation SummarizationSetBy = Automatic
+
+	column SUB_CATEGORY
+		dataType: string
+		lineageTag: 072e461d-3aeb-4cd4-b441-3635c2224c46
+		summarizeBy: none
+		sourceColumn: SUB_CATEGORY
+
+		annotation SummarizationSetBy = Automatic
+
+	column DATE
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: fd9b5ca6-e10f-41b4-a73d-f6845de589d5
+		summarizeBy: none
+		sourceColumn: DATE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column EFECTIVE_VALUE
+		dataType: double
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: 0be72d78-ef62-47ea-9630-74646251902c
+		summarizeBy: sum
+		sourceColumn: EFECTIVE_VALUE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	column ACCOUNT
+		dataType: string
+		lineageTag: 6c47c98b-e1b3-4573-aa76-cefa8c0f7773
+		summarizeBy: none
+		sourceColumn: ACCOUNT
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FAT_FINANCES = m
+		mode: import
+		source =
+				let
+				    Fonte = Python.Execute("import requests#(lf)import pandas as pd#(lf)import os#(lf)#(lf)# ----------------------------------------------------------------------------#(lf)#                         NOTION FINANCES - ETL#(lf)##(lf)# 1) Load .env (API Credentials)#(lf)# 3) Request to notion API#(lf)# 4) While True loop to get all pages from endpoint (with validation)#(lf)# 5) Type definition and extract items from response#(lf)# 6) DataFrame creation#(lf)# ----------------------------------------------------------------------------#(lf)#(lf)NOTION_SECRET = os.getenv(""NOTION_INTERNAL_INTEGRATION_SECRET"")#(lf)NOTION_DS_ID = ""25b22a3e-ef57-8147-ae65-000b8dd610e3""#(lf)#(lf)notion_url = f""https://api.notion.com/v1/data_sources/{NOTION_DS_ID}/query""#(lf)notion_headers = {#(lf)    ""Content-Type"": ""application/json"",#(lf)    ""Authorization"": f""Bearer {NOTION_SECRET}"",#(lf)    ""Notion-Version"": ""2025-09-03""#(lf)}#(lf)notion_body = {#(lf)    ""sorts"": [#(lf)        {#(lf)            ""property"": ""Date"",#(lf)            ""direction"": ""ascending""#(lf)        },#(lf)        {   #(lf)            ""property"": ""Name"",#(lf)            ""direction"": ""ascending""#(lf)        },#(lf)        {   #(lf)            ""property"": ""Value"",#(lf)            ""direction"": ""ascending""#(lf)        }]#(lf)    }#(lf)notion_request = requests.post(url=notion_url, json=notion_body, headers=notion_headers)#(lf)notion_json = notion_request.json()#(lf)notion_data = []#(lf)notion_columns = [""ID"", ""NAME"", ""VALUE"", ""TYPE"", ""CATEGORY"", ""SUB_CATEGORY"", ""DATE"", ""EFECTIVE_VALUE"", ""ACCOUNT""]#(lf)#(lf)while True:#(lf)    for item in notion_json[""results""]:#(lf)        properties = item[""properties""]#(lf)        #(lf)        id = item.get(""id"")#(lf)#(lf)        try:#(lf)            name = properties[""Name""][""title""][0][""plain_text""]#(lf)        except (KeyError, IndexError, TypeError):#(lf)            name = ""Sem Título""#(lf)#(lf)        try:#(lf)            value = properties[""Value""][""number""]#(lf)        except (KeyError, TypeError):#(lf)            value = 0.0#(lf)#(lf)        try:#(lf)            transaction_type = properties[""Type""][""select""][""name""]#(lf)        except (KeyError, TypeError):#(lf)            transaction_type = None#(lf)#(lf)        try:#(lf)            category = properties[""Category""][""select""][""name""]#(lf)        except (KeyError, TypeError):#(lf)            category = None#(lf)#(lf)        try:#(lf)            sub_category = properties[""Sub Category""][""select""][""name""]#(lf)        except (KeyError, TypeError, AttributeError):#(lf)            sub_category = None#(lf)#(lf)        try:#(lf)            date = properties[""Date""][""date""][""start""]#(lf)        except (KeyError, TypeError):#(lf)            date = None#(lf)#(lf)        try:#(lf)            effective_value = properties[""Effective Value""][""formula""][""number""]#(lf)        except (KeyError, TypeError):#(lf)            effective_value = 0.0#(lf)#(lf)        try:#(lf)            account = properties[""Account""][""select""][""name""]#(lf)        except (KeyError, TypeError):#(lf)            account = None#(lf)#(lf)        object_data = (id, name, value, transaction_type, category, sub_category, date, effective_value, account)#(lf)        notion_data.append(object_data)#(lf)#(lf)    if notion_json[""has_more""]:#(lf)        next_cursor = notion_json[""next_cursor""]#(lf)        notion_body[""start_cursor""] = next_cursor#(lf)#(lf)        notion_request = requests.post(url=notion_url, json=notion_body, headers=notion_headers)#(lf)        notion_json = notion_request.json()#(lf)    #(lf)    else:#(lf)        break#(lf)#(lf)df_notion = pd.DataFrame(notion_data, columns=notion_columns)#(lf)"),
+				    df_notion = Fonte{[Name="df_notion"]}[Value],
+				    #"Tipo Alterado" = Table.TransformColumnTypes(df_notion,{{"ID", type text}, {"NAME", type text}, {"VALUE", type number}, {"TYPE", type text}, {"CATEGORY", type text}, {"SUB_CATEGORY", type text}, {"DATE", type date}, {"EFECTIVE_VALUE", type number}, {"ACCOUNT", type text}}, "en-US")
+				in
+				    #"Tipo Alterado"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,25 @@
+table DIM_ATUALIZACAO
+	lineageTag: 3c1f4567-973d-4bf8-b330-6b75b5e2940e
+
+	column DATA_HORA
+		dataType: string
+		lineageTag: 8e412fdd-47e5-4976-a317-c441c8116e67
+		summarizeBy: none
+		sourceColumn: DATA_HORA
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DIM_ATUALIZACAO = m
+		mode: import
+		source =
+				let
+				    Fonte = DateTime.LocalNow(),
+				    #"Convertido para Tabela" = #table(1, {{Fonte}}),
+				    #"Colunas Renomeadas" = Table.RenameColumns(#"Convertido para Tabela",{{"Column1", "DATA_HORA"}})
+				in
+				    #"Colunas Renomeadas"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

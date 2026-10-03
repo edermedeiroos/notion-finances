@@ -1,0 +1,21 @@
+relationship 6f7f9234-155e-48b9-b0a2-e777026a5638
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DIM_CALENDARIO.Date
+	toColumn: LocalDateTable_95cf5ef6-1f34-44ad-9b15-19816fd1546a.Date
+
+relationship df898c6f-2c2f-f7c9-a652-6a7b2c2249e0
+	fromColumn: FAT_FINANCES.DATE
+	toColumn: DIM_CALENDARIO.Date
+
+relationship f3f665eb-de83-2368-9e4a-e23f719165dd
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: DIM_CDI.DATA
+	toColumn: DIM_CALENDARIO.Date
+
+relationship 3c53d3a8-9b8b-0e9f-675e-2cdf8b01a7d3
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: DIM_DOLAR.DATA_HORA
+	toColumn: DIM_CALENDARIO.Date
+

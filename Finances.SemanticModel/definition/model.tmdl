@@ -1,0 +1,25 @@
+model Model
+	culture: pt-BR
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: pt-BR
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["Medidas","DIM_ATUALIZACAO","FAT_FINANCES","DIM_CDI","DIM_DOLAR"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table Medidas
+ref table DIM_ATUALIZACAO
+ref table FAT_FINANCES
+ref table DIM_CDI
+ref table DIM_DOLAR
+ref table DIM_CALENDARIO
+ref table DateTableTemplate_bc9cb27f-d056-444b-8aff-c246d391c0ab
+ref table LocalDateTable_95cf5ef6-1f34-44ad-9b15-19816fd1546a
+
+ref cultureInfo pt-BR
+

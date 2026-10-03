@@ -1,0 +1,2565 @@
+cultureInfo pt-BR
+
+	linguisticMetadata =
+			{
+			  "Version": "4.1.0",
+			  "Language": "en-US",
+			  "Entities": {
+			    "medida.saldo_wise": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "saldo_wise"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "saldo wise": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "saldo_wise": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        }
+			      ]
+			    },
+			    "medida.dif_flash_ontem": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "dif_flash_ontem"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "dif flash ontem": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "dif_flash_ontem": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        }
+			      ]
+			    },
+			    "medida.dif_inter_ontem": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "dif_inter_ontem"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "dif inter ontem": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "dif_inter_ontem": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        }
+			      ]
+			    },
+			    "medida.saldo_inter_ontem": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "saldo_inter_ontem"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "saldo inter ontem": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "saldo_inter_ontem": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        }
+			      ]
+			    },
+			    "medida.saldo_flash_ontem": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "saldo_flash_ontem"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "saldo flash ontem": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "saldo_flash_ontem": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        }
+			      ]
+			    },
+			    "medida": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "medida": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "medida.soma_valor": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "soma_valor"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "soma valor": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "soma_valor": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "soma courage": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "soma bravery": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "soma heroism": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "soma fearlessness": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "soma boldness": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "soma gallantry": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "soma lionheartedness": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "soma pluck": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "soma spirit": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "soma nerve": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        }
+			      ]
+			    },
+			    "medida.soma_valor_efetivo": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "soma_valor_efetivo"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "soma valor efetivo": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "soma_valor_efetivo": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        }
+			      ]
+			    },
+			    "medida.saldo_inter": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "saldo_inter"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "saldo inter": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "saldo_inter": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        }
+			      ]
+			    },
+			    "medida.saldo_flash": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "saldo_flash"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "saldo flash": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "saldo_flash": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "saldo explosion": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.475
+			          }
+			        },
+			        {
+			          "saldo blaze": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.461
+			          }
+			        },
+			        {
+			          "saldo spark": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.461
+			          }
+			        },
+			        {
+			          "saldo flare": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.461
+			          }
+			        },
+			        {
+			          "saldo flicker": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.461
+			          }
+			        },
+			        {
+			          "saldo sparkle": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.461
+			          }
+			        },
+			        {
+			          "saldo twinkle": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.461
+			          }
+			        },
+			        {
+			          "saldo burst": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.461
+			          }
+			        },
+			        {
+			          "saldo streak": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.461
+			          }
+			        },
+			        {
+			          "saldo flame": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.461
+			          }
+			        }
+			      ]
+			    },
+			    "dim_atualizacao": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "DIM_ATUALIZACAO"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "dim atualizacao": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "DIM_ATUALIZACAO": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        }
+			      ]
+			    },
+			    "dim_atualizacao.data_hora": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "DIM_ATUALIZACAO",
+			          "ConceptualProperty": "DATA_HORA"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "data hora": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "DATA_HORA": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "information hora": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.6
+			          }
+			        },
+			        {
+			          "fact hora": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.6
+			          }
+			        },
+			        {
+			          "info hora": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.6
+			          }
+			        },
+			        {
+			          "statistic hora": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.6
+			          }
+			        },
+			        {
+			          "document hora": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.582
+			          }
+			        },
+			        {
+			          "figure hora": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.582
+			          }
+			        },
+			        {
+			          "record hora": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.582
+			          }
+			        }
+			      ]
+			    },
+			    "medida.saldo_wise_ontem": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "saldo_wise_ontem"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "saldo wise ontem": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "saldo_wise_ontem": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        }
+			      ]
+			    },
+			    "medida.total_investido_crypto": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "total_investido_crypto"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "total investido crypto": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "total_investido_crypto": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "aggregate investido crypto": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        },
+			        {
+			          "overall investido crypto": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        }
+			      ]
+			    },
+			    "medida.total_investido_cdi": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "total_investido_cdi"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "total investido cdi": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "total_investido_cdi": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "aggregate investido cdi": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        },
+			        {
+			          "overall investido cdi": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        }
+			      ]
+			    },
+			    "medida.total_sacado_cdi": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "total_sacado_cdi"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "total sacado cdi": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "total_sacado_cdi": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "aggregate sacado cdi": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        },
+			        {
+			          "overall sacado cdi": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        }
+			      ]
+			    },
+			    "medida.total_sacado_crypto": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "total_sacado_crypto"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "total sacado crypto": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "total_sacado_crypto": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "aggregate sacado crypto": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        },
+			        {
+			          "overall sacado crypto": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.591
+			          }
+			        }
+			      ]
+			    },
+			    "medida.entity__dif_inter_ontem_FormatString": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "_dif_inter_ontem FormatString"
+			        }
+			      },
+			      "State": "Generated",
+			      "Visibility": {
+			        "Value": "Hidden"
+			      },
+			      "Terms": [
+			        {
+			          "_dif_inter_ontem FormatString": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "fat_finance": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "FAT_FINANCES"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "fat finance": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "FAT_FINANCES": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "finance": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "fat money": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "fat economics": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "fat investment": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "fat sponsorship": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "money": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "economics": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "investment": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "sponsorship": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "fat business": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "fat backing": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        }
+			      ]
+			    },
+			    "fat_finance.ID": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "FAT_FINANCES",
+			          "ConceptualProperty": "ID"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "ID": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "identification": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        },
+			        {
+			          "identity": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        },
+			        {
+			          "credential": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.714
+			          }
+			        }
+			      ],
+			      "NameType": "Identifier"
+			    },
+			    "fat_finance.name": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "FAT_FINANCES",
+			          "ConceptualProperty": "NAME"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "name": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "title": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.714
+			          }
+			        },
+			        {
+			          "label": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.714
+			          }
+			        },
+			        {
+			          "tag": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.714
+			          }
+			        },
+			        {
+			          "Despesa": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fat_finance.value": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "FAT_FINANCES",
+			          "ConceptualProperty": "VALUE"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "value": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "assessment": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "worth": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "price": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "cost": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "charge": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "rate": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "importance": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.466
+			          }
+			        },
+			        {
+			          "significance": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.466
+			          }
+			        },
+			        {
+			          "usefulness": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.466
+			          }
+			        },
+			        {
+			          "consequence": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.466
+			          }
+			        },
+			        {
+			          "Valor": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fat_finance.type": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "FAT_FINANCES",
+			          "ConceptualProperty": "TYPE"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "type": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "genre": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        },
+			        {
+			          "manner": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        },
+			        {
+			          "variety": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        },
+			        {
+			          "brand": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.714
+			          }
+			        },
+			        {
+			          "class": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.714
+			          }
+			        },
+			        {
+			          "kind": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.714
+			          }
+			        },
+			        {
+			          "style": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.714
+			          }
+			        },
+			        {
+			          "form": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.714
+			          }
+			        },
+			        {
+			          "grouping": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.714
+			          }
+			        },
+			        {
+			          "Tipo": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fat_finance.category": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "FAT_FINANCES",
+			          "ConceptualProperty": "CATEGORY"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "category": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "classification": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        },
+			        {
+			          "class": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.714
+			          }
+			        },
+			        {
+			          "grouping": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.714
+			          }
+			        },
+			        {
+			          "kind": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.714
+			          }
+			        },
+			        {
+			          "Categoria": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fat_finance.sub_category": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "FAT_FINANCES",
+			          "ConceptualProperty": "SUB_CATEGORY"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "sub category": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "SUB_CATEGORY": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "sub classification": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "sub class": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        },
+			        {
+			          "sub group": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        },
+			        {
+			          "sub type": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        },
+			        {
+			          "sub grouping": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        },
+			        {
+			          "sub kind": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        },
+			        {
+			          "Sub Categoria": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fat_finance.date": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "FAT_FINANCES",
+			          "ConceptualProperty": "DATE"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "date": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "moment": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.736
+			          }
+			        },
+			        {
+			          "period": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.714
+			          }
+			        },
+			        {
+			          "Data": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ],
+			      "SemanticType": "Time"
+			    },
+			    "fat_finance.efective_value": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "FAT_FINANCES",
+			          "ConceptualProperty": "EFECTIVE_VALUE"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "efective value": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "EFECTIVE_VALUE": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "efective assessment": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "efective worth": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "efective price": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "efective cost": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "efective charge": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "efective rate": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "efective importance": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.475
+			          }
+			        },
+			        {
+			          "efective significance": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.475
+			          }
+			        },
+			        {
+			          "efective usefulness": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.475
+			          }
+			        },
+			        {
+			          "efective consequence": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.475
+			          }
+			        },
+			        {
+			          "Valor Efetivo": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "fat_finance.account": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "FAT_FINANCES",
+			          "ConceptualProperty": "ACCOUNT"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "account": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "explanation": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "version": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "interpretation": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "justification": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "reason": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "excuse": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "description": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.466
+			          }
+			        },
+			        {
+			          "relation": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.466
+			          }
+			        },
+			        {
+			          "story": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.452
+			          }
+			        },
+			        {
+			          "report": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.452
+			          }
+			        },
+			        {
+			          "Conta": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    }
+			  },
+			  "Relationships": {
+			    "fat_finance_has_dim_calendario": {
+			      "Binding": {
+			        "ConceptualEntity": "FAT_FINANCES"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fat_finance": {
+			          "Target": {
+			            "Entity": "fat_finance"
+			          }
+			        },
+			        "dim_calendario": {
+			          "Target": {
+			            "Entity": "dim_calendario"
+			          },
+			          "Nouns": [
+			            {
+			              "Data": {
+			                "State": "Generated"
+			              }
+			            }
+			          ]
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fat_finance"
+			            },
+			            "Object": {
+			              "Role": "dim_calendario"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fat_finances_have_dim_calendarios"
+			        },
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_calendario"
+			            },
+			            "Object": {
+			              "Role": "fat_finance"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_calendarios_have_fat_finances"
+			        }
+			      ]
+			    },
+			    "fat_finance_has_account": {
+			      "Binding": {
+			        "ConceptualEntity": "FAT_FINANCES"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fat_finance": {
+			          "Target": {
+			            "Entity": "fat_finance"
+			          }
+			        },
+			        "fat_finance.account": {
+			          "Target": {
+			            "Entity": "fat_finance.account"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fat_finance"
+			            },
+			            "Object": {
+			              "Role": "fat_finance.account"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fat_finances_have_accounts"
+			        }
+			      ]
+			    },
+			    "fat_finance_has_efective_value": {
+			      "Binding": {
+			        "ConceptualEntity": "FAT_FINANCES"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fat_finance": {
+			          "Target": {
+			            "Entity": "fat_finance"
+			          }
+			        },
+			        "fat_finance.efective_value": {
+			          "Target": {
+			            "Entity": "fat_finance.efective_value"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fat_finance"
+			            },
+			            "Object": {
+			              "Role": "fat_finance.efective_value"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fat_finances_have_efective_values"
+			        }
+			      ]
+			    },
+			    "fat_finance_has_date": {
+			      "Binding": {
+			        "ConceptualEntity": "FAT_FINANCES"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fat_finance": {
+			          "Target": {
+			            "Entity": "fat_finance"
+			          }
+			        },
+			        "fat_finance.date": {
+			          "Target": {
+			            "Entity": "fat_finance.date"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fat_finance"
+			            },
+			            "Object": {
+			              "Role": "fat_finance.date"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fat_finances_have_dates"
+			        }
+			      ]
+			    },
+			    "fat_finance_has_sub_category": {
+			      "Binding": {
+			        "ConceptualEntity": "FAT_FINANCES"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fat_finance": {
+			          "Target": {
+			            "Entity": "fat_finance"
+			          }
+			        },
+			        "fat_finance.sub_category": {
+			          "Target": {
+			            "Entity": "fat_finance.sub_category"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fat_finance"
+			            },
+			            "Object": {
+			              "Role": "fat_finance.sub_category"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fat_finances_have_sub_categories"
+			        }
+			      ]
+			    },
+			    "fat_finance_has_category": {
+			      "Binding": {
+			        "ConceptualEntity": "FAT_FINANCES"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fat_finance": {
+			          "Target": {
+			            "Entity": "fat_finance"
+			          }
+			        },
+			        "fat_finance.category": {
+			          "Target": {
+			            "Entity": "fat_finance.category"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fat_finance"
+			            },
+			            "Object": {
+			              "Role": "fat_finance.category"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fat_finances_have_categories"
+			        }
+			      ]
+			    },
+			    "fat_finance_has_type": {
+			      "Binding": {
+			        "ConceptualEntity": "FAT_FINANCES"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fat_finance": {
+			          "Target": {
+			            "Entity": "fat_finance"
+			          }
+			        },
+			        "fat_finance.type": {
+			          "Target": {
+			            "Entity": "fat_finance.type"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fat_finance"
+			            },
+			            "Object": {
+			              "Role": "fat_finance.type"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fat_finances_have_types"
+			        }
+			      ]
+			    },
+			    "fat_finance_has_value": {
+			      "Binding": {
+			        "ConceptualEntity": "FAT_FINANCES"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fat_finance": {
+			          "Target": {
+			            "Entity": "fat_finance"
+			          }
+			        },
+			        "fat_finance.value": {
+			          "Target": {
+			            "Entity": "fat_finance.value"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fat_finance"
+			            },
+			            "Object": {
+			              "Role": "fat_finance.value"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fat_finances_have_values"
+			        }
+			      ]
+			    },
+			    "fat_finance_has_name": {
+			      "Binding": {
+			        "ConceptualEntity": "FAT_FINANCES"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fat_finance": {
+			          "Target": {
+			            "Entity": "fat_finance"
+			          }
+			        },
+			        "fat_finance.name": {
+			          "Target": {
+			            "Entity": "fat_finance.name"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fat_finance"
+			            },
+			            "Object": {
+			              "Role": "fat_finance.name"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fat_finances_have_names"
+			        }
+			      ]
+			    },
+			    "fat_finance_has_ID": {
+			      "Binding": {
+			        "ConceptualEntity": "FAT_FINANCES"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fat_finance": {
+			          "Target": {
+			            "Entity": "fat_finance"
+			          }
+			        },
+			        "fat_finance.ID": {
+			          "Target": {
+			            "Entity": "fat_finance.ID"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fat_finance"
+			            },
+			            "Object": {
+			              "Role": "fat_finance.ID"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fat_finances_have_ID"
+			        },
+			        {
+			          "Name": {
+			            "Subject": {
+			              "Role": "fat_finance"
+			            },
+			            "Name": {
+			              "Role": "fat_finance.ID"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "ID_are_names_IDs_of_fat_finances"
+			        }
+			      ]
+			    },
+			    "fat_finance_has_medida_total_sacado_crypto": {
+			      "Binding": {
+			        "ConceptualEntity": "FAT_FINANCES"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fat_finance": {
+			          "Target": {
+			            "Entity": "fat_finance"
+			          }
+			        },
+			        "medida.total_sacado_crypto": {
+			          "Target": {
+			            "Entity": "medida.total_sacado_crypto"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fat_finance"
+			            },
+			            "Object": {
+			              "Role": "medida.total_sacado_crypto"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fat_finances_have_total_sacado_crypto"
+			        }
+			      ]
+			    },
+			    "fat_finance_has_medida_total_sacado_cdi": {
+			      "Binding": {
+			        "ConceptualEntity": "FAT_FINANCES"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fat_finance": {
+			          "Target": {
+			            "Entity": "fat_finance"
+			          }
+			        },
+			        "medida.total_sacado_cdi": {
+			          "Target": {
+			            "Entity": "medida.total_sacado_cdi"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fat_finance"
+			            },
+			            "Object": {
+			              "Role": "medida.total_sacado_cdi"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fat_finances_have_total_sacado_cdi"
+			        }
+			      ]
+			    },
+			    "fat_finance_has_medida_total_investido_cdi": {
+			      "Binding": {
+			        "ConceptualEntity": "FAT_FINANCES"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fat_finance": {
+			          "Target": {
+			            "Entity": "fat_finance"
+			          }
+			        },
+			        "medida.total_investido_cdi": {
+			          "Target": {
+			            "Entity": "medida.total_investido_cdi"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fat_finance"
+			            },
+			            "Object": {
+			              "Role": "medida.total_investido_cdi"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fat_finances_have_total_investido_cdi"
+			        }
+			      ]
+			    },
+			    "fat_finance_has_medida_total_investido_crypto": {
+			      "Binding": {
+			        "ConceptualEntity": "FAT_FINANCES"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fat_finance": {
+			          "Target": {
+			            "Entity": "fat_finance"
+			          }
+			        },
+			        "medida.total_investido_crypto": {
+			          "Target": {
+			            "Entity": "medida.total_investido_crypto"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fat_finance"
+			            },
+			            "Object": {
+			              "Role": "medida.total_investido_crypto"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fat_finances_have_total_investido_crypto"
+			        }
+			      ]
+			    },
+			    "fat_finance_has_medida_saldo_wise_ontem": {
+			      "Binding": {
+			        "ConceptualEntity": "FAT_FINANCES"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fat_finance": {
+			          "Target": {
+			            "Entity": "fat_finance"
+			          }
+			        },
+			        "medida.saldo_wise_ontem": {
+			          "Target": {
+			            "Entity": "medida.saldo_wise_ontem"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fat_finance"
+			            },
+			            "Object": {
+			              "Role": "medida.saldo_wise_ontem"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fat_finances_have_saldo_wise_ontem"
+			        }
+			      ]
+			    },
+			    "dim_atualizacao_has_data_hora": {
+			      "Binding": {
+			        "ConceptualEntity": "DIM_ATUALIZACAO"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "dim_atualizacao": {
+			          "Target": {
+			            "Entity": "dim_atualizacao"
+			          }
+			        },
+			        "dim_atualizacao.data_hora": {
+			          "Target": {
+			            "Entity": "dim_atualizacao.data_hora"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "dim_atualizacao"
+			            },
+			            "Object": {
+			              "Role": "dim_atualizacao.data_hora"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "dim_atualizacaos_have_data_horas"
+			        }
+			      ]
+			    },
+			    "fat_finance_has_medida_saldo_flash": {
+			      "Binding": {
+			        "ConceptualEntity": "FAT_FINANCES"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fat_finance": {
+			          "Target": {
+			            "Entity": "fat_finance"
+			          }
+			        },
+			        "medida.saldo_flash": {
+			          "Target": {
+			            "Entity": "medida.saldo_flash"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fat_finance"
+			            },
+			            "Object": {
+			              "Role": "medida.saldo_flash"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fat_finances_have_saldo_flash"
+			        }
+			      ]
+			    },
+			    "fat_finance_has_medida_saldo_inter": {
+			      "Binding": {
+			        "ConceptualEntity": "FAT_FINANCES"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fat_finance": {
+			          "Target": {
+			            "Entity": "fat_finance"
+			          }
+			        },
+			        "medida.saldo_inter": {
+			          "Target": {
+			            "Entity": "medida.saldo_inter"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fat_finance"
+			            },
+			            "Object": {
+			              "Role": "medida.saldo_inter"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fat_finances_have_saldo_inter"
+			        }
+			      ]
+			    },
+			    "fat_finance_has_medida_soma_valor_efetivo": {
+			      "Binding": {
+			        "ConceptualEntity": "FAT_FINANCES"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fat_finance": {
+			          "Target": {
+			            "Entity": "fat_finance"
+			          }
+			        },
+			        "medida.soma_valor_efetivo": {
+			          "Target": {
+			            "Entity": "medida.soma_valor_efetivo"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fat_finance"
+			            },
+			            "Object": {
+			              "Role": "medida.soma_valor_efetivo"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fat_finances_have_soma_valor_efetivo"
+			        }
+			      ]
+			    },
+			    "fat_finance_has_medida_soma_valor": {
+			      "Binding": {
+			        "ConceptualEntity": "FAT_FINANCES"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fat_finance": {
+			          "Target": {
+			            "Entity": "fat_finance"
+			          }
+			        },
+			        "medida.soma_valor": {
+			          "Target": {
+			            "Entity": "medida.soma_valor"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fat_finance"
+			            },
+			            "Object": {
+			              "Role": "medida.soma_valor"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fat_finances_have_soma_valor"
+			        }
+			      ]
+			    },
+			    "fat_finance_has_medida_saldo_flash_ontem": {
+			      "Binding": {
+			        "ConceptualEntity": "FAT_FINANCES"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fat_finance": {
+			          "Target": {
+			            "Entity": "fat_finance"
+			          }
+			        },
+			        "medida.saldo_flash_ontem": {
+			          "Target": {
+			            "Entity": "medida.saldo_flash_ontem"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fat_finance"
+			            },
+			            "Object": {
+			              "Role": "medida.saldo_flash_ontem"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fat_finances_have_saldo_flash_ontem"
+			        }
+			      ]
+			    },
+			    "fat_finance_has_medida_saldo_inter_ontem": {
+			      "Binding": {
+			        "ConceptualEntity": "FAT_FINANCES"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fat_finance": {
+			          "Target": {
+			            "Entity": "fat_finance"
+			          }
+			        },
+			        "medida.saldo_inter_ontem": {
+			          "Target": {
+			            "Entity": "medida.saldo_inter_ontem"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fat_finance"
+			            },
+			            "Object": {
+			              "Role": "medida.saldo_inter_ontem"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fat_finances_have_saldo_inter_ontem"
+			        }
+			      ]
+			    },
+			    "fat_finance_has_medida_dif_inter_ontem": {
+			      "Binding": {
+			        "ConceptualEntity": "FAT_FINANCES"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fat_finance": {
+			          "Target": {
+			            "Entity": "fat_finance"
+			          }
+			        },
+			        "medida.dif_inter_ontem": {
+			          "Target": {
+			            "Entity": "medida.dif_inter_ontem"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fat_finance"
+			            },
+			            "Object": {
+			              "Role": "medida.dif_inter_ontem"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fat_finances_have_dif_inter_ontem"
+			        }
+			      ]
+			    },
+			    "fat_finance_has_medida_dif_flash_ontem": {
+			      "Binding": {
+			        "ConceptualEntity": "FAT_FINANCES"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fat_finance": {
+			          "Target": {
+			            "Entity": "fat_finance"
+			          }
+			        },
+			        "medida.dif_flash_ontem": {
+			          "Target": {
+			            "Entity": "medida.dif_flash_ontem"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fat_finance"
+			            },
+			            "Object": {
+			              "Role": "medida.dif_flash_ontem"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fat_finances_have_dif_flash_ontem"
+			        }
+			      ]
+			    },
+			    "fat_finance_has_medida_saldo_wise": {
+			      "Binding": {
+			        "ConceptualEntity": "FAT_FINANCES"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "fat_finance": {
+			          "Target": {
+			            "Entity": "fat_finance"
+			          }
+			        },
+			        "medida.saldo_wise": {
+			          "Target": {
+			            "Entity": "medida.saldo_wise"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "fat_finance"
+			            },
+			            "Object": {
+			              "Role": "medida.saldo_wise"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "fat_finances_have_saldo_wise"
+			        }
+			      ]
+			    }
+			  },
+			  "Agents": {
+			    "Internal": {
+			      "Version": "1.1.0"
+			    }
+			  }
+			}
+		contentType: json
+

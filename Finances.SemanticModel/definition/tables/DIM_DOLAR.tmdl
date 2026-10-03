@@ -1,0 +1,46 @@
+table DIM_DOLAR
+	lineageTag: cb453240-8886-4576-ac61-eeaebad2d16f
+
+	column COTACAO_COMPRA
+		dataType: double
+		lineageTag: bf21b722-21cf-4955-aaf0-5e9ededb6895
+		summarizeBy: sum
+		sourceColumn: COTACAO_COMPRA
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column COTACAO_VENDA
+		dataType: double
+		lineageTag: 501116da-f6ba-491c-ac84-de831ebced70
+		summarizeBy: sum
+		sourceColumn: COTACAO_VENDA
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DATA_HORA
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 5df7260e-886e-4ccf-9cbd-dc0e49a537da
+		summarizeBy: none
+		sourceColumn: DATA_HORA
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DIM_DOLAR = m
+		mode: import
+		source =
+				let
+				    Fonte = Python.Execute("import requests#(lf)import pandas as pd#(lf)from datetime import datetime#(lf)#(lf)# ----------------------------------------------------------------------------#(lf)#                             DOLAR FEES - ETL#(lf)##(lf)# 1) Request to Brazil Bank API#(lf)# 2) DIM table with dolar fees along time#(lf)# ----------------------------------------------------------------------------#(lf)#(lf)data_inicio_cotacao = ""01-01-2025""#(lf)data_fim_cotacao = datetime.today().strftime('%m-%d-%Y')#(lf)#(lf)dolar_url = f""https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/odata/CotacaoDolarPeriodo(dataInicial=@dataInicial,dataFinalCotacao=@dataFinalCotacao)?@dataInicial='{data_inicio_cotacao}'&@dataFinalCotacao='{data_fim_cotacao}'&$orderby=dataHoraCotacao%20desc&$format=json""#(lf)#(lf)dolar_request = requests.get(url=dolar_url)#(lf)dolar_json = dolar_request.json()#(lf)dolar_data = []#(lf)dolar_columns = [""COTACAO_COMPRA"", ""COTACAO_VENDA"", ""DATA_HORA""]#(lf)#(lf)for ct in dolar_json['value']: #(lf)    cotacao_compra = ct.get(""cotacaoCompra"")#(lf)    cotacao_venda = ct.get(""cotacaoVenda"")#(lf)    data_hora = ct.get(""dataHoraCotacao"")#(lf)    dolar_data.append((cotacao_compra, cotacao_venda, data_hora))#(lf)#(lf)df_dolar = pd.DataFrame(dolar_data, columns=dolar_columns)#(lf)print(df_dolar)"),
+				    df_cdi1 = Fonte{[Name="df_dolar"]}[Value],
+				    #"Tipo Alterado" = Table.TransformColumnTypes(df_cdi1,{{"COTACAO_COMPRA", type number}, {"COTACAO_VENDA", type number}, {"DATA_HORA", type datetime}}, "en-US")
+				in
+				    #"Tipo Alterado"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+
