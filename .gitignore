@@ -186,3 +186,6 @@ config.json
 # Output archives
 *.xlsx
 *.csv
+
+# Temp Data
+/data
