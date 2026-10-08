@@ -11,16 +11,6 @@ table DIM_DOLAR
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	column COTACAO_VENDA
-		dataType: double
-		lineageTag: 501116da-f6ba-491c-ac84-de831ebced70
-		summarizeBy: sum
-		sourceColumn: COTACAO_VENDA
-
-		annotation SummarizationSetBy = Automatic
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
 	column DATA_HORA
 		dataType: dateTime
 		formatString: General Date

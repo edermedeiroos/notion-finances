@@ -1,12 +1,13 @@
 table DIM_CALENDARIO
 	lineageTag: 03469ec2-9fc2-426e-b676-52ba0b65354d
 
-	column Date
-		formatString: General Date
+	column data
+		dataType: dateTime
+		formatString: Short Date
 		lineageTag: 8d2b440d-07ac-49c5-9a5e-ab15905481f0
 		summarizeBy: none
 		isNameInferred
-		sourceColumn: [Date]
+		sourceColumn: [data]
 
 		variation Variation
 			isDefault
@@ -15,9 +16,48 @@ table DIM_CALENDARIO
 
 		annotation SummarizationSetBy = Automatic
 
+	column ano = YEAR([data])
+		dataType: int64
+		formatString: 0
+		lineageTag: 91b8f840-0539-44be-8b2b-6e9fa22a4c01
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column mes_num = MONTH([data])
+		dataType: int64
+		formatString: 0
+		lineageTag: e69eb27c-3b91-4cf5-b1a5-296538cb3392
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column mes_nome = FORMAT([data], "mmmm")
+		dataType: string
+		lineageTag: 5e612f02-a160-4740-9773-41bb336585d3
+		summarizeBy: none
+		sortByColumn: mes_num
+
+		annotation SummarizationSetBy = Automatic
+
+	column ano_mes = FORMAT([data], "yyyy-mm")
+		dataType: string
+		lineageTag: 4899c73d-98e7-4977-8729-281b3cc3697e
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column dia = DAY([data])
+		dataType: int64
+		formatString: 0
+		lineageTag: d859682f-8711-4775-8025-a4b5be271ec0
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
 	partition DIM_CALENDARIO = calculated
 		mode: import
-		source = CALENDAR(MIN(FAT_FINANCES[DATE]), MAX(FAT_FINANCES[DATE]))
+		source = SELECTCOLUMNS(CALENDAR(MIN(FAT_FINANCES[DATE]), MAX(FAT_FINANCES[DATE])), "data", [Date])
 
 	annotation PBI_Id = 546bf7a5e32842d2929d700920287fb0
 

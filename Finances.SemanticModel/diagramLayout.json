@@ -38,58 +38,63 @@
         },
         {
           "location": {
-            "x": 728,
-            "y": 23.75
+            "x": 0,
+            "y": 388.97594863793512
           },
           "nodeIndex": "FAT_FINANCES",
           "nodeLineageTag": "18909533-702b-441a-b5f4-beee789ace01",
           "size": {
-            "height": 296,
+            "height": 104,
             "width": 234
           },
-          "zIndex": 3
+          "zIndex": 3,
+          "expandedHeight": 296
         },
         {
           "location": {
-            "x": 764,
-            "y": 452.5
+            "x": 566.69335938655456,
+            "y": 390.4893415214886
           },
           "nodeIndex": "DIM_CDI",
           "nodeLineageTag": "71ec0039-7ecc-4509-b9da-1d93fb8c6e09",
           "size": {
-            "height": 149,
+            "height": 104,
             "width": 234
           },
-          "zIndex": 4
+          "zIndex": 4,
+          "expandedHeight": 149
         },
         {
           "location": {
-            "x": 91,
-            "y": 443.625
+            "x": 289.71597376068434,
+            "y": 388.66100725768314
           },
           "nodeIndex": "DIM_DOLAR",
           "nodeLineageTag": "cb453240-8886-4576-ac61-eeaebad2d16f",
           "size": {
-            "height": 152,
+            "height": 104,
             "width": 234
           },
-          "zIndex": 1
+          "zIndex": 1,
+          "expandedHeight": 152
         },
         {
           "location": {
-            "x": 428,
-            "y": 346.75
+            "x": 0,
+            "y": 208.63535157058826
           },
           "nodeIndex": "DIM_CALENDARIO",
+          "nodeLineageTag": "03469ec2-9fc2-426e-b676-52ba0b65354d",
           "size": {
-            "height": 200,
+            "height": 104,
             "width": 234
           },
-          "zIndex": 0
+          "zIndex": 0,
+          "expandedHeight": 200
         }
       ],
       "name": "Todas as tabelas",
-      "zoomValue": 100,
+      "zoomValue": 70.95554390096882,
       "pinKeyFieldsToTop": false,
       "showExtraHeaderInfo": false,
       "hideKeyFieldsWhenCollapsed": false,
