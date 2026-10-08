@@ -1,0 +1,354 @@
+<svg width="1280" height="1380" viewBox="0 0 1280 1380" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- DEFINIÇÕES E ESTILOS -->
+  <defs>
+    <style>
+      .text-title { font-family: 'Segoe UI', -apple-system, sans-serif; font-size: 11px; font-weight: 700; fill: #252321; letter-spacing: 0.5px; }
+      .text-sub { font-family: 'Segoe UI', -apple-system, sans-serif; font-size: 10px; font-weight: 400; fill: #808080; }
+      .text-kpi-val { font-family: 'Segoe UI', -apple-system, sans-serif; font-size: 20px; font-weight: 700; fill: #252321; }
+      .text-kpi-sub { font-family: 'Segoe UI', -apple-system, sans-serif; font-size: 10px; font-weight: 500; fill: #6D6865; }
+      .text-badge { font-family: 'Segoe UI', -apple-system, sans-serif; font-size: 9px; font-weight: 700; }
+      .text-table-head { font-family: 'Segoe UI', -apple-system, sans-serif; font-size: 10px; font-weight: 600; fill: #6D6865; }
+      .text-table-cell { font-family: 'Segoe UI', -apple-system, sans-serif; font-size: 10px; font-weight: 500; fill: #252321; }
+    </style>
+  </defs>
+
+  <!-- 1. FUNDO DO CANVAS (#E9E9E9) -->
+  <rect width="1280" height="1380" fill="#E9E9E9"/>
+
+  <!-- 2. TOP HEADER BAR (#3A3633, h=55) -->
+  <rect x="0" y="0" width="1280" height="55" fill="#3A3633"/>
+
+  <!-- Logo Icon ($) -->
+  <rect x="15" y="11" width="33" height="33" rx="8" fill="#3B89E2"/>
+  <text x="26" y="33" font-family="'Segoe UI', sans-serif" font-size="16" font-weight="900" fill="#FFFFFF">$</text>
+
+  <!-- Título do Dashboard -->
+  <text x="58" y="27" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="700" fill="#FFFFFF" letter-spacing="0.5px">GESTÃO PATRIMONIAL • INVESTIMENTOS (APORTE X RETORNO)</text>
+  <text x="58" y="41" font-family="'Segoe UI', sans-serif" font-size="9.5" font-weight="400" fill="#A09D9A" letter-spacing="1px">ALOCAÇÃO DE ATIVOS • FLUXO LÍQUIDO • RENTABILIDADE DIM_CDI &amp; DÓLAR</text>
+
+  <!-- Slicer Pill no Topo Direito (x=810, y=10, w=455, h=35, rx=15, fill=white) -->
+  <rect x="810" y="10" width="455" height="35" rx="15" fill="#FFFFFF"/>
+  <rect x="822" y="18" width="18" height="18" rx="4" fill="#EFF6FF"/>
+  <path d="M826 23H836M826 27H833M826 31H835" stroke="#3B89E2" stroke-width="1.5" stroke-linecap="round"/>
+  <text x="846" y="32" font-family="'Segoe UI', sans-serif" font-size="11" font-weight="600" fill="#252321">Classe: <tspan font-weight="700" fill="#1E3A5F">Todas as Classes</tspan></text>
+  <line x1="995" y1="18" x2="995" y2="37" stroke="#E9E9E9" stroke-width="1.5"/>
+  <text x="1008" y="32" font-family="'Segoe UI', sans-serif" font-size="11" font-weight="600" fill="#6D6865">Indexador:</text>
+  <rect x="1070" y="15" width="185" height="24" rx="12" fill="#E9E9E9"/>
+  <text x="1090" y="31" font-family="'Segoe UI', sans-serif" font-size="10.5" font-weight="700" fill="#252321">CDI • Selic • USD • FIIs</text>
+
+
+  <!-- ======================================================================= -->
+  <!-- BLOCO 1: CARDS DE KPI SUPERIORES (y=70, 4 colunas, w=301.2, h=85, rx=15) -->
+  <!-- ======================================================================= -->
+
+  <!-- KPI 1: Total Aportado (x=15) -->
+  <rect x="15" y="70" width="301.2" height="85" rx="15" fill="#FFFFFF"/>
+  <rect x="15" y="70" width="301.2" height="85" rx="15" stroke="#E9E9E9" stroke-width="1"/>
+  <rect x="27" y="82" width="10" height="10" rx="3" fill="#3B89E2"/>
+  <text x="43" y="91" class="text-title">TOTAL APORTADO</text>
+  <rect x="235" y="79" width="68" height="18" rx="9" fill="#EFF6FF"/>
+  <text x="245" y="92" class="text-badge" fill="#3B89E2">ENTRADAS</text>
+  <text x="27" y="125" class="text-kpi-val" fill="#3B89E2">R$ 94.271,83</text>
+  <text x="27" y="143" class="text-kpi-sub">62 aportes em renda fixa &amp; cripto</text>
+
+  <!-- KPI 2: Total Resgatado / Desinvestido (x=331.2) -->
+  <rect x="331.2" y="70" width="301.2" height="85" rx="15" fill="#FFFFFF"/>
+  <rect x="331.2" y="70" width="301.2" height="85" rx="15" stroke="#E9E9E9" stroke-width="1"/>
+  <rect x="343.2" y="82" width="10" height="10" rx="3" fill="#F99C3E"/>
+  <text x="359.2" y="91" class="text-title">TOTAL RESGATADO / VENDAS</text>
+  <rect x="555.2" y="79" width="65" height="18" rx="9" fill="#FEF3C7"/>
+  <text x="565.2" y="92" class="text-badge" fill="#D97706">RESGATES</text>
+  <text x="343.2" y="125" class="text-kpi-val" fill="#D97706">R$ 82.963,19</text>
+  <text x="343.2" y="143" class="text-kpi-sub">Poupança migrada + saques CDI</text>
+
+  <!-- KPI 3: Aporte Líquido (Net Flow) (x=647.5) -->
+  <rect x="647.5" y="70" width="301.2" height="85" rx="15" fill="#FFFFFF"/>
+  <rect x="647.5" y="70" width="301.2" height="85" rx="15" stroke="#E9E9E9" stroke-width="1"/>
+  <rect x="659.5" y="82" width="10" height="10" rx="3" fill="#10715A"/>
+  <text x="675.5" y="91" class="text-title">APORTE LÍQUIDO (NET FLOW)</text>
+  <rect x="873.5" y="79" width="63" height="18" rx="9" fill="#DCFCE7"/>
+  <text x="883.5" y="92" class="text-badge" fill="#10715A">LÍQUIDO</text>
+  <text x="659.5" y="125" class="text-kpi-val" fill="#10715A">+R$ 11.308,64</text>
+  <text x="659.5" y="143" class="text-kpi-sub" fill="#10715A">Fluxo líquido positivo acumulado</text>
+
+  <!-- KPI 4: Rentabilidade Estimada da Carteira (x=963.8) -->
+  <rect x="963.8" y="70" width="301.2" height="85" rx="15" fill="#FFFFFF"/>
+  <rect x="963.8" y="70" width="301.2" height="85" rx="15" stroke="#E9E9E9" stroke-width="1"/>
+  <rect x="975.8" y="82" width="10" height="10" rx="3" fill="#C9FD8A"/>
+  <text x="991.8" y="91" class="text-title">RENTABILIDADE ESTIMADA</text>
+  <rect x="1173.8" y="79" width="79" height="18" rx="9" fill="#DCFCE7"/>
+  <text x="1183.8" y="92" class="text-badge" fill="#10715A">DIM_CDI + USD</text>
+  <text x="975.8" y="125" class="text-kpi-val" fill="#10715A">+11,4%</text>
+  <text x="975.8" y="143" class="text-kpi-sub">Lucro de ~R$ 4.812,40 sobre aportes</text>
+
+
+  <!-- ======================================================================= -->
+  <!-- BLOCO 2: ALOCAÇÃO DE ATIVOS & FLUXO APORTE X RESGATE (y=170, h=440) -->
+  <!-- ======================================================================= -->
+
+  <!-- Card Esquerda: Alocação de Aportes por Classe (w=406.7, x=15) -->
+  <rect x="15" y="170" width="406.7" height="440" rx="15" fill="#FFFFFF"/>
+  <rect x="15" y="170" width="406.7" height="440" rx="15" stroke="#E9E9E9" stroke-width="1"/>
+
+  <rect x="27" y="185" width="10" height="10" rx="3" fill="#3B89E2"/>
+  <text x="43" y="194" class="text-title">ALOCAÇÃO POR ATIVO / INDEXADOR</text>
+  <rect x="325" y="182" width="85" height="18" rx="9" fill="#EFF6FF"/>
+  <text x="335" y="194" class="text-badge" fill="#3B89E2">PORTFÓLIO</text>
+  <text x="27" y="210" class="text-sub">Volume total direcionado por produto financeiro</text>
+
+  <!-- Pílulas de Ativos (Padrão rx=9.5) -->
+  <g transform="translate(27, 222)">
+    <!-- 1. CDI -->
+    <rect x="0" y="0" width="382.7" height="48" rx="9.5" fill="#F9F9F9" stroke="#E9E9E9"/>
+    <text x="12" y="20" font-family="'Segoe UI', sans-serif" font-size="11" font-weight="700" fill="#252321">CDI (Porquinho Inter / CDB)</text>
+    <text x="260" y="20" font-family="'Segoe UI', sans-serif" font-size="11" font-weight="700" fill="#3B89E2">R$ 38.123,82</text>
+    <rect x="12" y="30" width="358" height="6" rx="3" fill="#E9E9E9"/>
+    <rect x="12" y="30" width="145" height="6" rx="3" fill="#3B89E2"/>
+    <text x="330" y="20" font-family="'Segoe UI', sans-serif" font-size="9" font-weight="600" fill="#6D6865"> (40%)</text>
+
+    <!-- 2. LCI -->
+    <rect x="0" y="56" width="382.7" height="48" rx="9.5" fill="#F9F9F9" stroke="#E9E9E9"/>
+    <text x="12" y="76" font-family="'Segoe UI', sans-serif" font-size="11" font-weight="700" fill="#252321">LCI (Isento de IR)</text>
+    <text x="260" y="76" font-family="'Segoe UI', sans-serif" font-size="11" font-weight="700" fill="#10715A">R$ 22.641,62</text>
+    <rect x="12" y="86" width="358" height="6" rx="3" fill="#E9E9E9"/>
+    <rect x="12" y="86" width="86" height="6" rx="3" fill="#10715A"/>
+    <text x="330" y="76" font-family="'Segoe UI', sans-serif" font-size="9" font-weight="600" fill="#6D6865"> (24%)</text>
+
+    <!-- 3. Tesouro Direto -->
+    <rect x="0" y="112" width="382.7" height="48" rx="9.5" fill="#F9F9F9" stroke="#E9E9E9"/>
+    <text x="12" y="132" font-family="'Segoe UI', sans-serif" font-size="11" font-weight="700" fill="#252321">Tesouro Direto (Selic/IPCA)</text>
+    <text x="260" y="132" font-family="'Segoe UI', sans-serif" font-size="11" font-weight="700" fill="#D97706">R$ 21.921,17</text>
+    <rect x="12" y="142" width="358" height="6" rx="3" fill="#E9E9E9"/>
+    <rect x="12" y="142" width="83" height="6" rx="3" fill="#D97706"/>
+    <text x="330" y="132" font-family="'Segoe UI', sans-serif" font-size="9" font-weight="600" fill="#6D6865"> (23%)</text>
+
+    <!-- 4. FIIs & ETFs -->
+    <rect x="0" y="168" width="382.7" height="48" rx="9.5" fill="#F9F9F9" stroke="#E9E9E9"/>
+    <text x="12" y="188" font-family="'Segoe UI', sans-serif" font-size="11" font-weight="700" fill="#252321">FII's &amp; ETFs (Renda Passiva)</text>
+    <text x="260" y="188" font-family="'Segoe UI', sans-serif" font-size="11" font-weight="700" fill="#CA0AA7">R$ 5.585,22</text>
+    <rect x="12" y="198" width="358" height="6" rx="3" fill="#E9E9E9"/>
+    <rect x="12" y="198" width="22" height="6" rx="3" fill="#CA0AA7"/>
+    <text x="330" y="188" font-family="'Segoe UI', sans-serif" font-size="9" font-weight="600" fill="#6D6865"> (6%)</text>
+
+    <!-- 5. Crypto -->
+    <rect x="0" y="224" width="382.7" height="48" rx="9.5" fill="#F9F9F9" stroke="#E9E9E9"/>
+    <text x="12" y="244" font-family="'Segoe UI', sans-serif" font-size="11" font-weight="700" fill="#252321">Crypto (Criptoativos)</text>
+    <text x="260" y="244" font-family="'Segoe UI', sans-serif" font-size="11" font-weight="700" fill="#FF4A53">R$ 5.400,00</text>
+    <rect x="12" y="254" width="358" height="6" rx="3" fill="#E9E9E9"/>
+    <rect x="12" y="254" width="21" height="6" rx="3" fill="#FF4A53"/>
+    <text x="330" y="244" font-family="'Segoe UI', sans-serif" font-size="9" font-weight="600" fill="#6D6865"> (6%)</text>
+  </g>
+
+  <!-- Pílula de Perfil de Carteira -->
+  <rect x="27" y="555" width="382.7" height="38" rx="8" fill="#DCFCE7" stroke="#10715A" stroke-opacity="0.2"/>
+  <text x="39" y="578" font-family="'Segoe UI', sans-serif" font-size="10" font-weight="600" fill="#10715A">
+    Perfil: 88% Renda Fixa Segura • 12% Renda Variável &amp; Alternativos
+  </text>
+
+
+  <!-- Card Direita: Comparativo Mensal Aporte x Resgate (w=828.3, x=436.7) -->
+  <rect x="436.7" y="170" width="828.3" height="440" rx="15" fill="#FFFFFF"/>
+  <rect x="436.7" y="170" width="828.3" height="440" rx="15" stroke="#E9E9E9" stroke-width="1"/>
+
+  <rect x="448.7" y="185" width="10" height="10" rx="3" fill="#10715A"/>
+  <text x="464.7" y="194" class="text-title">FLUXO MENSAL: APORTES (APLICAÇÃO) VS RESGATES (RETORNO)</text>
+  <rect x="1145" y="182" width="108" height="18" rx="9" fill="#EFF6FF"/>
+  <text x="1155" y="194" class="text-badge" fill="#1E3A5F">NET FLOW</text>
+  <text x="448.7" y="210" class="text-sub">Balanço mensal de liquidez: meses de acúmulo líquido vs necessidade de resgate</text>
+
+  <!-- Legenda do Gráfico -->
+  <g transform="translate(448.7, 225)">
+    <rect x="0" y="0" width="10" height="10" rx="2" fill="#3B89E2"/>
+    <text x="14" y="9" font-family="'Segoe UI', sans-serif" font-size="9.5" font-weight="600" fill="#252321">Aportes (Aplicações)</text>
+
+    <rect x="130" y="0" width="10" height="10" rx="2" fill="#F99C3E"/>
+    <text x="144" y="9" font-family="'Segoe UI', sans-serif" font-size="9.5" font-weight="600" fill="#252321">Resgates / Vendas</text>
+
+    <line x1="260" y1="5" x2="280" y2="5" stroke="#10715A" stroke-width="2"/>
+    <text x="286" y="9" font-family="'Segoe UI', sans-serif" font-size="9.5" font-weight="600" fill="#10715A">Saldo Líquido Acumulado</text>
+  </g>
+
+  <!-- Área demarcada para o Visual Power BI (clusteredColumnChart) -->
+  <rect x="448.7" y="245" width="804.3" height="310" rx="9.5" fill="#FDFDFD" stroke="#E9E9E9"/>
+  <line x1="470" y1="510" x2="1230" y2="510" stroke="#E9E9E9" stroke-width="1"/>
+  <text x="480" y="528" font-family="'Segoe UI', sans-serif" font-size="9" fill="#808080">Nov/25</text>
+  <text x="575" y="528" font-family="'Segoe UI', sans-serif" font-size="9" fill="#808080">Dez/25</text>
+  <text x="670" y="528" font-family="'Segoe UI', sans-serif" font-size="9" fill="#808080">Jan/26</text>
+  <text x="765" y="528" font-family="'Segoe UI', sans-serif" font-size="9" fill="#808080">Abr/26</text>
+  <text x="860" y="528" font-family="'Segoe UI', sans-serif" font-size="9" fill="#808080">Jul/26</text>
+  <text x="955" y="528" font-family="'Segoe UI', sans-serif" font-size="9" font-weight="700" fill="#D97706">Ago/26*</text>
+  <text x="1060" y="528" font-family="'Segoe UI', sans-serif" font-size="9" fill="#808080">Set/26</text>
+  <text x="1155" y="528" font-family="'Segoe UI', sans-serif" font-size="9" fill="#808080">Out/26</text>
+
+  <!-- Pílula de Rodapé -->
+  <text x="448.7" y="585" font-family="'Segoe UI', sans-serif" font-size="10" font-weight="600" fill="#10715A">
+    ✦ Net Flow Positivo em 75% dos meses avaliados. Consistência na meta de aporte mensal.
+  </text>
+
+
+  <!-- ======================================================================= -->
+  <!-- BLOCO 3: POSIÇÕES DA CARTEIRA & INDEXADORES (y=625, h=400, w=1250) -->
+  <!-- ======================================================================= -->
+  <rect x="15" y="625" width="1250" height="400" rx="15" fill="#FFFFFF"/>
+  <rect x="15" y="625" width="1250" height="400" rx="15" stroke="#E9E9E9" stroke-width="1"/>
+
+  <rect x="27" y="640" width="10" height="10" rx="3" fill="#1E3A5F"/>
+  <text x="43" y="649" class="text-title">POSIÇÕES DA CARTEIRA &amp; RENTABILIDADE POR ATIVO</text>
+  <rect x="1150" y="637" width="103" height="18" rx="9" fill="#EFF6FF"/>
+  <text x="1160" y="649" class="text-badge" fill="#1E3A5F">INDEXADORES</text>
+  <text x="27" y="665" class="text-sub">Cruzamento dos aportes Notion com DIM_CDI e Cotação PTAX da DIM_DOLAR</text>
+
+  <!-- Cabeçalho da Tabela Estilizado no Padrão dos SVGs de Frotas -->
+  <rect x="27" y="680" width="1226" height="32" rx="6" fill="#F4F4F4"/>
+  <text x="42" y="700" class="text-table-head">CLASSE / PRODUTO</text>
+  <text x="260" y="700" class="text-table-head">TOTAL APORTADO</text>
+  <text x="430" y="700" class="text-table-head">TOTAL RESGATADO</text>
+  <text x="600" y="700" class="text-table-head">FLUXO LÍQUIDO</text>
+  <text x="770" y="700" class="text-table-head">RENTABILIDADE ESTIMADA</text>
+  <text x="1000" y="700" class="text-table-head">INDEXADOR BASE</text>
+  <text x="1150" y="700" class="text-table-head">SITUAÇÃO</text>
+
+  <!-- Linha 1: CDI -->
+  <line x1="27" y1="750" x2="1253" y2="750" stroke="#E9E9E9" stroke-width="1"/>
+  <text x="42" y="735" class="text-table-cell" font-weight="700">CDI (Inter Porquinho / CDBs)</text>
+  <text x="260" y="735" class="text-table-cell" font-weight="700" fill="#3B89E2">R$ 38.123,82</text>
+  <text x="430" y="735" class="text-table-cell" fill="#D97706">R$ 23.910,41</text>
+  <text x="600" y="735" class="text-table-cell" font-weight="700" fill="#10715A">+R$ 14.213,41</text>
+  <text x="770" y="735" class="text-table-cell" font-weight="700" fill="#10715A">+10,2% (DIM_CDI)</text>
+  <text x="1000" y="735" class="text-table-cell">100% do CDI diário</text>
+  <rect x="1145" y="723" width="95" height="18" rx="9" fill="#DCFCE7"/>
+  <text x="1155" y="736" class="text-badge" fill="#10715A">Ativo / Diário</text>
+
+  <!-- Linha 2: LCI -->
+  <line x1="27" y1="790" x2="1253" y2="790" stroke="#E9E9E9" stroke-width="1"/>
+  <text x="42" y="775" class="text-table-cell" font-weight="700">LCI (Renda Fixa Isenta IR)</text>
+  <text x="260" y="775" class="text-table-cell" font-weight="700" fill="#3B89E2">R$ 22.641,62</text>
+  <text x="430" y="775" class="text-table-cell" fill="#808080">R$ 0,00</text>
+  <text x="600" y="775" class="text-table-cell" font-weight="700" fill="#10715A">+R$ 22.641,62</text>
+  <text x="770" y="775" class="text-table-cell" font-weight="700" fill="#10715A">Isento IR / Pré</text>
+  <text x="1000" y="775" class="text-table-cell">Taxa contratada</text>
+  <rect x="1145" y="763" width="95" height="18" rx="9" fill="#EFF6FF"/>
+  <text x="1155" y="776" class="text-badge" fill="#3B89E2">Em Carteira</text>
+
+  <!-- Linha 3: Tesouro Direto -->
+  <line x1="27" y1="830" x2="1253" y2="830" stroke="#E9E9E9" stroke-width="1"/>
+  <text x="42" y="815" class="text-table-cell" font-weight="700">Tesouro Direto</text>
+  <text x="260" y="815" class="text-table-cell" font-weight="700" fill="#3B89E2">R$ 21.921,17</text>
+  <text x="430" y="815" class="text-table-cell" fill="#808080">R$ 0,00</text>
+  <text x="600" y="815" class="text-table-cell" font-weight="700" fill="#10715A">+R$ 21.921,17</text>
+  <text x="770" y="815" class="text-table-cell" font-weight="700" fill="#10715A">Selic / IPCA+</text>
+  <text x="1000" y="815" class="text-table-cell">Tesouro Nacional</text>
+  <rect x="1145" y="803" width="95" height="18" rx="9" fill="#EFF6FF"/>
+  <text x="1155" y="816" class="text-badge" fill="#3B89E2">Em Carteira</text>
+
+  <!-- Linha 4: Crypto -->
+  <line x1="27" y1="870" x2="1253" y2="870" stroke="#E9E9E9" stroke-width="1"/>
+  <text x="42" y="855" class="text-table-cell" font-weight="700">Crypto (Criptoativos)</text>
+  <text x="260" y="855" class="text-table-cell" font-weight="700" fill="#3B89E2">R$ 5.400,00</text>
+  <text x="430" y="855" class="text-table-cell" fill="#808080">R$ 0,00</text>
+  <text x="600" y="855" class="text-table-cell" font-weight="700" fill="#10715A">+R$ 5.400,00</text>
+  <text x="770" y="855" class="text-table-cell" font-weight="700" fill="#10715A">+14,8% (Dólar PTAX)</text>
+  <text x="1000" y="855" class="text-table-cell">DIM_DOLAR Compra</text>
+  <rect x="1145" y="843" width="95" height="18" rx="9" fill="#FEF3C7"/>
+  <text x="1155" y="856" class="text-badge" fill="#D97706">Cotação Ativa</text>
+
+  <!-- Linha 5: FIIs & ETFs -->
+  <line x1="27" y1="910" x2="1253" y2="910" stroke="#E9E9E9" stroke-width="1"/>
+  <text x="42" y="895" class="text-table-cell" font-weight="700">FII's &amp; ETFs</text>
+  <text x="260" y="895" class="text-table-cell" font-weight="700" fill="#3B89E2">R$ 5.585,22</text>
+  <text x="430" y="895" class="text-table-cell" fill="#D97706">R$ 31,33</text>
+  <text x="600" y="895" class="text-table-cell" font-weight="700" fill="#10715A">+R$ 5.553,89</text>
+  <text x="770" y="895" class="text-table-cell" font-weight="700" fill="#10715A">Proventos Mensais</text>
+  <text x="1000" y="895" class="text-table-cell">B3 Proventos</text>
+  <rect x="1145" y="883" width="95" height="18" rx="9" fill="#DCFCE7"/>
+  <text x="1155" y="896" class="text-badge" fill="#10715A">Proventos</text>
+
+  <!-- Linha 6: Poupança (Realocada) -->
+  <line x1="27" y1="950" x2="1253" y2="950" stroke="#E9E9E9" stroke-width="1"/>
+  <text x="42" y="935" class="text-table-cell" font-weight="700">Poupança (Migrada)</text>
+  <text x="260" y="935" class="text-table-cell" fill="#808080">R$ 0,00</text>
+  <text x="430" y="935" class="text-table-cell" font-weight="700" fill="#D97706">R$ 57.821,45</text>
+  <text x="600" y="935" class="text-table-cell" font-weight="700" fill="#FF4A53">-R$ 57.821,45</text>
+  <text x="770" y="935" class="text-table-cell" fill="#808080">Resgatada integral</text>
+  <text x="1000" y="935" class="text-table-cell">Migrada p/ Renda Fixa</text>
+  <rect x="1145" y="923" width="95" height="18" rx="9" fill="#E9E9E9"/>
+  <text x="1155" y="936" class="text-badge" fill="#6D6865">Encerrada</text>
+
+  <!-- Pílula de Rodapé -->
+  <rect x="27" y="970" width="1226" height="35" rx="8" fill="#F9F9F9" stroke="#E9E9E9"/>
+  <text x="40" y="992" font-family="'Segoe UI', sans-serif" font-size="10.5" font-weight="600" fill="#6D6865">
+    Rentabilidade atualizada com base nos parâmetros oficiais de fechamento diário do Banco Central
+  </text>
+
+
+  <!-- ======================================================================= -->
+  <!-- BLOCO 4: INDICADORES AUXILIARES / INDEXADORES (y=1040, h=315) -->
+  <!-- ======================================================================= -->
+  <g transform="translate(15, 1040)">
+    <!-- Sub-bloco 1: CDI Diário & Projeção -->
+    <rect x="0" y="0" width="406.7" height="315" rx="15" fill="#FFFFFF" stroke="#E9E9E9"/>
+    <rect x="12" y="15" width="10" height="10" rx="3" fill="#3B89E2"/>
+    <text x="28" y="24" class="text-title">INDEXADOR CDI (DIM_CDI)</text>
+    <rect x="300" y="12" width="95" height="18" rx="9" fill="#EFF6FF"/>
+    <text x="310" y="24" class="text-badge" fill="#3B89E2">BACEN DIÁRIO</text>
+    <text x="12" y="40" class="text-sub">Fator acumulador de correção monetária diária</text>
+
+    <rect x="12" y="55" width="382.7" height="85" rx="9.5" fill="#F9F9F9" stroke="#E9E9E9"/>
+    <text x="24" y="75" font-family="'Segoe UI', sans-serif" font-size="10" font-weight="700" fill="#6D6865">LUCRO ESTIMADO NO CDI</text>
+    <text x="24" y="105" font-family="'Segoe UI', sans-serif" font-size="22" font-weight="700" fill="#10715A">+R$ 3.840,12</text>
+    <text x="24" y="125" font-family="'Segoe UI', sans-serif" font-size="9.5" font-weight="600" fill="#10715A">+10,2% sobre o capital investido</text>
+
+    <!-- Slot p/ gráfico ou indicador secundário -->
+    <rect x="12" y="150" width="382.7" height="145" rx="9.5" fill="#FDFDFD" stroke="#E9E9E9"/>
+    <text x="24" y="175" font-family="'Segoe UI', sans-serif" font-size="10.5" font-weight="700" fill="#252321">Evolução do Fator Diário CDI</text>
+    <text x="24" y="195" font-family="'Segoe UI', sans-serif" font-size="9.5" fill="#6D6865">Taxa média anualizada: 10,65% a.a.</text>
+    <rect x="24" y="215" width="358" height="60" rx="6" fill="#EFF6FF"/>
+    <text x="36" y="250" font-family="'Segoe UI', sans-serif" font-size="10" font-weight="600" fill="#1E3A5F">
+      Corrigido automaticamente a cada atualização diária.
+    </text>
+
+
+    <!-- Sub-bloco 2: Cotação Dólar (DIM_DOLAR) -->
+    <rect x="421.7" y="0" width="406.7" height="315" rx="15" fill="#FFFFFF" stroke="#E9E9E9"/>
+    <rect x="433.7" y="15" width="10" height="10" rx="3" fill="#10715A"/>
+    <text x="449.7" y="24" class="text-title">DÓLAR COMERCIAL (DIM_DOLAR)</text>
+    <rect x="720" y="12" width="95" height="18" rx="9" fill="#DCFCE7"/>
+    <text x="730" y="24" class="text-badge" fill="#10715A">PTAX OFICIAL</text>
+    <text x="433.7" y="40" class="text-sub">Conversão do saldo em criptomoedas (USD 360)</text>
+
+    <rect x="433.7" y="55" width="382.7" height="85" rx="9.5" fill="#F9F9F9" stroke="#E9E9E9"/>
+    <text x="445.7" y="75" font-family="'Segoe UI', sans-serif" font-size="10" font-weight="700" fill="#6D6865">VALOR DA CARTEIRA CRIPTO</text>
+    <text x="445.7" y="105" font-family="'Segoe UI', sans-serif" font-size="22" font-weight="700" fill="#10715A">R$ 1.980,00</text>
+    <text x="445.7" y="125" font-family="'Segoe UI', sans-serif" font-size="9.5" font-weight="600" fill="#10715A">Base: USD 360 x Cotação PTAX</text>
+
+    <rect x="433.7" y="150" width="382.7" height="145" rx="9.5" fill="#FDFDFD" stroke="#E9E9E9"/>
+    <text x="445.7" y="175" font-family="'Segoe UI', sans-serif" font-size="10.5" font-weight="700" fill="#252321">Histórico Cotação Dólar PTAX</text>
+    <text x="445.7" y="195" font-family="'Segoe UI', sans-serif" font-size="9.5" fill="#6D6865">Fonte: API Banco Central do Brasil</text>
+    <rect x="445.7" y="215" width="358" height="60" rx="6" fill="#DCFCE7"/>
+    <text x="457.7" y="250" font-family="'Segoe UI', sans-serif" font-size="10" font-weight="600" fill="#10715A">
+      Exposição cambial dolarizada com hedge natural.
+    </text>
+
+
+    <!-- Sub-bloco 3: Metas & Próximos Aportes -->
+    <rect x="843.3" y="0" width="406.7" height="315" rx="15" fill="#FFFFFF" stroke="#E9E9E9"/>
+    <rect x="855.3" y="15" width="10" height="10" rx="3" fill="#F99C3E"/>
+    <text x="871.3" y="24" class="text-title">ESTRATÉGIA &amp; METAS DE ACÚMULO</text>
+    <rect x="1140" y="12" width="95" height="18" rx="9" fill="#FEF3C7"/>
+    <text x="1150" y="24" class="text-badge" fill="#D97706">PLANEJAMENTO</text>
+    <text x="855.3" y="40" class="text-sub">Alvo de patrimônio e disciplina de novos aportes</text>
+
+    <rect x="855.3" y="55" width="382.7" height="85" rx="9.5" fill="#F9F9F9" stroke="#E9E9E9"/>
+    <text x="867.3" y="75" font-family="'Segoe UI', sans-serif" font-size="10" font-weight="700" fill="#6D6865">META DE APORTE MENSAL</text>
+    <text x="867.3" y="105" font-family="'Segoe UI', sans-serif" font-size="22" font-weight="700" fill="#252321">R$ 2.000,00</text>
+    <text x="867.3" y="125" font-family="'Segoe UI', sans-serif" font-size="9.5" font-weight="600" fill="#10715A">Atingido em 11 dos últimos 14 meses</text>
+
+    <rect x="855.3" y="150" width="382.7" height="145" rx="9.5" fill="#FDFDFD" stroke="#E9E9E9"/>
+    <text x="867.3" y="175" font-family="'Segoe UI', sans-serif" font-size="10.5" font-weight="700" fill="#252321">Regra de Alocação de Novos Aportes</text>
+    <text x="867.3" y="195" font-family="'Segoe UI', sans-serif" font-size="9.5" fill="#6D6865">50% CDI Liquidez • 30% LCI/Tesouro • 20% FIIs</text>
+    <rect x="855.3" y="215" width="358" height="60" rx="6" fill="#FEF3C7"/>
+    <text x="867.3" y="250" font-family="'Segoe UI', sans-serif" font-size="10" font-weight="600" fill="#D97706">
+      Foco em preservação de capital e renda passiva.
+    </text>
+  </g>
+</svg>

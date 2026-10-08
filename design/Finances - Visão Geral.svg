@@ -1,0 +1,381 @@
+<svg width="1280" height="1420" viewBox="0 0 1280 1420" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- DEFINIÇÕES E ESTILOS -->
+  <defs>
+    <style>
+      .text-title { font-family: 'Segoe UI', -apple-system, sans-serif; font-size: 11px; font-weight: 700; fill: #252321; letter-spacing: 0.5px; }
+      .text-sub { font-family: 'Segoe UI', -apple-system, sans-serif; font-size: 10px; font-weight: 400; fill: #808080; }
+      .text-kpi-val { font-family: 'Segoe UI', -apple-system, sans-serif; font-size: 20px; font-weight: 700; fill: #252321; }
+      .text-kpi-sub { font-family: 'Segoe UI', -apple-system, sans-serif; font-size: 10px; font-weight: 500; fill: #6D6865; }
+      .text-badge { font-family: 'Segoe UI', -apple-system, sans-serif; font-size: 9px; font-weight: 700; }
+      .text-table-head { font-family: 'Segoe UI', -apple-system, sans-serif; font-size: 10px; font-weight: 600; fill: #6D6865; }
+      .text-table-cell { font-family: 'Segoe UI', -apple-system, sans-serif; font-size: 10px; font-weight: 500; fill: #252321; }
+    </style>
+  </defs>
+
+  <!-- 1. FUNDO DO CANVAS (#E9E9E9) -->
+  <rect width="1280" height="1420" fill="#E9E9E9"/>
+
+  <!-- 2. TOP HEADER BAR (#3A3633, h=55) -->
+  <rect x="0" y="0" width="1280" height="55" fill="#3A3633"/>
+
+  <!-- Logo Icon ($) -->
+  <rect x="15" y="11" width="33" height="33" rx="8" fill="#F99C3E"/>
+  <text x="26" y="33" font-family="'Segoe UI', sans-serif" font-size="16" font-weight="900" fill="#252321">$</text>
+
+  <!-- Título do Dashboard -->
+  <text x="58" y="27" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="700" fill="#FFFFFF" letter-spacing="0.5px">CONTROLE FINANCEIRO PESSOAL • VISÃO GERAL</text>
+  <text x="58" y="41" font-family="'Segoe UI', sans-serif" font-size="9.5" font-weight="400" fill="#A09D9A" letter-spacing="1px">NOTION ETL • FLUXO DE CAIXA, MERCADO MÃE &amp; ORÇAMENTOS</text>
+
+  <!-- Slicer Pill no Topo Direito (x=810, y=10, w=455, h=35, rx=15, fill=white) -->
+  <rect x="810" y="10" width="455" height="35" rx="15" fill="#FFFFFF"/>
+  <rect x="822" y="18" width="18" height="18" rx="4" fill="#EFF6FF"/>
+  <path d="M826 23H836M826 27H833M826 31H835" stroke="#3B89E2" stroke-width="1.5" stroke-linecap="round"/>
+  <text x="846" y="32" font-family="'Segoe UI', sans-serif" font-size="11" font-weight="600" fill="#252321">Período: <tspan font-weight="700" fill="#1E3A5F">Últimos 12 Meses</tspan></text>
+  <line x1="995" y1="18" x2="995" y2="37" stroke="#E9E9E9" stroke-width="1.5"/>
+  <text x="1008" y="32" font-family="'Segoe UI', sans-serif" font-size="11" font-weight="600" fill="#6D6865">Conta:</text>
+  <rect x="1050" y="15" width="205" height="24" rx="12" fill="#E9E9E9"/>
+  <text x="1090" y="31" font-family="'Segoe UI', sans-serif" font-size="10.5" font-weight="700" fill="#252321">Todas (Inter • Flash • Wise)</text>
+
+  <!-- ======================================================================= -->
+  <!-- BLOCO 1: CARDS DE KPI SUPERIORES (y=70, 4 colunas, w=301.2, h=85, rx=15) -->
+  <!-- ======================================================================= -->
+  
+  <!-- KPI 1: Saldo Disponível (x=15) -->
+  <rect x="15" y="70" width="301.2" height="85" rx="15" fill="#FFFFFF"/>
+  <rect x="15" y="70" width="301.2" height="85" rx="15" stroke="#E9E9E9" stroke-width="1"/>
+  <rect x="27" y="82" width="10" height="10" rx="3" fill="#3B89E2"/>
+  <text x="43" y="91" class="text-title">SALDO EM CONTAS</text>
+  <rect x="245" y="79" width="58" height="18" rx="9" fill="#EFF6FF"/>
+  <text x="254" y="92" class="text-badge" fill="#3B89E2">LÍQUIDO</text>
+  <text x="27" y="125" class="text-kpi-val">R$ 1.682,52</text>
+  <text x="27" y="143" class="text-kpi-sub">Inter R$ 1.050 • Flash R$ 632</text>
+
+  <!-- KPI 2: Receitas Totais (x=331.2) -->
+  <rect x="331.2" y="70" width="301.2" height="85" rx="15" fill="#FFFFFF"/>
+  <rect x="331.2" y="70" width="301.2" height="85" rx="15" stroke="#E9E9E9" stroke-width="1"/>
+  <rect x="343.2" y="82" width="10" height="10" rx="3" fill="#10715A"/>
+  <text x="359.2" y="91" class="text-title">RECEITAS TOTAIS</text>
+  <rect x="555.2" y="79" width="65" height="18" rx="9" fill="#DCFCE7"/>
+  <text x="564.2" y="92" class="text-badge" fill="#10715A">ENTRADAS</text>
+  <text x="343.2" y="125" class="text-kpi-val" fill="#10715A">R$ 149.215,90</text>
+  <text x="343.2" y="143" class="text-kpi-sub">Salário + Renda Extra + Retornos</text>
+
+  <!-- KPI 3: Custo de Vida Real (x=647.5) -->
+  <rect x="647.5" y="70" width="301.2" height="85" rx="15" fill="#FFFFFF"/>
+  <rect x="647.5" y="70" width="301.2" height="85" rx="15" stroke="#E9E9E9" stroke-width="1"/>
+  <rect x="659.5" y="82" width="10" height="10" rx="3" fill="#FF4A53"/>
+  <text x="675.5" y="91" class="text-title">CUSTO DE VIDA REAL</text>
+  <rect x="873.5" y="79" width="63" height="18" rx="9" fill="#FEE2E2"/>
+  <text x="883.5" y="92" class="text-badge" fill="#FF4A53">CONSUMO</text>
+  <text x="659.5" y="125" class="text-kpi-val" fill="#FF4A53">R$ 53.261,55</text>
+  <text x="659.5" y="143" class="text-kpi-sub">Exclui aportes para investimentos</text>
+
+  <!-- KPI 4: Taxa de Poupança / Aportes (x=963.8) -->
+  <rect x="963.8" y="70" width="301.2" height="85" rx="15" fill="#FFFFFF"/>
+  <rect x="963.8" y="70" width="301.2" height="85" rx="15" stroke="#E9E9E9" stroke-width="1"/>
+  <rect x="975.8" y="82" width="10" height="10" rx="3" fill="#F99C3E"/>
+  <text x="991.8" y="91" class="text-title">TAXA DE POUPANÇA</text>
+  <rect x="1191.8" y="79" width="61" height="18" rx="9" fill="#FEF3C7"/>
+  <text x="1201.8" y="92" class="text-badge" fill="#D97706">APORTE</text>
+  <text x="975.8" y="125" class="text-kpi-val">63,2%</text>
+  <text x="975.8" y="143" class="text-kpi-sub" fill="#10715A">R$ 94.271,83 acumulados</text>
+
+
+  <!-- ======================================================================= -->
+  <!-- BLOCO 2: MÓDULO INTEGRADO "MERCADO MÃE (TETO R$ 500,00)" (y=170, h=330) -->
+  <!-- ======================================================================= -->
+
+  <!-- Container Esquerdo: Teto, Consumo Mês Corrente & Bullet Bar (w=618, x=15) -->
+  <rect x="15" y="170" width="618" height="330" rx="15" fill="#FFFFFF"/>
+  <rect x="15" y="170" width="618" height="330" rx="15" stroke="#E9E9E9" stroke-width="1"/>
+
+  <rect x="27" y="185" width="10" height="10" rx="3" fill="#F99C3E"/>
+  <text x="43" y="194" class="text-title">MERCADO MÃE • CONTROLE DO ORÇAMENTO MENSAL</text>
+  <rect x="525" y="182" width="95" height="18" rx="9" fill="#FEF3C7"/>
+  <text x="535" y="194" class="text-badge" fill="#D97706">TETO R$ 500/MÊS</text>
+  <text x="27" y="210" class="text-sub">Monitoramento do subsídio mensal contratado vs gastos reais no cartão Flash</text>
+
+  <!-- 2 Sub-Cards Internos (rx=9.5) -->
+  <rect x="27" y="222" width="285" height="75" rx="9.5" fill="#F9F9F9" stroke="#E9E9E9"/>
+  <text x="39" y="240" font-family="'Segoe UI', sans-serif" font-size="9.5" font-weight="700" fill="#6D6865">GASTO MÊS ATUAL (OUT/26)</text>
+  <text x="39" y="268" font-family="'Segoe UI', sans-serif" font-size="22" font-weight="700" fill="#10715A">R$ 132,29</text>
+  <text x="39" y="286" font-family="'Segoe UI', sans-serif" font-size="9.5" font-weight="600" fill="#10715A">26,5% do teto consumido (OK)</text>
+
+  <rect x="323" y="222" width="285" height="75" rx="9.5" fill="#F9F9F9" stroke="#E9E9E9"/>
+  <text x="335" y="240" font-family="'Segoe UI', sans-serif" font-size="9.5" font-weight="700" fill="#6D6865">SALDO DISPONÍVEL NO MÊS</text>
+  <text x="335" y="268" font-family="'Segoe UI', sans-serif" font-size="22" font-weight="700" fill="#10715A">+R$ 367,71</text>
+  <text x="335" y="286" font-family="'Segoe UI', sans-serif" font-size="9.5" font-weight="500" fill="#6D6865">Média histórica: R$ 706,45/mês</text>
+
+  <!-- Barra de Progresso / Bullet Bar (y=315) -->
+  <text x="27" y="328" font-family="'Segoe UI', sans-serif" font-size="10" font-weight="700" fill="#252321">Consumo em Tempo Real vs Limite R$ 500,00</text>
+  <rect x="27" y="336" width="581" height="26" rx="8" fill="#E9E9E9"/>
+  <rect x="27" y="336" width="154" height="26" rx="8" fill="#10715A"/>
+  <text x="110" y="353" font-family="'Segoe UI', sans-serif" font-size="11" font-weight="700" fill="#FFFFFF">R$ 132,29</text>
+  
+  <!-- Linha de corte 100% (R$ 500) -->
+  <line x1="492" y1="333" x2="492" y2="365" stroke="#D97706" stroke-width="2.5"/>
+  <text x="470" y="378" font-family="'Segoe UI', sans-serif" font-size="9.5" font-weight="700" fill="#D97706">Teto R$ 500 (100%)</text>
+  <text x="27" y="378" font-family="'Segoe UI', sans-serif" font-size="9" font-weight="500" fill="#808080">R$ 0,00</text>
+  <text x="240" y="378" font-family="'Segoe UI', sans-serif" font-size="9" font-weight="500" fill="#808080">R$ 250 (50%)</text>
+  <text x="548" y="378" font-family="'Segoe UI', sans-serif" font-size="9" font-weight="600" fill="#FF4A53">Estouro (&gt; 100%)</text>
+
+  <!-- Pílula informativa de rodapé -->
+  <rect x="27" y="445" width="581" height="38" rx="8" fill="#EFF6FF" stroke="#3B89E2" stroke-opacity="0.3"/>
+  <text x="40" y="468" font-family="'Segoe UI', sans-serif" font-size="10" font-weight="500" fill="#1E3A5F">
+    ✦ <tspan font-weight="700">Resumo:</tspan> Compras efetuadas via cartão Flash. Ticket médio de R$ 205,30 por ida ao mercado.
+  </text>
+
+
+  <!-- Container Direito: Histórico Mensal de Compras vs Teto R$ 500 (w=618, x=647) -->
+  <rect x="647" y="170" width="618" height="330" rx="15" fill="#FFFFFF"/>
+  <rect x="647" y="170" width="618" height="330" rx="15" stroke="#E9E9E9" stroke-width="1"/>
+
+  <rect x="659" y="185" width="10" height="10" rx="3" fill="#FF4A53"/>
+  <text x="675" y="194" class="text-title">HISTÓRICO MENSAL DE MERCADO VS TETO R$ 500</text>
+  <rect x="1165" y="182" width="88" height="18" rx="9" fill="#EFF6FF"/>
+  <text x="1175" y="194" class="text-badge" fill="#3B89E2">14 MESES</text>
+  <text x="659" y="210" class="text-sub">Sazonalidade e identificação de meses com superávit ou estouro de orçamento</text>
+
+  <!-- Área demarcada para o Visual Power BI (Gráfico de Colunas com Linha R$ 500) -->
+  <rect x="659" y="222" width="594" height="215" rx="9.5" fill="#FDFDFD" stroke="#E9E9E9"/>
+  <!-- Linha de meta tracejada R$ 500 -->
+  <line x1="675" y1="330" x2="1235" y2="330" stroke="#D97706" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <text x="1175" y="325" font-family="'Segoe UI', sans-serif" font-size="9" font-weight="700" fill="#D97706">Meta R$ 500</text>
+
+  <!-- Placeholder elegante de gráfico de barras com dados reais (Set/25 a Out/26) -->
+  <!-- Set/25: 1023 (Estouro) -->
+  <rect x="680" y="260" width="26" height="130" rx="2" fill="#FF4A53"/>
+  <text x="678" y="405" font-family="'Segoe UI', sans-serif" font-size="8.5" fill="#6D6865">Set/25</text>
+
+  <!-- Out/25: 495 (OK) -->
+  <rect x="718" y="331" width="26" height="59" rx="2" fill="#10715A"/>
+  <text x="716" y="405" font-family="'Segoe UI', sans-serif" font-size="8.5" fill="#6D6865">Out/25</text>
+
+  <!-- Nov/25: 910 (Estouro) -->
+  <rect x="756" y="275" width="26" height="115" rx="2" fill="#FF4A53"/>
+  <text x="754" y="405" font-family="'Segoe UI', sans-serif" font-size="8.5" fill="#6D6865">Nov/25</text>
+
+  <!-- Dez/25: 1563 (Pico) -->
+  <rect x="794" y="228" width="26" height="162" rx="2" fill="#FF4A53"/>
+  <text x="792" y="405" font-family="'Segoe UI', sans-serif" font-size="8.5" font-weight="700" fill="#FF4A53">Dez/25</text>
+
+  <!-- Jan/26: 339 (OK) -->
+  <rect x="832" y="347" width="26" height="43" rx="2" fill="#10715A"/>
+  <text x="830" y="405" font-family="'Segoe UI', sans-serif" font-size="8.5" fill="#6D6865">Jan/26</text>
+
+  <!-- Fev/26: 736 (Estouro) -->
+  <rect x="870" y="297" width="26" height="93" rx="2" fill="#FF4A53"/>
+  <text x="868" y="405" font-family="'Segoe UI', sans-serif" font-size="8.5" fill="#6D6865">Fev/26</text>
+
+  <!-- Mar/26: 832 (Estouro) -->
+  <rect x="908" y="285" width="26" height="105" rx="2" fill="#FF4A53"/>
+  <text x="906" y="405" font-family="'Segoe UI', sans-serif" font-size="8.5" fill="#6D6865">Mar/26</text>
+
+  <!-- Abr/26: 638 (Estouro) -->
+  <rect x="946" y="310" width="26" height="80" rx="2" fill="#FF4A53"/>
+  <text x="944" y="405" font-family="'Segoe UI', sans-serif" font-size="8.5" fill="#6D6865">Abr/26</text>
+
+  <!-- Mai/26: 810 (Estouro) -->
+  <rect x="984" y="288" width="26" height="102" rx="2" fill="#FF4A53"/>
+  <text x="982" y="405" font-family="'Segoe UI', sans-serif" font-size="8.5" fill="#6D6865">Mai/26</text>
+
+  <!-- Jun/26: 670 (Estouro) -->
+  <rect x="1022" y="305" width="26" height="85" rx="2" fill="#FF4A53"/>
+  <text x="1020" y="405" font-family="'Segoe UI', sans-serif" font-size="8.5" fill="#6D6865">Jun/26</text>
+
+  <!-- Jul/26: 933 (Estouro) -->
+  <rect x="1060" y="272" width="26" height="118" rx="2" fill="#FF4A53"/>
+  <text x="1058" y="405" font-family="'Segoe UI', sans-serif" font-size="8.5" fill="#6D6865">Jul/26</text>
+
+  <!-- Ago/26: 554 (Leve Estouro) -->
+  <rect x="1098" y="320" width="26" height="70" rx="2" fill="#FF4A53"/>
+  <text x="1096" y="405" font-family="'Segoe UI', sans-serif" font-size="8.5" fill="#6D6865">Ago/26</text>
+
+  <!-- Set/26: 388 (OK) -->
+  <rect x="1136" y="341" width="26" height="49" rx="2" fill="#10715A"/>
+  <text x="1134" y="405" font-family="'Segoe UI', sans-serif" font-size="8.5" font-weight="700" fill="#10715A">Set/26</text>
+
+  <!-- Out/26: 132 (OK) -->
+  <rect x="1174" y="373" width="26" height="17" rx="2" fill="#10715A"/>
+  <text x="1172" y="405" font-family="'Segoe UI', sans-serif" font-size="8.5" font-weight="700" fill="#10715A">Out/26</text>
+
+  <!-- Linha de Rodapé informativa -->
+  <line x1="665" y1="445" x2="1245" y2="445" stroke="#E9E9E9" stroke-width="1"/>
+  <text x="659" y="468" font-family="'Segoe UI', sans-serif" font-size="10" font-weight="600" fill="#6D6865">
+    Diagnóstico: Limite respeitado em Set/25, Jan/26, Set/26 e Out/26. Estouro médio de R$ 206/mês.
+  </text>
+
+
+  <!-- ======================================================================= -->
+  <!-- BLOCO 3: FLUXO MENSAL DE CAIXA & RANKING DE GASTOS (y=515, h=380) -->
+  <!-- ======================================================================= -->
+
+  <!-- Card Esquerda: Evolução Mensal - Receitas vs Custo de Vida vs Aportes (w=618, x=15) -->
+  <rect x="15" y="515" width="618" height="380" rx="15" fill="#FFFFFF"/>
+  <rect x="15" y="515" width="618" height="380" rx="15" stroke="#E9E9E9" stroke-width="1"/>
+
+  <rect x="27" y="530" width="10" height="10" rx="3" fill="#3B89E2"/>
+  <text x="43" y="539" class="text-title">EVOLUÇÃO MENSAL: ENTRADAS VS CUSTO DE VIDA VS APORTES</text>
+  <rect x="525" y="527" width="95" height="18" rx="9" fill="#EFF6FF"/>
+  <text x="535" y="539" class="text-badge" fill="#3B89E2">FLUXO REAL</text>
+  <text x="27" y="555" class="text-sub">Demonstração visual da capacidade de poupança e equilíbrio de despesas</text>
+
+  <!-- Legenda clean dos SVGs de frotas -->
+  <g transform="translate(27, 570)">
+    <rect x="0" y="0" width="10" height="10" rx="2" fill="#10715A"/>
+    <text x="14" y="9" font-family="'Segoe UI', sans-serif" font-size="9.5" font-weight="600" fill="#252321">Receitas</text>
+
+    <rect x="80" y="0" width="10" height="10" rx="2" fill="#FF4A53"/>
+    <text x="94" y="9" font-family="'Segoe UI', sans-serif" font-size="9.5" font-weight="600" fill="#252321">Custo de Vida</text>
+
+    <rect x="180" y="0" width="10" height="10" rx="2" fill="#3B89E2"/>
+    <text x="194" y="9" font-family="'Segoe UI', sans-serif" font-size="9.5" font-weight="600" fill="#252321">Aportes (Investimentos)</text>
+  </g>
+
+  <!-- Slot reservado para o Gráfico de Colunas Agrupadas do Power BI -->
+  <rect x="27" y="595" width="594" height="245" rx="9.5" fill="#FDFDFD" stroke="#E9E9E9"/>
+  <line x1="45" y1="800" x2="605" y2="800" stroke="#E9E9E9" stroke-width="1"/>
+  <text x="45" y="818" font-family="'Segoe UI', sans-serif" font-size="9" fill="#808080">Mar/26</text>
+  <text x="115" y="818" font-family="'Segoe UI', sans-serif" font-size="9" fill="#808080">Abr/26</text>
+  <text x="185" y="818" font-family="'Segoe UI', sans-serif" font-size="9" fill="#808080">Mai/26</text>
+  <text x="255" y="818" font-family="'Segoe UI', sans-serif" font-size="9" fill="#808080">Jun/26</text>
+  <text x="325" y="818" font-family="'Segoe UI', sans-serif" font-size="9" fill="#808080">Jul/26</text>
+  <text x="395" y="818" font-family="'Segoe UI', sans-serif" font-size="9" font-weight="700" fill="#D97706">Ago/26*</text>
+  <text x="475" y="818" font-family="'Segoe UI', sans-serif" font-size="9" fill="#808080">Set/26</text>
+  <text x="545" y="818" font-family="'Segoe UI', sans-serif" font-size="9" fill="#808080">Out/26</text>
+
+  <!-- Pílula de Rodapé -->
+  <text x="27" y="872" font-family="'Segoe UI', sans-serif" font-size="9.5" font-weight="500" fill="#6D6865">
+    *Em Ago/26 ocorreu resgate de poupança de R$ 57,8k e aplicação integral em LCI e Tesouro Direto.
+  </text>
+
+
+  <!-- Card Direita: Composição das Despesas (Ranking de Estilo de Vida) (w=618, x=647) -->
+  <rect x="647" y="515" width="618" height="380" rx="15" fill="#FFFFFF"/>
+  <rect x="647" y="515" width="618" height="380" rx="15" stroke="#E9E9E9" stroke-width="1"/>
+
+  <rect x="659" y="530" width="10" height="10" rx="3" fill="#CA0AA7"/>
+  <text x="675" y="539" class="text-title">COMPOSIÇÃO DO CUSTO DE VIDA (RANKING DE GASTOS)</text>
+  <rect x="1145" y="527" width="108" height="18" rx="9" fill="#EFF6FF"/>
+  <text x="1155" y="539" class="text-badge" fill="#1E3A5F">TOTAL R$ 53.261</text>
+  <text x="659" y="555" class="text-sub">Detalhamento dos principais centros de desembolso operacional do dia a dia</text>
+
+  <!-- Lista em Pílulas (Padrão rx=9.5 dos SVGs de frotas) -->
+  <g transform="translate(659, 575)">
+    <!-- 1. Rolês & Social -->
+    <rect x="0" y="0" width="594" height="42" rx="9.5" fill="#F9F9F9" stroke="#E9E9E9"/>
+    <rect x="12" y="16" width="10" height="10" rx="3" fill="#F99C3E"/>
+    <text x="30" y="25" font-family="'Segoe UI', sans-serif" font-size="11" font-weight="700" fill="#252321">Rolês &amp; Social (Bares, Eventos, Encontros)</text>
+    <text x="500" y="25" font-family="'Segoe UI', sans-serif" font-size="11.5" font-weight="700" fill="#252321">R$ 10.612,83</text>
+    <text x="500" y="36" font-family="'Segoe UI', sans-serif" font-size="9" font-weight="500" fill="#6D6865">19,9% do custo de vida</text>
+
+    <!-- 2. Compras Pessoal -->
+    <rect x="0" y="49" width="594" height="42" rx="9.5" fill="#F9F9F9" stroke="#E9E9E9"/>
+    <rect x="12" y="65" width="10" height="10" rx="3" fill="#3B89E2"/>
+    <text x="30" y="74" font-family="'Segoe UI', sans-serif" font-size="11" font-weight="700" fill="#252321">Compras / Pessoal (Vestuário, Eletrônicos)</text>
+    <text x="500" y="74" font-family="'Segoe UI', sans-serif" font-size="11.5" font-weight="700" fill="#252321">R$ 10.060,94</text>
+    <text x="500" y="85" font-family="'Segoe UI', sans-serif" font-size="9" font-weight="500" fill="#6D6865">18,9% do custo de vida</text>
+
+    <!-- 3. Mercado Geral -->
+    <rect x="0" y="98" width="594" height="42" rx="9.5" fill="#F9F9F9" stroke="#E9E9E9"/>
+    <rect x="12" y="114" width="10" height="10" rx="3" fill="#FF4A53"/>
+    <text x="30" y="123" font-family="'Segoe UI', sans-serif" font-size="11" font-weight="700" fill="#252321">Mercado Total (Mercado Mãe + Supermercado)</text>
+    <text x="500" y="123" font-family="'Segoe UI', sans-serif" font-size="11.5" font-weight="700" fill="#252321">R$ 9.993,38</text>
+    <text x="500" y="134" font-family="'Segoe UI', sans-serif" font-size="9" font-weight="500" fill="#6D6865">18,8% do custo de vida</text>
+
+    <!-- 4. Faturas Cartão -->
+    <rect x="0" y="147" width="594" height="42" rx="9.5" fill="#F9F9F9" stroke="#E9E9E9"/>
+    <rect x="12" y="163" width="10" height="10" rx="3" fill="#CA0AA7"/>
+    <text x="30" y="172" font-family="'Segoe UI', sans-serif" font-size="11" font-weight="700" fill="#252321">Faturas Cartão de Crédito Inter</text>
+    <text x="500" y="172" font-family="'Segoe UI', sans-serif" font-size="11.5" font-weight="700" fill="#252321">R$ 4.655,83</text>
+    <text x="500" y="183" font-family="'Segoe UI', sans-serif" font-size="9" font-weight="500" fill="#6D6865">8,7% do custo de vida</text>
+
+    <!-- 5. Alimentação Fora -->
+    <rect x="0" y="196" width="594" height="42" rx="9.5" fill="#F9F9F9" stroke="#E9E9E9"/>
+    <rect x="12" y="212" width="10" height="10" rx="3" fill="#10715A"/>
+    <text x="30" y="221" font-family="'Segoe UI', sans-serif" font-size="11" font-weight="700" fill="#252321">Alimentação Rápida (Restaurantes, Cafés, Lanches)</text>
+    <text x="500" y="221" font-family="'Segoe UI', sans-serif" font-size="11.5" font-weight="700" fill="#252321">R$ 2.468,06</text>
+    <text x="500" y="232" font-family="'Segoe UI', sans-serif" font-size="9" font-weight="500" fill="#6D6865">4,6% do custo de vida</text>
+
+    <!-- 6. Demais Despesas -->
+    <rect x="0" y="245" width="594" height="42" rx="9.5" fill="#F9F9F9" stroke="#E9E9E9"/>
+    <rect x="12" y="261" width="10" height="10" rx="3" fill="#808080"/>
+    <text x="30" y="270" font-family="'Segoe UI', sans-serif" font-size="11" font-weight="700" fill="#6D6865">Outros (Transporte, Saúde, Assinaturas, Fixos)</text>
+    <text x="500" y="270" font-family="'Segoe UI', sans-serif" font-size="11.5" font-weight="700" fill="#6D6865">R$ 15.470,51</text>
+    <text x="500" y="281" font-family="'Segoe UI', sans-serif" font-size="9" font-weight="500" fill="#808080">29,1% do custo de vida</text>
+  </g>
+
+
+  <!-- ======================================================================= -->
+  <!-- BLOCO 4: DETALHAMENTO DE TRANSAÇÕES RECENTES (y=910, h=480, w=1250) -->
+  <!-- ======================================================================= -->
+  <rect x="15" y="910" width="1250" height="480" rx="15" fill="#FFFFFF"/>
+  <rect x="15" y="910" width="1250" height="480" rx="15" stroke="#E9E9E9" stroke-width="1"/>
+
+  <rect x="27" y="925" width="10" height="10" rx="3" fill="#1E3A5F"/>
+  <text x="43" y="934" class="text-title">DETALHAMENTO DE TRANSAÇÕES RECENTES (EXTRATO ANALÍTICO NOTION)</text>
+  <rect x="1140" y="922" width="113" height="18" rx="9" fill="#EFF6FF"/>
+  <text x="1150" y="934" class="text-badge" fill="#1E3A5F">887 REGISTROS</text>
+  <text x="27" y="950" class="text-sub">Slot preparado para a tabela visual (tableEx) com colunas nativas do modelo semântico</text>
+
+  <!-- Cabeçalho da Tabela Estilizado no Padrão dos SVGs de Frotas -->
+  <rect x="27" y="965" width="1226" height="32" rx="6" fill="#F4F4F4"/>
+  <text x="42" y="985" class="text-table-head">DATA</text>
+  <text x="130" y="985" class="text-table-head">DESCRIÇÃO DA TRANSAÇÃO</text>
+  <text x="400" y="985" class="text-table-head">CATEGORIA</text>
+  <text x="640" y="985" class="text-table-head">SUBCATEGORIA</text>
+  <text x="870" y="985" class="text-table-head">CONTA</text>
+  <text x="1030" y="985" class="text-table-head">TIPO</text>
+  <text x="1170" y="985" class="text-table-head">VALOR (R$)</text>
+
+  <!-- Linhas de Amostra da Tabela -->
+  <!-- Linha 1 -->
+  <line x1="27" y1="1035" x2="1253" y2="1035" stroke="#E9E9E9" stroke-width="1"/>
+  <text x="42" y="1020" class="text-table-cell">08/10/2026</text>
+  <text x="130" y="1020" class="text-table-cell" font-weight="700">Mercado Mãe</text>
+  <text x="400" y="1020" class="text-table-cell">Mercado</text>
+  <text x="640" y="1020" class="text-table-cell">Mercado Mãe</text>
+  <text x="870" y="1020" class="text-table-cell">Flash</text>
+  <rect x="1025" y="1008" width="55" height="18" rx="9" fill="#FEE2E2"/>
+  <text x="1034" y="1021" class="text-badge" fill="#FF4A53">Despesa</text>
+  <text x="1165" y="1020" class="text-table-cell" font-weight="700" fill="#FF4A53">R$ 132,29</text>
+
+  <!-- Linha 2 -->
+  <line x1="27" y1="1075" x2="1253" y2="1075" stroke="#E9E9E9" stroke-width="1"/>
+  <text x="42" y="1060" class="text-table-cell">06/10/2026</text>
+  <text x="130" y="1060" class="text-table-cell" font-weight="700">Porquinho Inter (Aporte)</text>
+  <text x="400" y="1060" class="text-table-cell">Investimentos - Aporte</text>
+  <text x="640" y="1060" class="text-table-cell">CDI</text>
+  <text x="870" y="1060" class="text-table-cell">Inter - Débito</text>
+  <rect x="1025" y="1048" width="55" height="18" rx="9" fill="#EFF6FF"/>
+  <text x="1037" y="1061" class="text-badge" fill="#3B89E2">Aporte</text>
+  <text x="1165" y="1060" class="text-table-cell" font-weight="700" fill="#3B89E2">R$ 800,00</text>
+
+  <!-- Linha 3 -->
+  <line x1="27" y1="1115" x2="1253" y2="1115" stroke="#E9E9E9" stroke-width="1"/>
+  <text x="42" y="1100" class="text-table-cell">04/10/2026</text>
+  <text x="130" y="1100" class="text-table-cell" font-weight="700">Salário / Pró-labore</text>
+  <text x="400" y="1100" class="text-table-cell">Salário / Benefícios</text>
+  <text x="640" y="1100" class="text-table-cell">Salário</text>
+  <text x="870" y="1100" class="text-table-cell">Inter - Débito</text>
+  <rect x="1025" y="1088" width="55" height="18" rx="9" fill="#DCFCE7"/>
+  <text x="1035" y="1101" class="text-badge" fill="#10715A">Receita</text>
+  <text x="1155" y="1100" class="text-table-cell" font-weight="700" fill="#10715A">R$ 1.240,00</text>
+
+  <!-- Linha 4 -->
+  <line x1="27" y1="1155" x2="1253" y2="1155" stroke="#E9E9E9" stroke-width="1"/>
+  <text x="42" y="1140" class="text-table-cell">01/10/2026</text>
+  <text x="130" y="1140" class="text-table-cell" font-weight="700">Vale Refeição</text>
+  <text x="400" y="1140" class="text-table-cell">Salário / Benefícios</text>
+  <text x="640" y="1140" class="text-table-cell">Vale Refeição</text>
+  <text x="870" y="1140" class="text-table-cell">Flash</text>
+  <rect x="1025" y="1128" width="55" height="18" rx="9" fill="#DCFCE7"/>
+  <text x="1035" y="1141" class="text-badge" fill="#10715A">Receita</text>
+  <text x="1165" y="1140" class="text-table-cell" font-weight="700" fill="#10715A">R$ 650,00</text>
+
+  <!-- Pílula de Rodapé da Tabela -->
+  <rect x="27" y="1335" width="1226" height="35" rx="8" fill="#F9F9F9" stroke="#E9E9E9"/>
+  <text x="40" y="1357" font-family="'Segoe UI', sans-serif" font-size="10.5" font-weight="600" fill="#6D6865">
+    Mostrando últimas transações sincronizadas do Notion • Total de 887 registros carregados
+  </text>
+</svg>
