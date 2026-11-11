@@ -1,0 +1,278 @@
+<svg width="1280" height="1420" viewBox="0 0 1280 1420" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- DEFINIÇÕES, ESTILOS E GRADIENTES DOS CARTÕES -->
+  <defs>
+    <style>
+      .text-title { font-family: 'Segoe UI', -apple-system, sans-serif; font-size: 11px; font-weight: 700; fill: #252321; letter-spacing: 0.5px; }
+      .text-sub { font-family: 'Segoe UI', -apple-system, sans-serif; font-size: 10px; font-weight: 400; fill: #808080; }
+      .text-badge { font-family: 'Segoe UI', -apple-system, sans-serif; font-size: 9px; font-weight: 700; }
+      .card-label { font-family: 'Segoe UI', -apple-system, sans-serif; font-size: 8.5px; font-weight: 600; fill: rgba(255,255,255,0.75); letter-spacing: 0.8px; }
+      .card-meta { font-family: 'Segoe UI', -apple-system, sans-serif; font-size: 9px; font-weight: 500; fill: rgba(255,255,255,0.82); }
+    </style>
+
+    <!-- Gradiente Cartão 1: Inter Débito (Laranja Oficial Inter) -->
+    <linearGradient id="gradInterDebito" x1="0" y1="0" x2="291" y2="148" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FF7A00"/>
+      <stop offset="60%" stop-color="#F26500"/>
+      <stop offset="100%" stop-color="#C84B00"/>
+    </linearGradient>
+
+    <!-- Gradiente Cartão 2: Inter Crédito (Graphite Black / Carbon) -->
+    <linearGradient id="gradInterCredito" x1="0" y1="0" x2="291" y2="148" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#2B303C"/>
+      <stop offset="55%" stop-color="#1C2029"/>
+      <stop offset="100%" stop-color="#101218"/>
+    </linearGradient>
+
+    <!-- Gradiente Cartão 3: Flash Benefícios (Pink / Magenta Vibrante) -->
+    <linearGradient id="gradFlash" x1="0" y1="0" x2="291" y2="148" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FF1F8F"/>
+      <stop offset="55%" stop-color="#D60B72"/>
+      <stop offset="100%" stop-color="#8A064B"/>
+    </linearGradient>
+
+    <!-- Gradiente Cartão 4: Wise Internacional (Forest Green & Neon Lime) -->
+    <linearGradient id="gradWise" x1="0" y1="0" x2="291" y2="148" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#1E4620"/>
+      <stop offset="55%" stop-color="#132F15"/>
+      <stop offset="100%" stop-color="#0B1E0D"/>
+    </linearGradient>
+
+    <!-- Gradiente Chip Metálico Dourado -->
+    <linearGradient id="gradChipGold" x1="0" y1="0" x2="32" y2="24" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFE082"/>
+      <stop offset="50%" stop-color="#F6C445"/>
+      <stop offset="100%" stop-color="#D49B1A"/>
+    </linearGradient>
+
+    <!-- Gradiente Chip Metálico Prateado -->
+    <linearGradient id="gradChipSilver" x1="0" y1="0" x2="32" y2="24" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#F1F5F9"/>
+      <stop offset="50%" stop-color="#CBD5E1"/>
+      <stop offset="100%" stop-color="#94A3B8"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 1. FUNDO DO CANVAS (#E9E9E9) -->
+  <rect width="1280" height="1420" fill="#E9E9E9"/>
+
+  <!-- 2. TOP HEADER BAR (#3A3633, h=55) -->
+  <rect x="0" y="0" width="1280" height="55" fill="#3A3633"/>
+
+  <!-- Logo Icon ($) -->
+  <rect x="15" y="11" width="33" height="33" rx="8" fill="#10715A"/>
+  <text x="26" y="33" font-family="'Segoe UI', sans-serif" font-size="16" font-weight="900" fill="#C9FD8A">$</text>
+
+  <!-- Título do Dashboard -->
+  <text x="58" y="27" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="700" fill="#FFFFFF" letter-spacing="0.5px">CONTROLE FINANCEIRO PESSOAL • VISÃO GERAL</text>
+  <text x="58" y="41" font-family="'Segoe UI', sans-serif" font-size="9.5" font-weight="400" fill="#A09D9A" letter-spacing="1px">NOTION ETL • FLUXO DE CAIXA, CARTÕES &amp; ORÇAMENTO FAMILIAR</text>
+
+  <!-- Slicer Pill Container no Topo Direito (x=810, y=10, w=455, h=35, rx=15) -->
+  <rect x="810" y="10" width="455" height="35" rx="15" fill="#FFFFFF"/>
+  <rect x="820" y="18" width="18" height="18" rx="4" fill="#EFF6FF"/>
+  <path d="M824 23H834M824 27H831M824 31H833" stroke="#3B89E2" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="1035" y1="16" x2="1035" y2="39" stroke="#E9E9E9" stroke-width="1.5"/>
+
+
+  <!-- ======================================================================= -->
+  <!-- BLOCO 1: CARDS DE KPI SUPERIORES (y=70, 4 colunas, w=301.2, h=85, rx=15) -->
+  <!-- ======================================================================= -->
+
+  <!-- KPI 1: Saldo Líquido Contas (x=15) -->
+  <rect x="15" y="70" width="301.2" height="85" rx="15" fill="#FFFFFF" stroke="#E9E9E9" stroke-width="1"/>
+  <rect x="27" y="82" width="10" height="10" rx="3" fill="#10715A"/>
+  <text x="43" y="91" class="text-title">SALDO LÍQUIDO EM CONTAS</text>
+  <rect x="245" y="79" width="58" height="18" rx="9" fill="#DCFCE7"/>
+  <text x="254" y="91" class="text-badge" fill="#10715A">LÍQUIDO</text>
+
+  <!-- KPI 2: Entradas Operacionais (x=331.2) -->
+  <rect x="331.2" y="70" width="301.2" height="85" rx="15" fill="#FFFFFF" stroke="#E9E9E9" stroke-width="1"/>
+  <rect x="343.2" y="82" width="10" height="10" rx="3" fill="#C9FD8A"/>
+  <text x="359.2" y="91" class="text-title">ENTRADAS OPERACIONAIS</text>
+  <rect x="555.2" y="79" width="65" height="18" rx="9" fill="#DCFCE7"/>
+  <text x="564.2" y="91" class="text-badge" fill="#10715A">RECEITAS</text>
+
+  <!-- KPI 3: Custo de Vida Real (x=647.5) -->
+  <rect x="647.5" y="70" width="301.2" height="85" rx="15" fill="#FFFFFF" stroke="#E9E9E9" stroke-width="1"/>
+  <rect x="659.5" y="82" width="10" height="10" rx="3" fill="#FF4A53"/>
+  <text x="675.5" y="91" class="text-title">CUSTO DE VIDA REAL</text>
+  <rect x="873.5" y="79" width="63" height="18" rx="9" fill="#FEE2E2"/>
+  <text x="883.5" y="91" class="text-badge" fill="#FF4A53">CONSUMO</text>
+
+  <!-- KPI 4: Total Aportado em Investimentos (x=963.8) -->
+  <rect x="963.8" y="70" width="301.2" height="85" rx="15" fill="#FFFFFF" stroke="#E9E9E9" stroke-width="1"/>
+  <rect x="975.8" y="82" width="10" height="10" rx="3" fill="#3B89E2"/>
+  <text x="991.8" y="91" class="text-title">TOTAL APORTADO (INVEST.)</text>
+  <rect x="1191.8" y="79" width="61" height="18" rx="9" fill="#EFF6FF"/>
+  <text x="1201.8" y="91" class="text-badge" fill="#3B89E2">APORTE</text>
+
+
+  <!-- ======================================================================= -->
+  <!-- BLOCO 2: EVOLUÇÃO MENSAL: ENTRADAS VS CUSTOS (LARGURA TOTAL w=1250)     -->
+  <!-- ======================================================================= -->
+  <rect x="15" y="170" width="1250" height="320" rx="15" fill="#FFFFFF" stroke="#E9E9E9" stroke-width="1"/>
+
+  <rect x="27" y="185" width="10" height="10" rx="3" fill="#10715A"/>
+  <text x="43" y="194" class="text-title">EVOLUÇÃO MENSAL: ENTRADAS VS CUSTOS (FLUXO DE CAIXA OPERACIONAL)</text>
+  <rect x="1142" y="182" width="110" height="18" rx="9" fill="#EFF6FF"/>
+  <text x="1152" y="194" class="text-badge" fill="#1E3A5F">LARGURA TOTAL</text>
+  <text x="27" y="210" class="text-sub">Comparativo histórico mensal entre receitas operacionais, despesas de custo de vida e geração de caixa livre</text>
+
+  <!-- Slot para o Gráfico lineClusteredColumnComboChart (x=27, y=220, w=1226, h=255) -->
+  <rect x="27" y="220" width="1226" height="255" rx="9.5" fill="#FDFDFD" stroke="#E9E9E9"/>
+
+
+  <!-- ======================================================================= -->
+  <!-- BLOCO 3: COMPOSIÇÃO CUSTO DE VIDA (BARRAS) & CARTEIRA DE CARTÕES (y=505) -->
+  <!-- ======================================================================= -->
+
+  <!-- Card Esquerda: Composição do Custo de Vida - Gráfico de Barras (x=15, y=505, w=618, h=380) -->
+  <rect x="15" y="505" width="618" height="380" rx="15" fill="#FFFFFF" stroke="#E9E9E9" stroke-width="1"/>
+  <rect x="27" y="520" width="10" height="10" rx="3" fill="#FF4A53"/>
+  <text x="43" y="529" class="text-title">COMPOSIÇÃO DO CUSTO DE VIDA (GRÁFICO DE BARRAS)</text>
+  <rect x="512" y="517" width="108" height="18" rx="9" fill="#FEE2E2"/>
+  <text x="524" y="529" class="text-badge" fill="#FF4A53">POR CATEGORIA</text>
+  <text x="27" y="545" class="text-sub">Distribuição proporcional dos desembolsos por categoria (visual barChart nativo)</text>
+
+  <!-- Slot para o Gráfico barChart (x=27, y=558, w=594, h=312) -->
+  <rect x="27" y="558" width="594" height="312" rx="9.5" fill="#FDFDFD" stroke="#E9E9E9"/>
+
+
+  <!-- Card Direita: Carteira Digital • Saldos & Faturas em Estilo Cartão de Crédito (x=647, y=505, w=618, h=380) -->
+  <rect x="647" y="505" width="618" height="380" rx="15" fill="#FFFFFF" stroke="#E9E9E9" stroke-width="1"/>
+  <rect x="659" y="520" width="10" height="10" rx="3" fill="#F99C3E"/>
+  <text x="675" y="529" class="text-title">CARTEIRA DIGITAL • SALDOS &amp; FATURAS POR CARTÃO</text>
+  <rect x="1152" y="517" width="101" height="18" rx="9" fill="#FEF3C7"/>
+  <text x="1162" y="529" class="text-badge" fill="#D97706">4 CARTÕES ATIVOS</text>
+  <text x="659" y="545" class="text-sub">Saldos acumulados em conta e faturas do cartão de crédito por instituição</text>
+
+  <!-- GRID 2x2 DE CARTÕES DE CRÉDITO/DÉBITO -->
+  <!-- CARTÃO 1: INTER DÉBITO (x=659, y=560, w=291, h=148) -->
+  <g transform="translate(659, 560)">
+    <rect x="0" y="0" width="291" height="148" rx="14" fill="url(#gradInterDebito)"/>
+    <circle cx="255" cy="30" r="55" fill="#FFFFFF" fill-opacity="0.08"/>
+    <circle cx="275" cy="120" r="45" fill="#FFFFFF" fill-opacity="0.06"/>
+    <!-- Top Row: Brand & Type Badge -->
+    <text x="18" y="25" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="900" fill="#FFFFFF" letter-spacing="0.5px">inter</text>
+    <rect x="202" y="12" width="73" height="18" rx="9" fill="#000000" fill-opacity="0.25"/>
+    <text x="214" y="24" font-family="'Segoe UI', sans-serif" font-size="8.5" font-weight="700" fill="#FFFFFF">DÉBITO • CC</text>
+    <!-- EMV Chip & Contactless Icon -->
+    <rect x="18" y="40" width="32" height="24" rx="4" fill="url(#gradChipGold)" stroke="#B7791F" stroke-width="0.6"/>
+    <line x1="18" y1="52" x2="50" y2="52" stroke="#B7791F" stroke-width="0.6"/>
+    <line x1="34" y1="40" x2="34" y2="64" stroke="#B7791F" stroke-width="0.6"/>
+    <path d="M58 47C60 49.5 60 54.5 58 57M62 44C65.5 48.5 65.5 55.5 62 60" stroke="#FFFFFF" stroke-opacity="0.8" stroke-width="1.5" stroke-linecap="round"/>
+    <text x="95" y="55" class="card-meta">•••• 4821</text>
+    <!-- Label para o cardVisual sobreposto (x=670, y=642) -->
+    <text x="18" y="80" class="card-label">SALDO CONTA CORRENTE</text>
+    <!-- Mastercard Circles -->
+    <circle cx="256" cy="128" r="9" fill="#EB001B" fill-opacity="0.85"/>
+    <circle cx="268" cy="128" r="9" fill="#F79E1B" fill-opacity="0.85"/>
+  </g>
+
+  <!-- CARTÃO 2: INTER CRÉDITO (x=962, y=560, w=291, h=148) -->
+  <g transform="translate(962, 560)">
+    <rect x="0" y="0" width="291" height="148" rx="14" fill="url(#gradInterCredito)"/>
+    <circle cx="255" cy="30" r="55" fill="#FF7A00" fill-opacity="0.09"/>
+    <rect x="0" y="25" width="4" height="98" rx="2" fill="#FF7A00"/>
+    <!-- Top Row: Brand & Type Badge -->
+    <text x="18" y="25" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="900" fill="#FFFFFF" letter-spacing="0.5px">inter <tspan font-weight="400" font-size="10" fill="#FF7A00">black</tspan></text>
+    <rect x="195" y="12" width="80" height="18" rx="9" fill="#FF7A00" fill-opacity="0.22"/>
+    <text x="205" y="24" font-family="'Segoe UI', sans-serif" font-size="8.5" font-weight="700" fill="#FF9838">CRÉDITO • FAT.</text>
+    <!-- EMV Chip & Contactless Icon -->
+    <rect x="18" y="40" width="32" height="24" rx="4" fill="url(#gradChipSilver)" stroke="#64748B" stroke-width="0.6"/>
+    <line x1="18" y1="52" x2="50" y2="52" stroke="#64748B" stroke-width="0.6"/>
+    <line x1="34" y1="40" x2="34" y2="64" stroke="#64748B" stroke-width="0.6"/>
+    <path d="M58 47C60 49.5 60 54.5 58 57M62 44C65.5 48.5 65.5 55.5 62 60" stroke="#FFFFFF" stroke-opacity="0.7" stroke-width="1.5" stroke-linecap="round"/>
+    <text x="95" y="55" class="card-meta">•••• 9014</text>
+    <!-- Label para o cardVisual sobreposto (x=973, y=642) -->
+    <text x="18" y="80" class="card-label">GASTO ACUMULADO • FATURA</text>
+    <!-- Mastercard Circles -->
+    <circle cx="256" cy="128" r="9" fill="#EB001B" fill-opacity="0.85"/>
+    <circle cx="268" cy="128" r="9" fill="#F79E1B" fill-opacity="0.85"/>
+  </g>
+
+  <!-- CARTÃO 3: FLASH BENEFÍCIOS (x=659, y=722, w=291, h=148) -->
+  <g transform="translate(659, 722)">
+    <rect x="0" y="0" width="291" height="148" rx="14" fill="url(#gradFlash)"/>
+    <circle cx="255" cy="30" r="55" fill="#FFFFFF" fill-opacity="0.08"/>
+    <!-- Top Row: Brand & Type Badge -->
+    <text x="18" y="25" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="900" fill="#FFFFFF" letter-spacing="0.5px">flash</text>
+    <rect x="188" y="12" width="87" height="18" rx="9" fill="#000000" fill-opacity="0.25"/>
+    <text x="197" y="24" font-family="'Segoe UI', sans-serif" font-size="8.5" font-weight="700" fill="#FFFFFF">BENEFÍCIOS VR/VA</text>
+    <!-- EMV Chip & Contactless Icon -->
+    <rect x="18" y="40" width="32" height="24" rx="4" fill="url(#gradChipGold)" stroke="#B7791F" stroke-width="0.6"/>
+    <line x1="18" y1="52" x2="50" y2="52" stroke="#B7791F" stroke-width="0.6"/>
+    <line x1="34" y1="40" x2="34" y2="64" stroke="#B7791F" stroke-width="0.6"/>
+    <path d="M58 47C60 49.5 60 54.5 58 57M62 44C65.5 48.5 65.5 55.5 62 60" stroke="#FFFFFF" stroke-opacity="0.8" stroke-width="1.5" stroke-linecap="round"/>
+    <text x="95" y="55" class="card-meta">•••• 3319</text>
+    <!-- Label para o cardVisual sobreposto (x=670, y=804) -->
+    <text x="18" y="80" class="card-label">SALDO DISPONÍVEL FLASH</text>
+    <!-- Brand Circles -->
+    <circle cx="256" cy="128" r="9" fill="#EB001B" fill-opacity="0.85"/>
+    <circle cx="268" cy="128" r="9" fill="#F79E1B" fill-opacity="0.85"/>
+  </g>
+
+  <!-- CARTÃO 4: WISE INTERNACIONAL (x=962, y=722, w=291, h=148) -->
+  <g transform="translate(962, 722)">
+    <rect x="0" y="0" width="291" height="148" rx="14" fill="url(#gradWise)"/>
+    <circle cx="255" cy="30" r="55" fill="#C9FD8A" fill-opacity="0.1"/>
+    <rect x="0" y="25" width="4" height="98" rx="2" fill="#C9FD8A"/>
+    <!-- Top Row: Brand & Type Badge -->
+    <text x="18" y="25" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="900" fill="#C9FD8A" letter-spacing="0.8px">WISE</text>
+    <rect x="192" y="12" width="83" height="18" rx="9" fill="#C9FD8A" fill-opacity="0.2"/>
+    <text x="202" y="24" font-family="'Segoe UI', sans-serif" font-size="8.5" font-weight="700" fill="#C9FD8A">INTERNACIONAL</text>
+    <!-- EMV Chip & Contactless Icon -->
+    <rect x="18" y="40" width="32" height="24" rx="4" fill="url(#gradChipSilver)" stroke="#64748B" stroke-width="0.6"/>
+    <line x1="18" y1="52" x2="50" y2="52" stroke="#64748B" stroke-width="0.6"/>
+    <line x1="34" y1="40" x2="34" y2="64" stroke="#64748B" stroke-width="0.6"/>
+    <path d="M58 47C60 49.5 60 54.5 58 57M62 44C65.5 48.5 65.5 55.5 62 60" stroke="#C9FD8A" stroke-opacity="0.85" stroke-width="1.5" stroke-linecap="round"/>
+    <text x="95" y="55" class="card-meta">•••• 7740</text>
+    <!-- Label para o cardVisual sobreposto (x=973, y=804) -->
+    <text x="18" y="80" class="card-label">SALDO CONTA MULTIMOEDA</text>
+    <!-- Visa/Network Circles -->
+    <circle cx="256" cy="128" r="9" fill="#3B89E2" fill-opacity="0.85"/>
+    <circle cx="268" cy="128" r="9" fill="#C9FD8A" fill-opacity="0.85"/>
+  </g>
+
+
+  <!-- ======================================================================= -->
+  <!-- BLOCO 4: MERCADO MÃE • FAIXA COMPACTA INFERIOR SEM GRÁFICO (y=900, h=155) -->
+  <!-- ======================================================================= -->
+  <rect x="15" y="900" width="1250" height="155" rx="15" fill="#FFFFFF" stroke="#E9E9E9" stroke-width="1"/>
+
+  <rect x="27" y="915" width="10" height="10" rx="3" fill="#CA0AA7"/>
+  <text x="43" y="924" class="text-title">MERCADO MÃE • CONTROLE DO ORÇAMENTO MENSAL (SUBSÍDIO R$ 500,00)</text>
+  <rect x="1142" y="912" width="110" height="18" rx="9" fill="#FCE7F3"/>
+  <text x="1153" y="924" class="text-badge" fill="#CA0AA7">TETO R$ 500/MÊS</text>
+  <text x="27" y="940" class="text-sub">Acompanhamento direto do limite mensal disponibilizado no cartão Flash (indicadores enxutos sem gráfico histórico)</text>
+
+  <!-- Sub-card 1: Gasto no Mês Atual (x=27, y=952, w=290, h=88) -->
+  <rect x="27" y="952" width="290" height="88" rx="9.5" fill="#F9F9F9" stroke="#E9E9E9"/>
+  <text x="39" y="969" font-family="'Segoe UI', sans-serif" font-size="9.5" font-weight="700" fill="#6D6865">GASTO NO MÊS ATUAL</text>
+
+  <!-- Sub-card 2: Saldo Restante do Orçamento (x=330, y=952, w=290, h=88) -->
+  <rect x="330" y="952" width="290" height="88" rx="9.5" fill="#F9F9F9" stroke="#E9E9E9"/>
+  <text x="342" y="969" font-family="'Segoe UI', sans-serif" font-size="9.5" font-weight="700" fill="#6D6865">SALDO RESTANTE DO TETO (R$ 500)</text>
+
+  <!-- Sub-card 3: Total Acumulado & Média Mensal (x=633, y=952, w=290, h=88) -->
+  <rect x="633" y="952" width="290" height="88" rx="9.5" fill="#F9F9F9" stroke="#E9E9E9"/>
+  <text x="645" y="969" font-family="'Segoe UI', sans-serif" font-size="9.5" font-weight="700" fill="#6D6865">ACUMULADO &amp; MÉDIA MENSAL</text>
+
+  <!-- Sub-card 4: Consumo Percentual & Ticket Médio (x=936, y=952, w=317, h=88) -->
+  <rect x="936" y="952" width="317" height="88" rx="9.5" fill="#F9F9F9" stroke="#E9E9E9"/>
+  <text x="948" y="969" font-family="'Segoe UI', sans-serif" font-size="9.5" font-weight="700" fill="#6D6865">CONSUMO DO TETO MENSAL (%)</text>
+
+
+  <!-- ======================================================================= -->
+  <!-- BLOCO 5: TABELA DE TRANSAÇÕES DETALHADAS (y=1070, h=335, w=1250)        -->
+  <!-- ======================================================================= -->
+  <rect x="15" y="1070" width="1250" height="335" rx="15" fill="#FFFFFF" stroke="#E9E9E9" stroke-width="1"/>
+
+  <rect x="27" y="1085" width="10" height="10" rx="3" fill="#1E3A5F"/>
+  <text x="43" y="1094" class="text-title">DETALHAMENTO DE TRANSAÇÕES RECENTES (EXTRATO ANALÍTICO NOTION)</text>
+  <rect x="1140" y="1082" width="113" height="18" rx="9" fill="#EFF6FF"/>
+  <text x="1152" y="1094" class="text-badge" fill="#1E3A5F">EXTRATO NOTION</text>
+  <text x="27" y="1110" class="text-sub">Tabela analítica (tableEx) com lançamentos sincronizados do Notion</text>
+
+  <!-- Slot para o Visual tableEx (x=27, y=1122, w=1226, h=268) -->
+  <rect x="27" y="1122" width="1226" height="268" rx="8" fill="#FDFDFD" stroke="#E9E9E9"/>
+</svg>

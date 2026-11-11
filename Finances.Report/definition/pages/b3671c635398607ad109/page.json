@@ -3,7 +3,7 @@
   "name": "b3671c635398607ad109",
   "displayName": "Visão Geral",
   "displayOption": "FitToWidth",
-  "height": 720,
+  "height": 1420,
   "width": 1280,
   "objects": {
     "background": [
@@ -14,7 +14,7 @@
               "name": {
                 "expr": {
                   "Literal": {
-                    "Value": "'Visão Geral.svg'"
+                    "Value": "'Visao_Geral_Fundo.svg'"
                   }
                 }
               },
@@ -23,7 +23,7 @@
                   "ResourcePackageItem": {
                     "PackageName": "RegisteredResources",
                     "PackageType": 1,
-                    "ItemName": "Vis_o_Geral24098827720690896.svg"
+                    "ItemName": "Visao_Geral_Fundo.svg"
                   }
                 }
               },

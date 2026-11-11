@@ -26,10 +26,11 @@ table Medidas
 			VAR saldo =
 			    CALCULATE(
 			        [soma_valor_efetivo],
+			        REMOVEFILTERS(DIM_CALENDARIO),
 			        FAT_FINANCES[ACCOUNT] = "Inter - Débito"
 			    )
 			RETURN
-			    saldo
+			    COALESCE(saldo, 0)
 		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
 		displayFolder: saldos
 		lineageTag: 2db3e0de-c869-490f-8a6b-88a329363a02
@@ -41,10 +42,11 @@ table Medidas
 			VAR saldo =
 			    CALCULATE(
 			        [soma_valor_efetivo],
+			        REMOVEFILTERS(DIM_CALENDARIO),
 			        FAT_FINANCES[ACCOUNT] = "Flash"
 			    )
 			RETURN
-			    saldo
+			    COALESCE(saldo, 0)
 		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
 		displayFolder: saldos
 		lineageTag: 7dbc390d-1abe-432e-bf2d-1690dd29bdb2
@@ -55,11 +57,12 @@ table Medidas
 	measure saldo_flash_ontem =
 			VAR saldo_anterior =
 			    CALCULATE(
-			        [saldo_flash],
+			        [soma_valor_efetivo],
+			        FAT_FINANCES[ACCOUNT] = "Flash",
 			        DIM_CALENDARIO[data] < TODAY()
 			    )
 			RETURN
-			    saldo_anterior
+			    COALESCE(saldo_anterior, 0)
 		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
 		displayFolder: saldos
 		lineageTag: f8af9522-87e6-4880-bb24-1cd820890aff
@@ -70,11 +73,12 @@ table Medidas
 	measure saldo_inter_ontem =
 			VAR saldo_anterior =
 			    CALCULATE(
-			        [saldo_inter],
+			        [soma_valor_efetivo],
+			        FAT_FINANCES[ACCOUNT] = "Inter - Débito",
 			        DIM_CALENDARIO[data] < TODAY()
 			    )
 			RETURN
-			    saldo_anterior
+			    COALESCE(saldo_anterior, 0)
 		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
 		displayFolder: saldos
 		lineageTag: 8fbe42a9-c190-421f-9287-5b263aff7c3c
@@ -86,10 +90,11 @@ table Medidas
 			VAR saldo =
 			    CALCULATE(
 			        [soma_valor_efetivo],
+			        REMOVEFILTERS(DIM_CALENDARIO),
 			        FAT_FINANCES[ACCOUNT] = "Wise"
 			    )
 			RETURN
-			    saldo
+			    COALESCE(saldo, 0)
 		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
 		displayFolder: saldos
 		lineageTag: 83e50492-dd58-4ee8-9291-c5d7f28416ce
@@ -100,16 +105,180 @@ table Medidas
 	measure saldo_wise_ontem =
 			VAR saldo_anterior =
 			    CALCULATE(
-			        [saldo_wise],
+			        [soma_valor_efetivo],
+			        FAT_FINANCES[ACCOUNT] = "Wise",
 			        DIM_CALENDARIO[data] < TODAY()
 			    )
 			RETURN
-			    saldo_anterior
+			    COALESCE(saldo_anterior, 0)
 		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
 		displayFolder: saldos
 		lineageTag: 05522d16-5649-4360-bfc5-c5d645e57c10
 
 		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	/// Saldo líquido total disponível somando as contas correntes e cartões pré-pagos (Inter Débito, Flash e Wise)
+	measure saldo_total_contas =
+			VAR total_liquido =
+			    [saldo_inter] + [saldo_flash] + [saldo_wise]
+			RETURN
+			    total_liquido
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		displayFolder: saldos
+		lineageTag: 3a11e482-7b25-4c9d-a124-9f812b34c501
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	/// Total de compras realizadas no cartão Inter - Crédito
+	measure gasto_inter_credito =
+			VAR total_credito =
+			    CALCULATE(
+			        [soma_valor],
+			        FAT_FINANCES[ACCOUNT] = "Inter - Crédito",
+			        FAT_FINANCES[TYPE] = "Despesa"
+			    )
+			RETURN
+			    COALESCE(total_credito, 0)
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		displayFolder: saldos
+		lineageTag: 4b22f593-8c36-4d0e-b235-0a923c45d602
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	/// Total de faturas pagas do cartão Inter - Crédito
+	measure fatura_paga_inter_credito =
+			VAR total_pago =
+			    CALCULATE(
+			        [soma_valor],
+			        FAT_FINANCES[ACCOUNT] = "Inter - Crédito",
+			        FAT_FINANCES[TYPE] = "Receita"
+			    )
+			RETURN
+			    COALESCE(total_pago, 0)
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		displayFolder: saldos
+		lineageTag: 5c33a604-9d47-4e1f-a346-1b034d56e703
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	/// Valor da fatura mais recente registrada para o cartão Inter - Crédito
+	measure ultima_fatura_inter_credito =
+			VAR ultima_data_fatura =
+			    CALCULATE(
+			        MAX(FAT_FINANCES[DATE]),
+			        FAT_FINANCES[ACCOUNT] = "Inter - Crédito",
+			        FAT_FINANCES[TYPE] = "Receita"
+			    )
+			VAR valor_ultima_fatura =
+			    CALCULATE(
+			        [soma_valor],
+			        FAT_FINANCES[ACCOUNT] = "Inter - Crédito",
+			        FAT_FINANCES[TYPE] = "Receita",
+			        FAT_FINANCES[DATE] = ultima_data_fatura
+			    )
+			RETURN
+			    COALESCE(valor_ultima_fatura, 0)
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		displayFolder: saldos
+		lineageTag: 6d44b715-0e58-4f2a-b457-2c145e67f804
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	/// Volume total convertido/aportado na conta internacional Wise
+	measure cambio_acumulado_wise =
+			VAR total_wise =
+			    CALCULATE(
+			        [soma_valor],
+			        REMOVEFILTERS(DIM_CALENDARIO),
+			        FAT_FINANCES[ACCOUNT] = "Wise",
+			        FAT_FINANCES[TYPE] = "Receita"
+			    )
+			RETURN
+			    COALESCE(total_wise, 0)
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		displayFolder: saldos
+		lineageTag: 7e55c826-1f69-4a3b-a568-3d256f78a905
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	/// Entradas operacionais reais (exclui liquidações internas de fatura de cartão e resgates de aplicações)
+	measure receitas_operacionais =
+			VAR receitas =
+			    CALCULATE(
+			        [soma_valor],
+			        FAT_FINANCES[TYPE] = "Receita",
+			        NOT FAT_FINANCES[CATEGORY] IN { "Faturas", "Renda Extra & Investimentos" },
+			        NOT FAT_FINANCES[SUB_CATEGORY] IN { "Moedas Estrangeiras", "Saldo Inicial" }
+			    )
+			RETURN
+			    COALESCE(receitas, 0)
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		displayFolder: fluxo_caixa
+		lineageTag: 8f66d937-2a70-4b4c-b679-4e367a89b006
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	/// Despesas reais de custo de vida (exclui aportes em investimentos e pagamento duplicado de faturas)
+	measure custo_vida_real =
+			VAR despesas_consumo =
+			    CALCULATE(
+			        [soma_valor],
+			        FAT_FINANCES[TYPE] = "Despesa",
+			        NOT FAT_FINANCES[CATEGORY] IN { "Investimentos - Aporte", "Faturas" }
+			    )
+			RETURN
+			    COALESCE(despesas_consumo, 0)
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		displayFolder: fluxo_caixa
+		lineageTag: 9a77e048-3b81-4c5d-a780-5f478b90c107
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	/// Geração de caixa operacional livre no período (Receitas Operacionais menos Custo de Vida Real)
+	measure fluxo_caixa_liquido =
+			VAR entradas = [receitas_operacionais]
+			VAR saidas = [custo_vida_real]
+			RETURN
+			    entradas - saidas
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		displayFolder: fluxo_caixa
+		lineageTag: 0b88f159-4c92-4d6e-b891-6a589c01d208
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	/// Percentual de comprometimento da receita operacional com o custo de vida
+	measure taxa_comprometimento_renda =
+			VAR custo = [custo_vida_real]
+			VAR receita = [receitas_operacionais]
+			RETURN
+			    DIVIDE(custo, receita, 0)
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: fluxo_caixa
+		lineageTag: 1c99a260-5d03-4e7f-a902-7b690d12e309
+
+	/// Taxa de poupança operacional sobre a receita (geração de caixa livre percentual)
+	measure taxa_poupanca =
+			VAR geracao_caixa = [fluxo_caixa_liquido]
+			VAR receita = [receitas_operacionais]
+			RETURN
+			    DIVIDE(geracao_caixa, receita, 0)
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: fluxo_caixa
+		lineageTag: 2d00b371-6e14-4f8a-b013-8c701e23f410
+
+	/// Participação percentual da categoria sobre o custo de vida total selecionado
+	measure participacao_custo_vida =
+			VAR custo_atual = [custo_vida_real]
+			VAR custo_total =
+			    CALCULATE(
+			        [custo_vida_real],
+			        ALLSELECTED(FAT_FINANCES[CATEGORY])
+			    )
+			RETURN
+			    DIVIDE(custo_atual, custo_total, 0)
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: fluxo_caixa
+		lineageTag: 3e11c482-7f25-4a9b-a124-9d812f34a511
 
 	/// Total desembolsado em compras/aportes de criptoativos
 	measure total_investido_crypto =
@@ -120,14 +289,14 @@ table Medidas
 			        FAT_FINANCES[TYPE] = "Despesa"
 			    )
 			RETURN
-			    total_compras
+			    COALESCE(total_compras, 0)
 		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
 		displayFolder: crypto
 		lineageTag: 988f53db-a9bb-4417-91d6-a22d6e1f8e68
 
 		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
 
-	/// Total de aportes realizados em aplicações atreladas ao CDI
+	/// Total líquido de aportes realizados em aplicações atreladas ao CDI
 	measure total_investido_cdi =
 			VAR total_aporte =
 			    CALCULATE(
@@ -135,10 +304,42 @@ table Medidas
 			        FAT_FINANCES[SUB_CATEGORY] = "CDI"
 			    )
 			RETURN
-			    total_aporte
+			    COALESCE(total_aporte, 0)
 		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
 		displayFolder: cdi
 		lineageTag: 983fce1d-4784-4d8b-af3f-4aed5781d91a
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	/// Volume bruto aportado em aplicações atreladas ao CDI
+	measure aportes_brutos_cdi =
+			VAR bruto_cdi =
+			    CALCULATE(
+			        [soma_valor],
+			        FAT_FINANCES[SUB_CATEGORY] = "CDI",
+			        FAT_FINANCES[TYPE] = "Despesa"
+			    )
+			RETURN
+			    COALESCE(bruto_cdi, 0)
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		displayFolder: cdi
+		lineageTag: 4f22d593-8a36-4b0c-b235-0e923a45b612
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	/// Volume total resgatado de aplicações em CDI
+	measure resgates_cdi =
+			VAR resgate_cdi =
+			    CALCULATE(
+			        [soma_valor],
+			        FAT_FINANCES[SUB_CATEGORY] = "CDI",
+			        FAT_FINANCES[TYPE] = "Receita"
+			    )
+			RETURN
+			    COALESCE(resgate_cdi, 0)
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		displayFolder: cdi
+		lineageTag: 5a33e604-9b47-4c1d-a346-1f034b56c713
 
 		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
 
@@ -204,9 +405,10 @@ table Medidas
 			        MAX(DIM_DOLAR[COTACAO_COMPRA]),
 			        DIM_DOLAR[DATA_HORA] = MAX(DIM_DOLAR[DATA_HORA])
 			    )
+			VAR preco_referencia = COALESCE(ultimo_preco_dolar, 5.50)
 			VAR saldo_crypto_dolar = 360
 			RETURN
-			    saldo_crypto_dolar * ultimo_preco_dolar
+			    saldo_crypto_dolar * preco_referencia
 			```
 		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
 		displayFolder: crypto
@@ -236,6 +438,187 @@ table Medidas
 		displayFolder: crypto
 		lineageTag: febc6ccd-dfa3-4640-96f3-821a0d6493be
 
+	/// Volume total aportado em investimentos (Renda Fixa, Tesouro, FIIs e Cripto)
+	measure aportes_totais =
+			VAR total_aportes =
+			    CALCULATE(
+			        [soma_valor],
+			        FAT_FINANCES[CATEGORY] = "Investimentos - Aporte",
+			        FAT_FINANCES[TYPE] = "Despesa"
+			    )
+			RETURN
+			    COALESCE(total_aportes, 0)
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		displayFolder: investimentos
+		lineageTag: 6b44f715-0c58-4d2e-b457-2a145c67d814
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	/// Volume total resgatado de investimentos e poupança
+	measure resgates_totais =
+			VAR total_resgates =
+			    CALCULATE(
+			        [soma_valor],
+			        FAT_FINANCES[CATEGORY] = "Renda Extra & Investimentos",
+			        FAT_FINANCES[TYPE] = "Receita"
+			    )
+			RETURN
+			    COALESCE(total_resgates, 0)
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		displayFolder: investimentos
+		lineageTag: 7c55a826-1d69-4e3f-a568-3b256d78e915
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	/// Aporte líquido acumulado (Total Aportado menos Total Resgatado)
+	measure aporte_liquido_investimentos =
+			VAR aportado = [aportes_totais]
+			VAR resgatado = [resgates_totais]
+			RETURN
+			    aportado - resgatado
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		displayFolder: investimentos
+		lineageTag: 8d66b937-2e70-4f4a-b679-4c367e89f016
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	/// Quantidade de transações de aporte em investimentos
+	measure qtd_aportes =
+			VAR contagem =
+			    CALCULATE(
+			        COUNTROWS(FAT_FINANCES),
+			        FAT_FINANCES[CATEGORY] = "Investimentos - Aporte",
+			        FAT_FINANCES[TYPE] = "Despesa"
+			    )
+			RETURN
+			    COALESCE(contagem, 0)
+		formatString: #,0
+		displayFolder: investimentos
+		lineageTag: 9e77c048-3f81-4a5b-a780-5d478f90a117
+
+	/// Participação percentual do ativo no volume total de aportes da carteira
+	measure participacao_carteira_porcent =
+			VAR aporte_ativo = [aportes_totais]
+			VAR aporte_global =
+			    CALCULATE(
+			        [aportes_totais],
+			        ALLSELECTED(FAT_FINANCES[SUB_CATEGORY])
+			    )
+			RETURN
+			    DIVIDE(aporte_ativo, aporte_global, 0)
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: investimentos
+		lineageTag: 0f88d159-4a92-4b6c-b891-6e589a01b218
+
+	/// Total investido em LCI (Renda Fixa Isenta de IR)
+	measure total_investido_lci =
+			VAR total_lci =
+			    CALCULATE(
+			        [soma_valor],
+			        FAT_FINANCES[SUB_CATEGORY] = "LCI",
+			        FAT_FINANCES[TYPE] = "Despesa"
+			    )
+			RETURN
+			    COALESCE(total_lci, 0)
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		displayFolder: investimentos
+		lineageTag: 1a99e260-5b03-4c7d-a902-7f690b12c319
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	/// Total investido em Tesouro Direto
+	measure total_investido_tesouro =
+			VAR total_tesouro =
+			    CALCULATE(
+			        [soma_valor],
+			        FAT_FINANCES[SUB_CATEGORY] = "Tesouro Direto",
+			        FAT_FINANCES[TYPE] = "Despesa"
+			    )
+			RETURN
+			    COALESCE(total_tesouro, 0)
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		displayFolder: investimentos
+		lineageTag: 2b00f371-6c14-4d8e-b013-8a701c23d420
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	/// Total investido em FIIs e ETFs
+	measure total_investido_fiis =
+			VAR total_fiis =
+			    CALCULATE(
+			        [soma_valor],
+			        FAT_FINANCES[SUB_CATEGORY] = "FII's & ETF’s",
+			        FAT_FINANCES[TYPE] = "Despesa"
+			    )
+			RETURN
+			    COALESCE(total_fiis, 0)
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		displayFolder: investimentos
+		lineageTag: 3c11a482-7d25-4e9f-a124-9b812d34e521
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	/// Patrimônio ativo estimado na carteira somando posições em CDI corrigido, LCI, Tesouro, FIIs e Cripto
+	measure patrimonio_investido_estimado =
+			VAR saldo_cdi = [rendimento_cdi]
+			VAR saldo_lci = [total_investido_lci]
+			VAR saldo_tesouro = [total_investido_tesouro]
+			VAR saldo_fiis = [total_investido_fiis]
+			VAR saldo_crypto = [rendimento_crypto]
+			RETURN
+			    saldo_cdi + saldo_lci + saldo_tesouro + saldo_fiis + saldo_crypto
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		displayFolder: investimentos
+		lineageTag: 4d22b593-8e36-4f0a-b235-0c923e45f622
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	/// Lucro nominal estimado acumulado nos indexadores monitorados (DIM_CDI + USD)
+	measure lucro_total_estimado =
+			VAR lucro_cdi = [dif_rendido_cdi]
+			RETURN
+			    lucro_cdi
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		displayFolder: investimentos
+		lineageTag: 5e33c604-9f47-4a1b-a346-1d034f56a723
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	/// Rentabilidade percentual estimada sobre o capital líquido investido no CDI
+	measure rentabilidade_carteira_porcent =
+			VAR rentabilidade = [dif_rendido_cdi_porcent]
+			RETURN
+			    rentabilidade
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: investimentos
+		lineageTag: 6f44d715-0a58-4b2c-b457-2e145a67b824
+
+	/// Média mensal de aportes realizados em investimentos
+	measure media_mensal_aportes =
+			VAR media_aportes =
+			    AVERAGEX(
+			        VALUES(DIM_CALENDARIO[ano_mes]),
+			        [aportes_totais]
+			    )
+			RETURN
+			    COALESCE(media_aportes, 0)
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		displayFolder: investimentos
+		lineageTag: 7a55e826-1b69-4c3d-a568-3f256b78c925
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	/// Meta planejada de aporte mensal recorrente
+	measure meta_aporte_mensal =
+			VAR meta = 2000
+			RETURN
+			    meta
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		displayFolder: investimentos
+		lineageTag: 8b66f937-2c70-4d4e-b679-4a367c89d026
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
 	/// Total de gastos na subcategoria Mercado Mãe
 	measure soma_mercado_mae =
 			VAR total_gasto =
@@ -244,29 +627,96 @@ table Medidas
 			        FAT_FINANCES[SUB_CATEGORY] = "Mercado Mãe"
 			    )
 			RETURN
-			    total_gasto
+			    COALESCE(total_gasto, 0)
 		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
 		displayFolder: orcamentos
 		lineageTag: bac25db3-67dc-4c48-b1d8-e8276faffaa7
 
 		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
 
-	/// Saldo restante do orçamento mensal (R$ 500) para Mercado Mãe no mês/ano correntes
-	measure saldo_mercado_mae =
-			VAR ano_atual = YEAR(TODAY())
-			VAR mes_atual = MONTH(TODAY())
-			VAR gasto_mes_atual =
+	/// Orçamento mensal fixo destinado à subcategoria Mercado Mãe (R$ 500,00)
+	measure orcamento_mercado_mae =
+			VAR teto = 500
+			RETURN
+			    teto
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		displayFolder: orcamentos
+		lineageTag: 9c77a048-3d81-4e5f-a780-5b478d90e127
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	/// Gasto realizado em Mercado Mãe no mês mais recente do contexto selecionado
+	measure gasto_mercado_mae_mes =
+			VAR ultima_data =
+			    CALCULATE(
+			        MAX(FAT_FINANCES[DATE]),
+			        FAT_FINANCES[SUB_CATEGORY] = "Mercado Mãe"
+			    )
+			VAR ano_ref = YEAR(COALESCE(ultima_data, TODAY()))
+			VAR mes_ref = MONTH(COALESCE(ultima_data, TODAY()))
+			VAR gasto_mes =
 			    CALCULATE(
 			        [soma_mercado_mae],
-			        YEAR(FAT_FINANCES[DATE]) = ano_atual &&
-			        MONTH(FAT_FINANCES[DATE]) = mes_atual
+			        YEAR(FAT_FINANCES[DATE]) = ano_ref &&
+			        MONTH(FAT_FINANCES[DATE]) = mes_ref
 			    )
-			VAR orcamento_mensal = 500
 			RETURN
-			    gasto_mes_atual - orcamento_mensal
+			    COALESCE(gasto_mes, 0)
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		displayFolder: orcamentos
+		lineageTag: 0d88b159-4e92-4f6a-b891-6c589e01f228
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	/// Saldo restante do orçamento mensal (R$ 500) para Mercado Mãe no mês de referência
+	measure saldo_mercado_mae =
+			VAR orcamento_mensal = [orcamento_mercado_mae]
+			VAR gasto_mes_atual = [gasto_mercado_mae_mes]
+			RETURN
+			    orcamento_mensal - gasto_mes_atual
 		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
 		displayFolder: orcamentos
 		lineageTag: 8cd79c9f-0200-47fa-833c-6689a080fa55
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	/// Percentual consumido do teto mensal de R$ 500 para Mercado Mãe
+	measure porcent_mercado_mae_mes =
+			VAR gasto = [gasto_mercado_mae_mes]
+			VAR teto = [orcamento_mercado_mae]
+			RETURN
+			    DIVIDE(gasto, teto, 0)
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: orcamentos
+		lineageTag: 1e99c260-5f03-4a7b-a902-7d690f12a329
+
+	/// Média mensal histórica de gastos na subcategoria Mercado Mãe
+	measure media_mensal_mercado_mae =
+			VAR media_mensal =
+			    AVERAGEX(
+			        VALUES(DIM_CALENDARIO[ano_mes]),
+			        [soma_mercado_mae]
+			    )
+			RETURN
+			    COALESCE(media_mensal, 0)
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		displayFolder: orcamentos
+		lineageTag: 2f00d371-6a14-4b8c-b013-8e701a23b430
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	/// Ticket médio por compra realizada em Mercado Mãe
+	measure ticket_medio_mercado_mae =
+			VAR media_compra =
+			    CALCULATE(
+			        AVERAGE(FAT_FINANCES[VALUE]),
+			        FAT_FINANCES[SUB_CATEGORY] = "Mercado Mãe"
+			    )
+			RETURN
+			    COALESCE(media_compra, 0)
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		displayFolder: orcamentos
+		lineageTag: 3a11e482-7b25-4c9d-a124-9f812b34c531
 
 		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
 
@@ -283,4 +733,3 @@ table Medidas
 	annotation PBI_ResultType = Table
 
 	annotation PBI_NavigationStepName = Navegação
-
