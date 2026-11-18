@@ -87,8 +87,9 @@ while True:
         except (KeyError, TypeError):
             account = None
 
-        object_data = (id, name, value, transaction_type, category, sub_category, date, effective_value, account)
-        notion_data.append(object_data)
+        if date is not None and value:
+            object_data = (id, name, value, transaction_type, category, sub_category, date, effective_value, account)
+            notion_data.append(object_data)
 
     if notion_json["has_more"]:
         next_cursor = notion_json["next_cursor"]
