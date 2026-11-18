@@ -12,17 +12,6 @@ table DIM_DOLAR
 
 		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
 
-	column COTACAO_VENDA
-		dataType: double
-		formatString: "R$"\ #,0.0000;-"R$"\ #,0.0000;"R$"\ #,0.0000
-		lineageTag: 9c42e815-31df-4a62-9b10-6f8ededb6896
-		summarizeBy: average
-		sourceColumn: COTACAO_VENDA
-
-		annotation SummarizationSetBy = User
-
-		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
-
 	column DATA_HORA
 		dataType: dateTime
 		formatString: Short Date
@@ -33,6 +22,17 @@ table DIM_DOLAR
 		annotation SummarizationSetBy = Automatic
 
 		annotation UnderlyingDateTimeDataType = Date
+
+	column COTACAO_VENDA
+		dataType: double
+		formatString: "R$"\ #,0.0000;-"R$"\ #,0.0000;"R$"\ #,0.0000
+		lineageTag: 9c42e815-31df-4a62-9b10-6f8ededb6896
+		summarizeBy: average
+		sourceColumn: COTACAO_VENDA
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
 
 	partition DIM_DOLAR = m
 		mode: import
@@ -47,3 +47,4 @@ table DIM_DOLAR
 	annotation PBI_NavigationStepName = Navegação
 
 	annotation PBI_ResultType = Table
+

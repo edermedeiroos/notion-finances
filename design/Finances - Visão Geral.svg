@@ -2,18 +2,21 @@
   <!-- DEFINIÇÕES E ESTILOS -->
   <defs>
     <style>
-      .text-title { font-family: 'Segoe UI', -apple-system, sans-serif; font-size: 11px; font-weight: 700; fill: #252321; letter-spacing: 0.5px; }
-      .text-sub { font-family: 'Segoe UI', -apple-system, sans-serif; font-size: 10px; font-weight: 400; fill: #808080; }
-      .text-kpi-val { font-family: 'Segoe UI', -apple-system, sans-serif; font-size: 20px; font-weight: 700; fill: #252321; }
-      .text-kpi-sub { font-family: 'Segoe UI', -apple-system, sans-serif; font-size: 10px; font-weight: 500; fill: #6D6865; }
-      .text-badge { font-family: 'Segoe UI', -apple-system, sans-serif; font-size: 9px; font-weight: 700; }
-      .text-table-head { font-family: 'Segoe UI', -apple-system, sans-serif; font-size: 10px; font-weight: 600; fill: #6D6865; }
-      .text-table-cell { font-family: 'Segoe UI', -apple-system, sans-serif; font-size: 10px; font-weight: 500; fill: #252321; }
-      .card-label { font-family: 'Segoe UI', -apple-system, sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.8px; }
-      .card-val { font-family: 'Segoe UI', -apple-system, sans-serif; font-size: 19px; font-weight: 700; }
-      .card-sub { font-family: 'Segoe UI', -apple-system, sans-serif; font-size: 9px; font-weight: 500; }
+      .text-title { font-family: 'DIN', 'Bahnschrift', sans-serif; font-size: 11px; font-weight: 700; fill: #252321; letter-spacing: 0.5px; }
+      .text-sub { font-family: 'DIN', 'Bahnschrift', sans-serif; font-size: 10px; font-weight: 400; fill: #808080; }
+      .text-kpi-val { font-family: 'DIN', 'Bahnschrift', sans-serif; font-size: 20px; font-weight: 700; fill: #252321; }
+      .text-kpi-sub { font-family: 'DIN', 'Bahnschrift', sans-serif; font-size: 10px; font-weight: 500; fill: #6D6865; }
+      .text-badge { font-family: 'DIN', 'Bahnschrift', sans-serif; font-size: 9px; font-weight: 700; }
+      .text-table-head { font-family: 'DIN', 'Bahnschrift', sans-serif; font-size: 10px; font-weight: 600; fill: #6D6865; }
+      .text-table-cell { font-family: 'DIN', 'Bahnschrift', sans-serif; font-size: 10px; font-weight: 500; fill: #252321; }
+      .card-label { font-family: 'DIN', 'Bahnschrift', sans-serif; font-size: 9px; font-weight: 700; letter-spacing: 0.8px; }
+      .card-val { font-family: 'DIN', 'Bahnschrift', sans-serif; font-size: 19px; font-weight: 700; }
+      .card-sub { font-family: 'DIN', 'Bahnschrift', sans-serif; font-size: 9px; font-weight: 500; }
     </style>
 
+    <clipPath id="cardClip">
+      <rect x="0" y="0" width="291" height="148" rx="14"/>
+    </clipPath>
     <!-- Gradientes dos Cartões Digitais -->
     <linearGradient id="grad-inter-debito" x1="0" y1="0" x2="288" y2="140" gradientUnits="userSpaceOnUse">
       <stop offset="0%" stop-color="#FF7A00"/>
@@ -36,26 +39,27 @@
   <!-- 1. FUNDO DO CANVAS (#E9E9E9) -->
   <rect width="1280" height="1420" fill="#E9E9E9"/>
 
-  <!-- 2. TOP HEADER BAR (#3A3633, h=55) -->
-  <rect x="0" y="0" width="1280" height="55" fill="#3A3633"/>
+  <!-- 2. TOP HEADER BAR (#3A3633, h=60) -->
+  <rect x="0" y="0" width="1280" height="60" fill="#3A3633"/>
 
   <!-- Logo Icon ($) -->
-  <rect x="15" y="11" width="33" height="33" rx="8" fill="#F99C3E"/>
-  <text x="26" y="33" font-family="'Segoe UI', sans-serif" font-size="16" font-weight="900" fill="#252321">$</text>
+  <rect x="15" y="13.5" width="33" height="33" rx="8" fill="#10715A"/>
+  <text x="31.5" y="36" text-anchor="middle" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="18" font-weight="700" fill="#FFFFFF">$</text>
 
   <!-- Título do Dashboard -->
-  <text x="58" y="27" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="700" fill="#FFFFFF" letter-spacing="0.5px">CONTROLE FINANCEIRO PESSOAL • VISÃO GERAL</text>
-  <text x="58" y="41" font-family="'Segoe UI', sans-serif" font-size="9.5" font-weight="400" fill="#A09D9A" letter-spacing="1px">NOTION ETL • FLUXO DE CAIXA, CARTÕES &amp; ORÇAMENTO FAMILIAR</text>
+  <text x="58" y="28" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="14" font-weight="700" fill="#FFFFFF" letter-spacing="0.5px">PERSONAL FINANCES BI</text>
+  <text x="58" y="45" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="10" font-weight="400" fill="#B8B4B0">VISÃO GERAL • GESTÃO DE CAIXA, CUSTO DE VIDA, CARTÕES &amp; METAS</text>
 
-  <!-- Slicer Pill no Topo Direito (x=810, y=10, w=455, h=35, rx=15, fill=white) -->
-  <rect x="810" y="10" width="455" height="35" rx="15" fill="#FFFFFF"/>
-  <rect x="822" y="18" width="18" height="18" rx="4" fill="#EFF6FF"/>
-  <path d="M826 23H836M826 27H833M826 31H835" stroke="#3B89E2" stroke-width="1.5" stroke-linecap="round"/>
-  <text x="846" y="32" font-family="'Segoe UI', sans-serif" font-size="11" font-weight="600" fill="#252321">Período: <tspan font-weight="700" fill="#1E3A5F">Últimos 12 Meses</tspan></text>
-  <line x1="995" y1="18" x2="995" y2="37" stroke="#E9E9E9" stroke-width="1.5"/>
-  <text x="1008" y="32" font-family="'Segoe UI', sans-serif" font-size="11" font-weight="600" fill="#6D6865">Conta:</text>
-  <rect x="1050" y="15" width="205" height="24" rx="12" fill="#E9E9E9"/>
-  <text x="1082" y="31" font-family="'Segoe UI', sans-serif" font-size="10" font-weight="700" fill="#252321">Todas (Inter • Flash • Wise)</text>
+  <!-- Slicer Pill Ampliado e Escuro no Topo Direito (x=695, y=7, w=570, h=46, rx=10) -->
+  <rect x="695" y="7" width="570" height="46" rx="10" fill="#252321" stroke="#4D4845" stroke-width="1"/>
+  <path d="M712 24H724L719.5 29.5V34.5L716.5 36V29.5L712 24Z" stroke="#10715A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="734" y="33.5" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="9" font-weight="700" fill="#A09D9A" letter-spacing="0.4px">PERÍODO:</text>
+  <rect x="792" y="12" width="185" height="36" rx="6" fill="#252321" stroke="#4D4845" stroke-width="1"/>
+  <text x="804" y="34" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="10" font-weight="600" fill="#FFFFFF">Todos</text>
+  <line x1="990" y1="14" x2="990" y2="46" stroke="#4D4845" stroke-width="1"/>
+  <text x="1004" y="33.5" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="9" font-weight="700" fill="#A09D9A" letter-spacing="0.4px">CONTA:</text>
+  <rect x="1055" y="12" width="200" height="36" rx="6" fill="#252321" stroke="#4D4845" stroke-width="1"/>
+  <text x="1067" y="34" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="10" font-weight="600" fill="#FFFFFF">Todas (Inter • Flash • Wise)</text>
 
   <!-- ======================================================================= -->
   <!-- BLOCO 1: CARDS DE KPI SUPERIORES (y=70, 4 colunas, w=301.2, h=85, rx=15) -->
@@ -74,8 +78,8 @@
   <rect x="331.2" y="70" width="301.2" height="85" rx="15" fill="#FFFFFF" stroke="#E9E9E9" stroke-width="1"/>
   <rect x="343.2" y="82" width="10" height="10" rx="3" fill="#10715A"/>
   <text x="359.2" y="91" class="text-title">ENTRADAS OPERACIONAIS</text>
-  <rect x="555.2" y="79" width="65" height="18" rx="9" fill="#DCFCE7"/>
-  <text x="564.2" y="92" class="text-badge" fill="#10715A">RECEITAS</text>
+  <rect x="537.2" y="79" width="84" height="18" rx="9" fill="#DCFCE7"/>
+  <text x="579.2" y="92" text-anchor="middle" class="text-badge" fill="#10715A">RENDA PRÓPRIA</text>
   <text x="343.2" y="125" class="text-kpi-val" fill="#10715A">R$ 57.542,12</text>
   <text x="343.2" y="143" class="text-kpi-sub">Salário, Benefícios, Suporte &amp; Vendas</text>
 
@@ -112,14 +116,14 @@
   <!-- Legenda no canto superior direito do bloco -->
   <g transform="translate(835, 185)">
     <rect x="0" y="0" width="10" height="10" rx="2" fill="#10715A"/>
-    <text x="14" y="9" font-family="'Segoe UI', sans-serif" font-size="9.5" font-weight="600" fill="#252321">Entradas (Receitas)</text>
+    <text x="14" y="9" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="9.5" font-weight="600" fill="#252321">Entradas (Receitas)</text>
 
     <rect x="118" y="0" width="10" height="10" rx="2" fill="#FF4A53"/>
-    <text x="132" y="9" font-family="'Segoe UI', sans-serif" font-size="9.5" font-weight="600" fill="#252321">Custos (Despesas)</text>
+    <text x="132" y="9" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="9.5" font-weight="600" fill="#252321">Custos (Despesas)</text>
 
     <line x1="230" y1="5" x2="248" y2="5" stroke="#3B89E2" stroke-width="2.5"/>
     <circle cx="239" cy="5" r="3" fill="#3B89E2"/>
-    <text x="254" y="9" font-family="'Segoe UI', sans-serif" font-size="9.5" font-weight="600" fill="#3B89E2">Saldo Mensal</text>
+    <text x="254" y="9" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="9.5" font-weight="600" fill="#3B89E2">Saldo Mensal</text>
   </g>
 
   <!-- Área demarcada para o Visual Power BI (clusteredColumnChart / lineClusteredColumnComboChart) -->
@@ -135,83 +139,83 @@
   <!-- Ago/25: Rec 1712, Custo 1789 -->
   <rect x="70" y="361" width="18" height="49" rx="2" fill="#10715A"/>
   <rect x="90" y="359" width="18" height="51" rx="2" fill="#FF4A53"/>
-  <text x="73" y="427" font-family="'Segoe UI', sans-serif" font-size="8.5" fill="#6D6865">Ago/25</text>
+  <text x="73" y="427" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="8.5" fill="#6D6865">Ago/25</text>
 
   <!-- Set/25: Rec 3140, Custo 2522 -->
   <rect x="148" y="320" width="18" height="90" rx="2" fill="#10715A"/>
   <rect x="168" y="338" width="18" height="72" rx="2" fill="#FF4A53"/>
-  <text x="151" y="427" font-family="'Segoe UI', sans-serif" font-size="8.5" fill="#6D6865">Set/25</text>
+  <text x="151" y="427" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="8.5" fill="#6D6865">Set/25</text>
 
   <!-- Out/25: Rec 3710, Custo 4548 -->
   <rect x="226" y="304" width="18" height="106" rx="2" fill="#10715A"/>
   <rect x="246" y="280" width="18" height="130" rx="2" fill="#FF4A53"/>
-  <text x="229" y="427" font-family="'Segoe UI', sans-serif" font-size="8.5" fill="#6D6865">Out/25</text>
+  <text x="229" y="427" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="8.5" fill="#6D6865">Out/25</text>
 
   <!-- Nov/25: Rec 3196, Custo 1671 -->
   <rect x="304" y="318" width="18" height="92" rx="2" fill="#10715A"/>
   <rect x="324" y="362" width="18" height="48" rx="2" fill="#FF4A53"/>
-  <text x="307" y="427" font-family="'Segoe UI', sans-serif" font-size="8.5" fill="#6D6865">Nov/25</text>
+  <text x="307" y="427" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="8.5" fill="#6D6865">Nov/25</text>
 
   <!-- Dez/25: Rec 4780, Custo 2555 -->
   <rect x="382" y="273" width="18" height="137" rx="2" fill="#10715A"/>
   <rect x="402" y="337" width="18" height="73" rx="2" fill="#FF4A53"/>
-  <text x="385" y="427" font-family="'Segoe UI', sans-serif" font-size="8.5" fill="#6D6865">Dez/25</text>
+  <text x="385" y="427" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="8.5" fill="#6D6865">Dez/25</text>
 
   <!-- Jan/26: Rec 3686, Custo 2409 -->
   <rect x="460" y="305" width="18" height="105" rx="2" fill="#10715A"/>
   <rect x="480" y="341" width="18" height="69" rx="2" fill="#FF4A53"/>
-  <text x="463" y="427" font-family="'Segoe UI', sans-serif" font-size="8.5" fill="#6D6865">Jan/26</text>
+  <text x="463" y="427" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="8.5" fill="#6D6865">Jan/26</text>
 
   <!-- Fev/26: Rec 2802, Custo 2030 -->
   <rect x="538" y="330" width="18" height="80" rx="2" fill="#10715A"/>
   <rect x="558" y="352" width="18" height="58" rx="2" fill="#FF4A53"/>
-  <text x="541" y="427" font-family="'Segoe UI', sans-serif" font-size="8.5" fill="#6D6865">Fev/26</text>
+  <text x="541" y="427" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="8.5" fill="#6D6865">Fev/26</text>
 
   <!-- Mar/26: Rec 3621, Custo 2428 -->
   <rect x="616" y="306" width="18" height="104" rx="2" fill="#10715A"/>
   <rect x="636" y="340" width="18" height="70" rx="2" fill="#FF4A53"/>
-  <text x="619" y="427" font-family="'Segoe UI', sans-serif" font-size="8.5" fill="#6D6865">Mar/26</text>
+  <text x="619" y="427" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="8.5" fill="#6D6865">Mar/26</text>
 
   <!-- Abr/26: Rec 4372, Custo 2482 -->
   <rect x="694" y="285" width="18" height="125" rx="2" fill="#10715A"/>
   <rect x="714" y="339" width="18" height="71" rx="2" fill="#FF4A53"/>
-  <text x="697" y="427" font-family="'Segoe UI', sans-serif" font-size="8.5" fill="#6D6865">Abr/26</text>
+  <text x="697" y="427" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="8.5" fill="#6D6865">Abr/26</text>
 
   <!-- Mai/26: Rec 3783, Custo 1831 -->
   <rect x="772" y="302" width="18" height="108" rx="2" fill="#10715A"/>
   <rect x="792" y="358" width="18" height="52" rx="2" fill="#FF4A53"/>
-  <text x="775" y="427" font-family="'Segoe UI', sans-serif" font-size="8.5" fill="#6D6865">Mai/26</text>
+  <text x="775" y="427" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="8.5" fill="#6D6865">Mai/26</text>
 
   <!-- Jun/26: Rec 3125, Custo 2968 -->
   <rect x="850" y="320" width="18" height="90" rx="2" fill="#10715A"/>
   <rect x="870" y="325" width="18" height="85" rx="2" fill="#FF4A53"/>
-  <text x="853" y="427" font-family="'Segoe UI', sans-serif" font-size="8.5" fill="#6D6865">Jun/26</text>
+  <text x="853" y="427" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="8.5" fill="#6D6865">Jun/26</text>
 
   <!-- Jul/26: Rec 6956, Custo 5480 -->
   <rect x="928" y="235" width="18" height="175" rx="2" fill="#10715A"/>
   <rect x="948" y="253" width="18" height="157" rx="2" fill="#FF4A53"/>
-  <text x="931" y="427" font-family="'Segoe UI', sans-serif" font-size="8.5" font-weight="700" fill="#252321">Jul/26</text>
+  <text x="931" y="427" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="8.5" font-weight="700" fill="#252321">Jul/26</text>
 
   <!-- Ago/26: Rec 4158, Custo 2966 -->
   <rect x="1006" y="291" width="18" height="119" rx="2" fill="#10715A"/>
   <rect x="1026" y="325" width="18" height="85" rx="2" fill="#FF4A53"/>
-  <text x="1009" y="427" font-family="'Segoe UI', sans-serif" font-size="8.5" fill="#6D6865">Ago/26</text>
+  <text x="1009" y="427" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="8.5" fill="#6D6865">Ago/26</text>
 
   <!-- Set/26: Rec 3990, Custo 2996 -->
   <rect x="1084" y="296" width="18" height="114" rx="2" fill="#10715A"/>
   <rect x="1104" y="324" width="18" height="86" rx="2" fill="#FF4A53"/>
-  <text x="1087" y="427" font-family="'Segoe UI', sans-serif" font-size="8.5" fill="#6D6865">Set/26</text>
+  <text x="1087" y="427" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="8.5" fill="#6D6865">Set/26</text>
 
   <!-- Out/26: Rec 2781, Custo 498 -->
   <rect x="1162" y="330" width="18" height="80" rx="2" fill="#10715A"/>
   <rect x="1182" y="395" width="18" height="15" rx="2" fill="#FF4A53"/>
-  <text x="1165" y="427" font-family="'Segoe UI', sans-serif" font-size="8.5" font-weight="700" fill="#10715A">Out/26</text>
+  <text x="1165" y="427" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="8.5" font-weight="700" fill="#10715A">Out/26</text>
 
   <!-- Linha de tendência Saldo Líquido -->
   <polyline points="89,395 167,372 245,402 323,355 401,338 479,362 557,378 635,365 713,345 791,342 869,388 947,358 1025,365 1103,368 1181,340" fill="none" stroke="#3B89E2" stroke-width="2"/>
 
   <!-- Nota de rodapé do bloco -->
-  <text x="27" y="468" font-family="'Segoe UI', sans-serif" font-size="9.5" font-weight="500" fill="#6D6865">
+  <text x="27" y="468" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="9.5" font-weight="500" fill="#6D6865">
     ✦ <tspan font-weight="700" fill="#252321">Nota Analítica:</tspan> Série expurgada de transferências patrimoniais (resgate de Poupança de R$ 57,8k em Ago/26 e pagamento de faturas) para preservar a escala operacional.
   </text>
 
@@ -224,10 +228,10 @@
   <rect x="15" y="505" width="618" height="380" rx="15" fill="#FFFFFF" stroke="#E9E9E9" stroke-width="1"/>
 
   <rect x="27" y="520" width="10" height="10" rx="3" fill="#CA0AA7"/>
-  <text x="43" y="529" class="text-title">COMPOSIÇÃO DO CUSTO DE VIDA (GRÁFICO DE BARRAS)</text>
+  <text x="43" y="529" class="text-title">COMPOSIÇÃO DO CUSTO DE VIDA POR CATEGORIA</text>
   <rect x="512" y="517" width="108" height="18" rx="9" fill="#EFF6FF"/>
-  <text x="522" y="529" class="text-badge" fill="#1E3A5F">TOTAL R$ 48.605</text>
-  <text x="27" y="545" class="text-sub">Distribuição proporcional dos desembolsos por categoria (visual barChart nativo)</text>
+  <text x="566" y="529" text-anchor="middle" class="text-badge" fill="#1E3A5F">TOTAL R$ 48.605</text>
+  <text x="27" y="545" class="text-sub">Distribuição proporcional por categoria e subcategoria (suporte a drill-down ↑↓)</text>
 
   <!-- Container do Gráfico de Barras Horizontais (barChart) -->
   <rect x="27" y="558" width="594" height="312" rx="9.5" fill="#FDFDFD" stroke="#E9E9E9"/>
@@ -236,49 +240,49 @@
   <line x1="175" y1="572" x2="175" y2="855" stroke="#E9E9E9" stroke-width="1.5"/>
 
   <!-- Barra 1: Rolês & Social (R$ 10.612,83 - 21,8%) -->
-  <text x="167" y="592" text-anchor="end" font-family="'Segoe UI', sans-serif" font-size="10" font-weight="600" fill="#252321">Rolês &amp; Social</text>
+  <text x="167" y="592" text-anchor="end" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="10" font-weight="600" fill="#252321">Rolês &amp; Social</text>
   <rect x="175" y="579" width="320" height="18" rx="4" fill="#F99C3E"/>
-  <text x="502" y="592" font-family="'Segoe UI', sans-serif" font-size="9.5" font-weight="700" fill="#252321">R$ 10.612,83 (21,8%)</text>
+  <text x="502" y="592" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="9.5" font-weight="700" fill="#252321">R$ 10.612,83 (21,8%)</text>
 
   <!-- Barra 2: Compras / Pessoal (R$ 10.060,94 - 20,7%) -->
-  <text x="167" y="624" text-anchor="end" font-family="'Segoe UI', sans-serif" font-size="10" font-weight="600" fill="#252321">Compras / Pessoal</text>
+  <text x="167" y="624" text-anchor="end" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="10" font-weight="600" fill="#252321">Compras / Pessoal</text>
   <rect x="175" y="611" width="303" height="18" rx="4" fill="#3B89E2"/>
-  <text x="485" y="624" font-family="'Segoe UI', sans-serif" font-size="9.5" font-weight="700" fill="#252321">R$ 10.060,94 (20,7%)</text>
+  <text x="485" y="624" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="9.5" font-weight="700" fill="#252321">R$ 10.060,94 (20,7%)</text>
 
   <!-- Barra 3: Mercado (R$ 9.993,38 - 20,6%) -->
-  <text x="167" y="656" text-anchor="end" font-family="'Segoe UI', sans-serif" font-size="10" font-weight="600" fill="#252321">Mercado (Total)</text>
+  <text x="167" y="656" text-anchor="end" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="10" font-weight="600" fill="#252321">Mercado (Total)</text>
   <rect x="175" y="643" width="301" height="18" rx="4" fill="#FF4A53"/>
-  <text x="483" y="656" font-family="'Segoe UI', sans-serif" font-size="9.5" font-weight="700" fill="#252321">R$ 9.993,38 (20,6%)</text>
+  <text x="483" y="656" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="9.5" font-weight="700" fill="#252321">R$ 9.993,38 (20,6%)</text>
 
   <!-- Barra 4: Outros / Câmbio / Empr. (R$ 9.849,08 - 20,3%) -->
-  <text x="167" y="688" text-anchor="end" font-family="'Segoe UI', sans-serif" font-size="10" font-weight="600" fill="#6D6865">Outros &amp; Câmbio</text>
+  <text x="167" y="688" text-anchor="end" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="10" font-weight="600" fill="#6D6865">Outros &amp; Câmbio</text>
   <rect x="175" y="675" width="296" height="18" rx="4" fill="#6D6865"/>
-  <text x="478" y="688" font-family="'Segoe UI', sans-serif" font-size="9.5" font-weight="700" fill="#6D6865">R$ 9.849,08 (20,3%)</text>
+  <text x="478" y="688" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="9.5" font-weight="700" fill="#6D6865">R$ 9.849,08 (20,3%)</text>
 
   <!-- Barra 5: Alimentação (R$ 2.468,06 - 5,1%) -->
-  <text x="167" y="720" text-anchor="end" font-family="'Segoe UI', sans-serif" font-size="10" font-weight="600" fill="#252321">Alimentação</text>
+  <text x="167" y="720" text-anchor="end" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="10" font-weight="600" fill="#252321">Alimentação</text>
   <rect x="175" y="707" width="75" height="18" rx="4" fill="#10715A"/>
-  <text x="257" y="720" font-family="'Segoe UI', sans-serif" font-size="9.5" font-weight="700" fill="#252321">R$ 2.468,06 (5,1%)</text>
+  <text x="257" y="720" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="9.5" font-weight="700" fill="#252321">R$ 2.468,06 (5,1%)</text>
 
   <!-- Barra 6: Viagens (R$ 1.348,50 - 2,8%) -->
-  <text x="167" y="752" text-anchor="end" font-family="'Segoe UI', sans-serif" font-size="10" font-weight="600" fill="#252321">Viagens</text>
+  <text x="167" y="752" text-anchor="end" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="10" font-weight="600" fill="#252321">Viagens</text>
   <rect x="175" y="739" width="42" height="18" rx="4" fill="#CA0AA7"/>
-  <text x="224" y="752" font-family="'Segoe UI', sans-serif" font-size="9.5" font-weight="600" fill="#252321">R$ 1.348,50 (2,8%)</text>
+  <text x="224" y="752" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="9.5" font-weight="600" fill="#252321">R$ 1.348,50 (2,8%)</text>
 
   <!-- Barra 7: Auto Cuidado (R$ 1.331,92 - 2,7%) -->
-  <text x="167" y="784" text-anchor="end" font-family="'Segoe UI', sans-serif" font-size="10" font-weight="600" fill="#252321">Auto Cuidado</text>
+  <text x="167" y="784" text-anchor="end" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="10" font-weight="600" fill="#252321">Auto Cuidado</text>
   <rect x="175" y="771" width="41" height="18" rx="4" fill="#D97706"/>
-  <text x="223" y="784" font-family="'Segoe UI', sans-serif" font-size="9.5" font-weight="600" fill="#252321">R$ 1.331,92 (2,7%)</text>
+  <text x="223" y="784" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="9.5" font-weight="600" fill="#252321">R$ 1.331,92 (2,7%)</text>
 
   <!-- Barra 8: Saúde & Esportes (R$ 1.142,19 - 2,3%) -->
-  <text x="167" y="816" text-anchor="end" font-family="'Segoe UI', sans-serif" font-size="10" font-weight="600" fill="#252321">Saúde &amp; Esportes</text>
+  <text x="167" y="816" text-anchor="end" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="10" font-weight="600" fill="#252321">Saúde &amp; Esportes</text>
   <rect x="175" y="803" width="35" height="18" rx="4" fill="#1E3A5F"/>
-  <text x="217" y="816" font-family="'Segoe UI', sans-serif" font-size="9.5" font-weight="600" fill="#252321">R$ 1.142,19 (2,3%)</text>
+  <text x="217" y="816" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="9.5" font-weight="600" fill="#252321">R$ 1.142,19 (2,3%)</text>
 
   <!-- Barra 9: Demais (Transporte, Farmácia, Fixos, Educação: R$ 1.798,82 - 3,7%) -->
-  <text x="167" y="848" text-anchor="end" font-family="'Segoe UI', sans-serif" font-size="10" font-weight="500" fill="#808080">Transporte &amp; Fixos</text>
+  <text x="167" y="848" text-anchor="end" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="10" font-weight="500" fill="#808080">Transporte &amp; Fixos</text>
   <rect x="175" y="835" width="54" height="18" rx="4" fill="#A09D9A"/>
-  <text x="236" y="848" font-family="'Segoe UI', sans-serif" font-size="9.5" font-weight="600" fill="#6D6865">R$ 1.798,82 (3,7%)</text>
+  <text x="236" y="848" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="9.5" font-weight="600" fill="#6D6865">R$ 1.798,82 (3,7%)</text>
 
 
   <!-- Card Direita: Saldos e Faturas estilo Cartões de Crédito (w=618, x=647, y=505, h=380) -->
@@ -292,95 +296,100 @@
 
   <!-- GRID 2x2 DE CARTÕES DE CRÉDITO/DÉBITO -->
   
-  <!-- CARTÃO 1: INTER DÉBITO (x=659, y=560, w=291, h=148, rx=14) -->
-  <g transform="translate(659, 560)">
-    <rect x="0" y="0" width="291" height="148" rx="14" fill="url(#grad-inter-debito)"/>
-    <!-- Círculos decorativos translúcidos estilo cartão bancário -->
-    <circle cx="255" cy="30" r="55" fill="#FFFFFF" fill-opacity="0.08"/>
-    <circle cx="275" cy="120" r="45" fill="#FFFFFF" fill-opacity="0.06"/>
-    <!-- Nome do Banco & Modalidade -->
-    <text x="18" y="25" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="900" fill="#FFFFFF">inter</text>
-    <rect x="202" y="12" width="73" height="18" rx="9" fill="#000000" fill-opacity="0.25"/>
-    <text x="214" y="24" class="text-badge" fill="#FFFFFF">DÉBITO • CC</text>
-    <!-- Chip EMV + Contactless -->
-    <rect x="18" y="40" width="32" height="24" rx="4" fill="#FDE68A" fill-opacity="0.9"/>
-    <line x1="18" y1="52" x2="50" y2="52" stroke="#B45309" stroke-width="1" stroke-opacity="0.5"/>
-    <line x1="34" y1="40" x2="34" y2="64" stroke="#B45309" stroke-width="1" stroke-opacity="0.5"/>
-    <path d="M58 47C60 49 60 55 58 57M62 44C65 48 65 56 62 60" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round" stroke-opacity="0.8"/>
-    <!-- Saldo Principal (Slot p/ Card Power BI) -->
-    <text x="18" y="84" class="card-label" fill="#FFF7ED" fill-opacity="0.85">SALDO CONTA CORRENTE</text>
-    <text x="18" y="108" class="card-val" fill="#FFFFFF">R$ 1.317,35</text>
-    <!-- Rodapé do Cartão -->
-    <text x="18" y="132" class="card-sub" fill="#FFF7ED" fill-opacity="0.9">•••• 4821  |  Ontem: R$ 1.317,35</text>
-    <circle cx="256" cy="128" r="9" fill="#FFFFFF" fill-opacity="0.35"/>
-    <circle cx="268" cy="128" r="9" fill="#FDE68A" fill-opacity="0.55"/>
+  <!-- CARTÃO 1: INTER DÉBITO (x=663, y=560, w=289, h=148, rx=14) -->
+  <g transform="translate(663, 560)">
+    <rect x="0" y="0" width="289" height="148" rx="14" fill="url(#grad-inter-debito)"/>
+    <g clip-path="url(#cardClip)">
+      <circle cx="255" cy="28" r="54" fill="#FFFFFF" fill-opacity="0.08"/>
+      <circle cx="272" cy="122" r="44" fill="#FFFFFF" fill-opacity="0.05"/>
+    </g>
+    <g transform="translate(18, 12) scale(0.125)">
+      <path d="m0 120.83h53.298l0.2835-1.4758-52.56-10.898 1.0214-5.846 52.56 11.352 0.4541-2.0436-49.665-21.569 2.1568-5.9597 49.779 20.944 1.0215-1.4755-44.102-32.751 4.5406-7.1517 43.819 32.75 1.3053-1.7594-34.51-43.819 8.4574-6.8681 34.226 41.776 1.4759-1.3054-19.923-50.687 12.09-5.1084 18.788 49.665 1.4758-0.45402v-55.057h19.298v101.94h-105.29zm306.73-18.05h20.831v22.421h-17.312c-18.22 0-29.402-6.3004-29.402-29.402v-50.063h-12.374c-2.1571 0-3.2923-2.6111-1.8165-4.2004l35.816-40.64c1.5325-1.646 4.3138-0.56759 4.3138 1.7028v20.717h20.66v22.42h-20.66v57.044zm-74.242-81.11c-12.431 0-21.739 7.1518-26.28 18.39h-0.8517v-16.801h-24.691v101.94h25.94v-79.01h17.312c7.549 0 10.33 1.5893 10.33 9.649v69.361h25.94v-74.413c-0.055-20.49-9.8766-29.118-27.699-29.118zm-96.663 103.53h25.939v-101.94h-25.939zm339.37-83.892h-1.0754v-18.05h-25.772v101.94h27.473v-77.591h24.181v-25.939h-3.3507c-12.715 0-18.334 5.6192-21.456 19.639zm-38.878 30.31v7.7191h-77.762c1.4177 15.155 10.896 25.202 25.54 25.202 13.112 0 22.591-6.9816 24.52-15.609h27.643c-5.7885 21.512-25.54 37.973-52.56 37.973-31.502 0-52.899-22.42-52.899-51.822 0-29.402 20.661-53.411 53.581-53.411 31.104 0 51.938 21.399 51.938 49.949zm-76.97-11.068h50.178c-3.9179-10.217-12.203-17.539-25.032-17.539-11.238 0.0567-21.114 5.9597-25.146 17.539z" fill="#FFFFFF"/>
+    </g>
+    <rect x="196" y="12" width="77" height="18" rx="9" fill="#000000" fill-opacity="0.24"/>
+    <text x="234.5" y="24" text-anchor="middle" class="text-badge" fill="#FFFFFF">DÉBITO • CC</text>
+    <rect x="18" y="37" width="25" height="18" rx="3.5" fill="#FDE68A" fill-opacity="0.92"/>
+    <line x1="18" y1="46" x2="43" y2="46" stroke="#B45309" stroke-width="0.8" stroke-opacity="0.45"/>
+    <line x1="30.5" y1="37" x2="30.5" y2="55" stroke="#B45309" stroke-width="0.8" stroke-opacity="0.45"/>
+    <path d="M49 41.5C51 43.5 51 48.5 49 50.5M53 39.5C55.8 42.5 55.8 49.5 53 52.5" stroke="#FFFFFF" stroke-width="1.4" stroke-linecap="round" stroke-opacity="0.82"/>
+    <text x="64" y="49.5" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="9" font-weight="600" fill="#FFFFFF" fill-opacity="0.82">•••• 4821</text>
+    <text x="18" y="71" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="8" font-weight="700" fill="#FFF7ED" fill-opacity="0.88">SALDO CONTA CORRENTE</text>
+    <text x="18" y="100" class="card-val" fill="#FFFFFF">R$ 384,52</text>
+    <text x="18" y="133" class="card-sub" fill="#FFF7ED" fill-opacity="0.9">Ontem: R$ 384,52 • Conta Corrente</text>
+    <circle cx="254" cy="130" r="7" fill="#FFFFFF" fill-opacity="0.35"/>
+    <circle cx="264" cy="130" r="7" fill="#FDE68A" fill-opacity="0.58"/>
   </g>
 
-  <!-- CARTÃO 2: INTER CRÉDITO (x=962, y=560, w=291, h=148, rx=14) -->
-  <g transform="translate(962, 560)">
-    <rect x="0" y="0" width="291" height="148" rx="14" fill="url(#grad-inter-credito)"/>
-    <circle cx="255" cy="30" r="55" fill="#FF7A00" fill-opacity="0.08"/>
-    <!-- Barra lateral laranja sutil -->
-    <rect x="0" y="25" width="4" height="98" rx="2" fill="#FF7A00"/>
-    <!-- Nome do Banco & Modalidade -->
-    <text x="18" y="25" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="900" fill="#FF7A00">inter <tspan font-weight="400" font-size="11" fill="#A09D9A">black</tspan></text>
-    <rect x="195" y="12" width="80" height="18" rx="9" fill="#FF7A00" fill-opacity="0.2"/>
-    <text x="205" y="24" class="text-badge" fill="#FF7A00">CRÉDITO • FAT.</text>
-    <!-- Chip EMV + Contactless -->
-    <rect x="18" y="40" width="32" height="24" rx="4" fill="#D4D4D8" fill-opacity="0.85"/>
-    <line x1="18" y1="52" x2="50" y2="52" stroke="#52525B" stroke-width="1" stroke-opacity="0.5"/>
-    <line x1="34" y1="40" x2="34" y2="64" stroke="#52525B" stroke-width="1" stroke-opacity="0.5"/>
-    <path d="M58 47C60 49 60 55 58 57M62 44C65 48 65 56 62 60" stroke="#A09D9A" stroke-width="1.5" stroke-linecap="round"/>
-    <!-- Valor da Fatura / Gasto no Crédito -->
-    <text x="18" y="84" class="card-label" fill="#A09D9A">GASTO ACUMULADO • FATURA ATUAL</text>
-    <text x="18" y="108" class="card-val" fill="#FFFFFF">R$ 4.655,83 <tspan font-size="11" font-weight="600" fill="#C9FD8A">(Quitada)</tspan></text>
-    <!-- Rodapé do Cartão -->
-    <text x="18" y="132" class="card-sub" fill="#A09D9A">•••• 9014  |  Últ. Fatura: R$ 183,89 (74 compras)</text>
-    <circle cx="256" cy="128" r="9" fill="#FF4A53" fill-opacity="0.7"/>
-    <circle cx="268" cy="128" r="9" fill="#F99C3E" fill-opacity="0.7"/>
+  <!-- CARTÃO 2: INTER CRÉDITO (x=960, y=560, w=289, h=148, rx=14) -->
+  <g transform="translate(960, 560)">
+    <rect x="0" y="0" width="289" height="148" rx="14" fill="url(#grad-inter-credito)"/>
+    <g clip-path="url(#cardClip)">
+      <circle cx="255" cy="28" r="54" fill="#FF7A00" fill-opacity="0.09"/>
+      <rect x="0" y="20" width="3.5" height="108" rx="1.75" fill="#FF7A00"/>
+    </g>
+    <g transform="translate(18, 12) scale(0.125)">
+      <path d="m0 120.83h53.298l0.2835-1.4758-52.56-10.898 1.0214-5.846 52.56 11.352 0.4541-2.0436-49.665-21.569 2.1568-5.9597 49.779 20.944 1.0215-1.4755-44.102-32.751 4.5406-7.1517 43.819 32.75 1.3053-1.7594-34.51-43.819 8.4574-6.8681 34.226 41.776 1.4759-1.3054-19.923-50.687 12.09-5.1084 18.788 49.665 1.4758-0.45402v-55.057h19.298v101.94h-105.29zm306.73-18.05h20.831v22.421h-17.312c-18.22 0-29.402-6.3004-29.402-29.402v-50.063h-12.374c-2.1571 0-3.2923-2.6111-1.8165-4.2004l35.816-40.64c1.5325-1.646 4.3138-0.56759 4.3138 1.7028v20.717h20.66v22.42h-20.66v57.044zm-74.242-81.11c-12.431 0-21.739 7.1518-26.28 18.39h-0.8517v-16.801h-24.691v101.94h25.94v-79.01h17.312c7.549 0 10.33 1.5893 10.33 9.649v69.361h25.94v-74.413c-0.055-20.49-9.8766-29.118-27.699-29.118zm-96.663 103.53h25.939v-101.94h-25.939zm339.37-83.892h-1.0754v-18.05h-25.772v101.94h27.473v-77.591h24.181v-25.939h-3.3507c-12.715 0-18.334 5.6192-21.456 19.639zm-38.878 30.31v7.7191h-77.762c1.4177 15.155 10.896 25.202 25.54 25.202 13.112 0 22.591-6.9816 24.52-15.609h27.643c-5.7885 21.512-25.54 37.973-52.56 37.973-31.502 0-52.899-22.42-52.899-51.822 0-29.402 20.661-53.411 53.581-53.411 31.104 0 51.938 21.399 51.938 49.949zm-76.97-11.068h50.178c-3.9179-10.217-12.203-17.539-25.032-17.539-11.238 0.0567-21.114 5.9597-25.146 17.539z" fill="#FF7A00"/>
+    </g>
+    <text x="86" y="26" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="11" font-weight="600" fill="#A09D9A">black</text>
+    <rect x="194" y="12" width="79" height="18" rx="9" fill="#FF7A00" fill-opacity="0.22"/>
+    <text x="233.5" y="24" text-anchor="middle" class="text-badge" fill="#FF9E44">CRÉDITO • FAT.</text>
+    <rect x="18" y="37" width="25" height="18" rx="3.5" fill="#E2E8F0" fill-opacity="0.88"/>
+    <line x1="18" y1="46" x2="43" y2="46" stroke="#475569" stroke-width="0.8" stroke-opacity="0.45"/>
+    <line x1="30.5" y1="37" x2="30.5" y2="55" stroke="#475569" stroke-width="0.8" stroke-opacity="0.45"/>
+    <path d="M49 41.5C51 43.5 51 48.5 49 50.5M53 39.5C55.8 42.5 55.8 49.5 53 52.5" stroke="#A09D9A" stroke-width="1.4" stroke-linecap="round"/>
+    <text x="64" y="49.5" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="9" font-weight="600" fill="#A09D9A">•••• 9014</text>
+    <text x="18" y="71" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="8" font-weight="700" fill="#D4D4D8">FATURA EM ABERTO (SALDO DEVEDOR)</text>
+    <text x="18" y="100" class="card-val" fill="#FFFFFF">R$ 0,00 <tspan font-size="10.5" font-weight="600" fill="#C9FD8A">(Quitada)</tspan></text>
+    <text x="18" y="133" class="card-sub" fill="#FFB366">Período: R$ 4.815,71 | Últ.: R$ 183,89</text>
+    <circle cx="254" cy="130" r="7" fill="#FF4A53" fill-opacity="0.68"/>
+    <circle cx="264" cy="130" r="7" fill="#F99C3E" fill-opacity="0.68"/>
   </g>
 
-  <!-- CARTÃO 3: FLASH BENEFÍCIOS (x=659, y=722, w=291, h=148, rx=14) -->
-  <g transform="translate(659, 722)">
-    <rect x="0" y="0" width="291" height="148" rx="14" fill="url(#grad-flash)"/>
-    <circle cx="255" cy="30" r="55" fill="#FFFFFF" fill-opacity="0.08"/>
-    <text x="18" y="25" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="900" fill="#FFFFFF">flash</text>
-    <rect x="188" y="12" width="87" height="18" rx="9" fill="#000000" fill-opacity="0.25"/>
-    <text x="197" y="24" class="text-badge" fill="#FFE4E6">BENEFÍCIOS VR/VA</text>
-    <!-- Chip EMV -->
-    <rect x="18" y="40" width="32" height="24" rx="4" fill="#FDE68A" fill-opacity="0.9"/>
-    <line x1="18" y1="52" x2="50" y2="52" stroke="#B45309" stroke-width="1" stroke-opacity="0.5"/>
-    <line x1="34" y1="40" x2="34" y2="64" stroke="#B45309" stroke-width="1" stroke-opacity="0.5"/>
-    <path d="M58 47C60 49 60 55 58 57M62 44C65 48 65 56 62 60" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round" stroke-opacity="0.8"/>
-    <!-- Saldo Flash -->
-    <text x="18" y="84" class="card-label" fill="#FFE4E6" fill-opacity="0.85">SALDO DISPONÍVEL FLASH</text>
-    <text x="18" y="108" class="card-val" fill="#FFFFFF">R$ 365,17</text>
-    <!-- Rodapé do Cartão -->
-    <text x="18" y="132" class="card-sub" fill="#FFE4E6" fill-opacity="0.9">•••• 3319  |  Ontem: R$ 365,17 • Recarga ~R$ 1.143</text>
-    <circle cx="256" cy="128" r="9" fill="#FFFFFF" fill-opacity="0.35"/>
-    <circle cx="268" cy="128" r="9" fill="#FDA4AF" fill-opacity="0.55"/>
+  <!-- CARTÃO 3: FLASH BENEFÍCIOS (x=663, y=720, w=289, h=148, rx=14) -->
+  <g transform="translate(663, 720)">
+    <rect x="0" y="0" width="289" height="148" rx="14" fill="url(#grad-flash)"/>
+    <g clip-path="url(#cardClip)">
+      <circle cx="255" cy="28" r="54" fill="#FFFFFF" fill-opacity="0.08"/>
+    </g>
+    <g transform="translate(11, 10) scale(0.185)">
+      <path d="M245.2 100c0 4.2 3 7.2 7 7.2s7-3 7-7.2V70.8c0-11.7 6.6-18.1 16.8-18.1s14.3 5.5 14.3 15.1V100c0 4.2 3 7.2 7 7.2s7-3 7-7.2V66.4c0-16-9.4-26.7-25-26.7s-14.9 3.1-18.6 8.3c-.7.9-1.6.7-1.6-.5V20.4c0-4.2-3-7.2-7-7.2s-7 3-7 7.2V100ZM187 59.6c0 10.2 7 15.6 15.9 18.2l11.7 3.4c5.1 1.4 7.7 3.1 7.7 6.6s-4.2 7.3-11.6 7.3-9-2-11.9-5c-2.5-2.5-6.4-3-9.5-.7-3 2.3-3.6 6.8-.8 9.9 5.2 5.7 13.8 8.5 22.2 8.5 12.5 0 25.4-6 25.4-20.7s-6.6-15.5-16.8-18.5l-11.7-3.4c-5.2-1.6-6.8-3.4-6.8-6.4s3.9-6.5 10-6.5 8.9 2 12.3 4.4c3.4 2.5 7.7 2.1 9.8-.8 2.1-2.7 2.2-6.6-1-9.5-5-4.3-11.7-6.9-21.1-6.9s-23.7 7.2-23.7 19.9M123 73.8c0-12.4 8.3-21.1 20.5-21.1S164 61.6 164 73.8s-8.3 21.1-20.5 21.1S123 86 123 73.8m-14.4 0c0 19.3 14.1 34.1 32.5 34.1s16.7-3.8 21.1-9.8c.8-1 1.6-.7 1.6.5v1.3c0 4.2 3 7.2 7 7.2s7-3 7-7.2V47.5c0-4.2-3-7.2-7-7.2s-7 3-7 7.2v1c0 1.2-.8 1.6-1.6.5-4.4-5.9-11.1-9.5-21-9.5-18.2 0-32.6 15.1-32.6 34.1M85.4 100c0 4.2 3 7.2 7 7.2s7-3 7-7.2V20.4c0-4.2-3-7.2-7-7.2s-7 3-7 7.2zm-31.1 7.2c4 0 7-3 7-7.2V55.8c0-.8.5-1.3 1.3-1.3h7.8c3.9 0 6.9-2.9 6.9-6.6s-3-6.6-6.9-6.6h-7.8c-.8 0-1.3-.5-1.3-1.3v-3.3c0-6 3.3-9.5 9.1-10 4.7-.4 7.3-2.9 7.3-6.9s-2.3-6.5-7.6-6.5c-13.3 0-22.9 10.2-22.9 23.9v2.9c0 .8-.5 1.3-1.3 1.3h-1.7c-3.9 0-6.9 2.9-6.9 6.6s3 6.6 6.9 6.6h1.7c.8 0 1.3.5 1.3 1.3v44.2c0 4.2 3 7.2 7 7.2" fill="#FFFFFF"/>
+    </g>
+    <rect x="185" y="12" width="88" height="18" rx="9" fill="#000000" fill-opacity="0.24"/>
+    <text x="229" y="24" text-anchor="middle" class="text-badge" fill="#FFE4E6">BENEFÍCIOS VR/VA</text>
+    <rect x="18" y="37" width="25" height="18" rx="3.5" fill="#FDE68A" fill-opacity="0.92"/>
+    <line x1="18" y1="46" x2="43" y2="46" stroke="#B45309" stroke-width="0.8" stroke-opacity="0.45"/>
+    <line x1="30.5" y1="37" x2="30.5" y2="55" stroke="#B45309" stroke-width="0.8" stroke-opacity="0.45"/>
+    <path d="M49 41.5C51 43.5 51 48.5 49 50.5M53 39.5C55.8 42.5 55.8 49.5 53 52.5" stroke="#FFFFFF" stroke-width="1.4" stroke-linecap="round" stroke-opacity="0.82"/>
+    <text x="64" y="49.5" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="9" font-weight="600" fill="#FFE4E6">•••• 3319</text>
+    <text x="18" y="71" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="8" font-weight="700" fill="#FFE4E6" fill-opacity="0.9">SALDO DISPONÍVEL FLASH</text>
+    <text x="18" y="100" class="card-val" fill="#FFFFFF">R$ 222,38</text>
+    <text x="18" y="133" class="card-sub" fill="#FFE4E6" fill-opacity="0.9">Ontem: R$ 222,38 • Cartão Pré-Pago</text>
+    <circle cx="254" cy="130" r="7" fill="#FFFFFF" fill-opacity="0.35"/>
+    <circle cx="264" cy="130" r="7" fill="#FDA4AF" fill-opacity="0.58"/>
   </g>
 
-  <!-- CARTÃO 4: WISE INTERNACIONAL (x=962, y=722, w=291, h=148, rx=14) -->
-  <g transform="translate(962, 722)">
-    <rect x="0" y="0" width="291" height="148" rx="14" fill="url(#grad-wise)"/>
-    <circle cx="255" cy="30" r="55" fill="#9FE870" fill-opacity="0.1"/>
-    <rect x="0" y="25" width="4" height="98" rx="2" fill="#9FE870"/>
-    <text x="18" y="25" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="900" fill="#9FE870">WISE</text>
-    <rect x="192" y="12" width="83" height="18" rx="9" fill="#9FE870" fill-opacity="0.2"/>
-    <text x="202" y="24" class="text-badge" fill="#9FE870">INTERNACIONAL</text>
-    <!-- Chip EMV -->
-    <rect x="18" y="40" width="32" height="24" rx="4" fill="#D9F99D" fill-opacity="0.85"/>
-    <line x1="18" y1="52" x2="50" y2="52" stroke="#365314" stroke-width="1" stroke-opacity="0.5"/>
-    <line x1="34" y1="40" x2="34" y2="64" stroke="#365314" stroke-width="1" stroke-opacity="0.5"/>
-    <path d="M58 47C60 49 60 55 58 57M62 44C65 48 65 56 62 60" stroke="#9FE870" stroke-width="1.5" stroke-linecap="round"/>
-    <!-- Saldo Wise -->
-    <text x="18" y="84" class="card-label" fill="#D9F99D" fill-opacity="0.8">SALDO CONTA MULTIMOEDA</text>
-    <text x="18" y="108" class="card-val" fill="#FFFFFF">R$ 0,00 <tspan font-size="11" font-weight="500" fill="#9FE870">(Câmbio R$ 3.100)</tspan></text>
-    <!-- Rodapé do Cartão -->
-    <text x="18" y="132" class="card-sub" fill="#D9F99D" fill-opacity="0.8">•••• 7740  |  Viagem Além Mar 2026 • PTAX</text>
-    <circle cx="256" cy="128" r="9" fill="#9FE870" fill-opacity="0.5"/>
-    <circle cx="268" cy="128" r="9" fill="#FFFFFF" fill-opacity="0.35"/>
+  <!-- CARTÃO 4: WISE INTERNACIONAL (x=960, y=720, w=289, h=148, rx=14) -->
+  <g transform="translate(960, 720)">
+    <rect x="0" y="0" width="289" height="148" rx="14" fill="url(#grad-wise)"/>
+    <g clip-path="url(#cardClip)">
+      <circle cx="255" cy="28" r="54" fill="#9FE870" fill-opacity="0.1"/>
+      <rect x="0" y="20" width="3.5" height="108" rx="1.75" fill="#9FE870"/>
+    </g>
+    <g transform="translate(12.2, 3.5) scale(0.16)">
+      <path d="M280.616 58.4942H307.679L294.064 155.62H267.002L280.616 58.4942ZM246.498 58.4942L228.235 114.445L220.265 58.4942H201.338L177.43 114.279L174.442 58.4942H148.209L157.341 155.62H179.091L205.987 94.1901L215.451 155.62H236.868L272.232 58.4942H246.498ZM473.706 114.943H409.453C409.785 127.562 417.34 135.863 428.463 135.863C436.848 135.863 443.489 131.38 448.636 122.83L470.327 132.692C462.873 147.377 447.166 156.948 427.799 156.948C401.401 156.948 383.885 139.183 383.885 110.627C383.885 79.2476 404.472 57 433.527 57C459.095 57 475.2 74.2668 475.2 101.163C475.2 105.646 474.702 110.129 473.706 114.943ZM449.632 96.3484C449.632 85.0586 443.323 77.9194 433.195 77.9194C423.068 77.9194 414.102 85.3906 411.778 96.3484H449.632ZM63.6269 87.7648L36 120.049H85.3267L90.872 104.824H69.7367L82.6536 89.89L82.6952 89.4915L74.2942 75.0389H112.074L82.7865 155.62H102.826L138.19 58.4942H46.825L63.6186 87.7648H63.6269ZM351.676 77.9194C361.222 77.9194 369.59 83.0497 376.895 91.8491L380.731 64.4712C373.923 59.864 364.709 57 352.506 57C328.266 57 314.652 71.1953 314.652 89.2093C314.652 101.703 321.625 109.34 333.081 114.279L338.56 116.77C348.77 121.128 351.51 123.286 351.51 127.894C351.51 132.501 346.903 135.697 339.888 135.697C328.307 135.738 318.927 129.803 311.871 119.675L307.961 147.576C315.997 153.703 326.299 156.948 339.888 156.948C362.924 156.948 377.078 143.666 377.078 125.237C377.078 112.702 371.516 104.65 357.487 98.3408L351.51 95.5183C343.208 91.8242 340.386 89.7904 340.386 85.7227C340.386 81.323 344.246 77.9194 351.676 77.9194Z" fill="#9FE870"/>
+    </g>
+    <rect x="190" y="12" width="83" height="18" rx="9" fill="#9FE870" fill-opacity="0.20"/>
+    <text x="231.5" y="24" text-anchor="middle" class="text-badge" fill="#9FE870">INTERNACIONAL</text>
+    <rect x="18" y="37" width="25" height="18" rx="3.5" fill="#D9F99D" fill-opacity="0.88"/>
+    <line x1="18" y1="46" x2="43" y2="46" stroke="#365314" stroke-width="0.8" stroke-opacity="0.45"/>
+    <line x1="30.5" y1="37" x2="30.5" y2="55" stroke="#365314" stroke-width="0.8" stroke-opacity="0.45"/>
+    <path d="M49 41.5C51 43.5 51 48.5 49 50.5M53 39.5C55.8 42.5 55.8 49.5 53 52.5" stroke="#9FE870" stroke-width="1.4" stroke-linecap="round"/>
+    <text x="64" y="49.5" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="9" font-weight="600" fill="#D9F99D">•••• 7740</text>
+    <text x="18" y="71" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="8" font-weight="700" fill="#D9F99D" fill-opacity="0.9">SALDO CONTA MULTIMOEDA</text>
+    <text x="18" y="100" class="card-val" fill="#C9FD8A">R$ 0,00</text>
+    <text x="18" y="133" class="card-sub" fill="#D9F99D" fill-opacity="0.85">Câmbio Acum.: R$ 3.100,00 • Multimoeda</text>
+    <circle cx="254" cy="130" r="7" fill="#9FE870" fill-opacity="0.52"/>
+    <circle cx="264" cy="130" r="7" fill="#FFFFFF" fill-opacity="0.35"/>
   </g>
 
 
@@ -398,33 +407,33 @@
   <!-- 4 Sub-Cards Horizontais de Indicadores Mercado Mãe + Barra de Progresso -->
   <!-- Card 1: Gasto Mês Atual -->
   <rect x="27" y="952" width="235" height="88" rx="9.5" fill="#F9F9F9" stroke="#E9E9E9"/>
-  <text x="39" y="970" font-family="'Segoe UI', sans-serif" font-size="9.5" font-weight="700" fill="#6D6865">GASTO NO MÊS (OUT/26)</text>
-  <text x="39" y="1000" font-family="'Segoe UI', sans-serif" font-size="22" font-weight="700" fill="#10715A">R$ 132,29</text>
-  <text x="39" y="1022" font-family="'Segoe UI', sans-serif" font-size="9.5" font-weight="600" fill="#10715A">26,5% do teto utilizado (Dentro da meta)</text>
+  <text x="39" y="970" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="9.5" font-weight="700" fill="#6D6865">GASTO NO MÊS (OUT/26)</text>
+  <text x="39" y="1000" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="22" font-weight="700" fill="#10715A">R$ 132,29</text>
+  <text x="39" y="1022" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="9.5" font-weight="600" fill="#10715A">26,5% do teto utilizado (Dentro da meta)</text>
 
   <!-- Card 2: Saldo Disponível no Mês -->
   <rect x="274" y="952" width="235" height="88" rx="9.5" fill="#F9F9F9" stroke="#E9E9E9"/>
-  <text x="286" y="970" font-family="'Segoe UI', sans-serif" font-size="9.5" font-weight="700" fill="#6D6865">SALDO RESTANTE DO TETO</text>
-  <text x="286" y="1000" font-family="'Segoe UI', sans-serif" font-size="22" font-weight="700" fill="#10715A">+R$ 367,71</text>
-  <text x="286" y="1022" font-family="'Segoe UI', sans-serif" font-size="9.5" font-weight="500" fill="#6D6865">Orçamento Mensal Fixo: R$ 500,00</text>
+  <text x="286" y="970" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="9.5" font-weight="700" fill="#6D6865">SALDO RESTANTE DO TETO</text>
+  <text x="286" y="1000" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="22" font-weight="700" fill="#10715A">+R$ 367,71</text>
+  <text x="286" y="1022" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="9.5" font-weight="500" fill="#6D6865">Orçamento Mensal Fixo: R$ 500,00</text>
 
   <!-- Card 3: Acumulado & Média Histórica -->
   <rect x="521" y="952" width="235" height="88" rx="9.5" fill="#F9F9F9" stroke="#E9E9E9"/>
-  <text x="533" y="970" font-family="'Segoe UI', sans-serif" font-size="9.5" font-weight="700" fill="#6D6865">ACUMULADO &amp; MÉDIA MENSAL</text>
-  <text x="533" y="1000" font-family="'Segoe UI', sans-serif" font-size="22" font-weight="700" fill="#252321">R$ 9.811,55</text>
-  <text x="533" y="1022" font-family="'Segoe UI', sans-serif" font-size="9.5" font-weight="500" fill="#FF4A53">Média: R$ 700,82/mês (69 idas • Ticket R$ 142)</text>
+  <text x="533" y="970" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="9.5" font-weight="700" fill="#6D6865">ACUMULADO &amp; MÉDIA MENSAL</text>
+  <text x="533" y="1000" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="22" font-weight="700" fill="#252321">R$ 9.811,55</text>
+  <text x="533" y="1022" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="9.5" font-weight="500" fill="#FF4A53">Média: R$ 700,82/mês (69 idas • Ticket R$ 142)</text>
 
   <!-- Card 4: Termômetro Visual / Bullet Gauge Compacto -->
   <rect x="768" y="952" width="485" height="88" rx="9.5" fill="#F9F9F9" stroke="#E9E9E9"/>
-  <text x="782" y="970" font-family="'Segoe UI', sans-serif" font-size="9.5" font-weight="700" fill="#252321">TERMÔMETRO DE CONSUMO DO MÊS ATUAL VS TETO (R$ 500,00)</text>
+  <text x="782" y="970" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="9.5" font-weight="700" fill="#252321">TERMÔMETRO DE CONSUMO DO MÊS ATUAL VS TETO (R$ 500,00)</text>
   <rect x="782" y="982" width="455" height="24" rx="7" fill="#E9E9E9"/>
   <rect x="782" y="982" width="120" height="24" rx="7" fill="#10715A"/>
-  <text x="815" y="998" font-family="'Segoe UI', sans-serif" font-size="10.5" font-weight="700" fill="#FFFFFF">R$ 132,29 (26,5%)</text>
+  <text x="815" y="998" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="10.5" font-weight="700" fill="#FFFFFF">R$ 132,29 (26,5%)</text>
   <!-- Marcação Teto 100% -->
   <line x1="1165" y1="978" x2="1165" y2="1010" stroke="#D97706" stroke-width="2.5"/>
-  <text x="782" y="1024" font-family="'Segoe UI', sans-serif" font-size="9" font-weight="500" fill="#808080">R$ 0</text>
-  <text x="960" y="1024" font-family="'Segoe UI', sans-serif" font-size="9" font-weight="500" fill="#808080">R$ 250 (50%)</text>
-  <text x="1125" y="1024" font-family="'Segoe UI', sans-serif" font-size="9" font-weight="700" fill="#D97706">Limite R$ 500</text>
+  <text x="782" y="1024" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="9" font-weight="500" fill="#808080">R$ 0</text>
+  <text x="960" y="1024" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="9" font-weight="500" fill="#808080">R$ 250 (50%)</text>
+  <text x="1125" y="1024" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="9" font-weight="700" fill="#D97706">Limite R$ 500</text>
 
 
   <!-- ======================================================================= -->
@@ -506,7 +515,7 @@
 
   <!-- Pílula de Rodapé da Tabela -->
   <rect x="27" y="1355" width="1226" height="35" rx="8" fill="#F9F9F9" stroke="#E9E9E9"/>
-  <text x="40" y="1377" font-family="'Segoe UI', sans-serif" font-size="10.5" font-weight="600" fill="#6D6865">
+  <text x="40" y="1377" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="10.5" font-weight="600" fill="#6D6865">
     Mostrando últimas transações sincronizadas do Notion • Total de 887 registros carregados
   </text>
 </svg>

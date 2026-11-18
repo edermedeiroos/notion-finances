@@ -48,6 +48,9 @@
       }
     ]
   },
+  "publicCustomVisuals": [
+    "htmlContent443BE3AD55E043BF878BED274D3A6865"
+  ],
   "resourcePackages": [
     {
       "name": "SharedResources",
@@ -70,33 +73,13 @@
       "type": "RegisteredResources",
       "items": [
         {
-          "name": "Capa7503939530909416.svg",
-          "path": "Capa7503939530909416.svg",
-          "type": "Image"
-        },
-        {
-          "name": "Gr_ficos7554164621909799.svg",
-          "path": "Gr_ficos7554164621909799.svg",
-          "type": "Image"
-        },
-        {
-          "name": "Vis_o_Geral24098827720690896.svg",
-          "path": "Vis_o_Geral24098827720690896.svg",
-          "type": "Image"
-        },
-        {
-          "name": "Vis_o_Geral3274354782639377.svg",
-          "path": "Vis_o_Geral3274354782639377.svg",
+          "name": "Investimentos_Fundo.svg",
+          "path": "Investimentos_Fundo.svg",
           "type": "Image"
         },
         {
           "name": "Visao_Geral_Fundo.svg",
           "path": "Visao_Geral_Fundo.svg",
-          "type": "Image"
-        },
-        {
-          "name": "Investimentos_Fundo.svg",
-          "path": "Investimentos_Fundo.svg",
           "type": "Image"
         }
       ]

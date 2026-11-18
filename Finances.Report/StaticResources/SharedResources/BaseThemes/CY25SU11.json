@@ -72,12 +72,12 @@
     },
     "header": {
       "fontSize": 12,
-      "fontFace": "Segoe UI Semibold",
+      "fontFace": "DIN",
       "color": "#252423"
     },
     "label": {
       "fontSize": 10,
-      "fontFace": "Segoe UI",
+      "fontFace": "DIN",
       "color": "#252423"
     }
   },
@@ -145,7 +145,8 @@
         ],
         "border": [
           {
-            "width": 1
+            "show": false,
+            "width": 0
           }
         ],
         "outspacePane": [
@@ -401,7 +402,7 @@
         "referenceLabelValue": [
           {
             "$id": "default",
-            "valueFontFamily": "'Segoe UI Semibold', wf_segoe-ui_semibold, helvetica, arial, sans-serif",
+            "valueFontFamily": "wf_standard-font, helvetica, arial, sans-serif",
             "fontColor": {
               "solid": {
                 "color": "foreground"
@@ -412,7 +413,7 @@
         "value": [
           {
             "$id": "default",
-            "fontFamily": "'Segoe UI Semibold', wf_segoe-ui_semibold, helvetica, arial, sans-serif"
+            "fontFamily": "wf_standard-font, helvetica, arial, sans-serif"
           }
         ],
         "label": [
@@ -539,7 +540,7 @@
         "value": [
           {
             "$id": "default",
-            "fontFamily": "'''Segoe UI Semibold'', wf_segoe-ui_semibold, helvetica, arial, sans-serif'"
+            "fontFamily": "'wf_standard-font', helvetica, arial, sans-serif"
           }
         ]
       }

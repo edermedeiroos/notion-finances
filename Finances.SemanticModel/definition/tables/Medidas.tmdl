@@ -117,6 +117,164 @@ table Medidas
 
 		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
 
+	/// Total desembolsado em compras/aportes de criptoativos
+	measure total_investido_crypto =
+			VAR total_compras =
+			    CALCULATE(
+			        [soma_valor],
+			        FAT_FINANCES[SUB_CATEGORY] = "Crypto",
+			        FAT_FINANCES[TYPE] = "Despesa"
+			    )
+			RETURN
+			    COALESCE(total_compras, 0)
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		displayFolder: crypto
+		lineageTag: 988f53db-a9bb-4417-91d6-a22d6e1f8e68
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	/// Total líquido de aportes realizados em aplicações atreladas ao CDI
+	measure total_investido_cdi =
+			VAR total_aporte =
+			    CALCULATE(
+			        -1 * [soma_valor_efetivo],
+			        FAT_FINANCES[SUB_CATEGORY] = "CDI"
+			    )
+			RETURN
+			    COALESCE(total_aporte, 0)
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		displayFolder: cdi
+		lineageTag: 983fce1d-4784-4d8b-af3f-4aed5781d91a
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	/// Valor patrimonial atualizado dos aportes em CDI corrigidos diariamente pela taxa CDI
+	measure rendimento_cdi = ```
+			VAR data_atual = MAX(DIM_CALENDARIO[data])
+			VAR transacoes_cdi = 
+			    FILTER(
+			        FAT_FINANCES,
+			        FAT_FINANCES[DATE] <= data_atual &&
+			        FAT_FINANCES[SUB_CATEGORY] = "CDI"
+			    )
+			RETURN
+			SUMX(
+			    transacoes_cdi,
+			    VAR data_transacao = FAT_FINANCES[DATE]
+			    VAR valor_transacao = FAT_FINANCES[EFECTIVE_VALUE] * -1
+			    VAR fator_rendimento = 
+			        PRODUCTX(
+			            FILTER(
+			                DIM_CDI,
+			                DIM_CDI[DATA] > data_transacao && 
+			                DIM_CDI[DATA] <= data_atual
+			            ),
+			            1 + (DIM_CDI[TAXA] / 100)
+			        )
+			    RETURN
+			        valor_transacao * COALESCE(fator_rendimento, 1)
+			)
+			```
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		displayFolder: cdi
+		lineageTag: f96acef7-a031-4c28-a7a3-c6bc5ee3faf1
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	/// Lucro/prejuízo nominal obtido nos investimentos em CDI
+	measure dif_rendido_cdi =
+			VAR valor_atualizado = [rendimento_cdi]
+			VAR valor_investido = [total_investido_cdi]
+			RETURN
+			    valor_atualizado - valor_investido
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		displayFolder: cdi
+		lineageTag: cc155579-fcb1-4d2b-aa6a-ee65e7237bc4
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	/// Rentabilidade percentual dos aportes em CDI em relação ao capital investido
+	measure dif_rendido_cdi_porcent =
+			VAR diferenca_nominal = [dif_rendido_cdi]
+			VAR capital_investido = [total_investido_cdi]
+			RETURN
+			    DIVIDE(diferenca_nominal, capital_investido, 0)
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: cdi
+		lineageTag: 11307902-4e78-4f39-a448-172ea3d2007d
+
+	/// Valor de mercado estimado da carteira de criptoativos em BRL (saldo dinâmico em USD x cotação PTAX atual)
+	measure rendimento_crypto =
+			VAR data_max_cotacao =
+			    CALCULATE(
+			        MAX(DIM_DOLAR[DATA_HORA]),
+			        REMOVEFILTERS(DIM_DOLAR)
+			    )
+			VAR ultimo_preco_dolar =
+			    CALCULATE(
+			        MAX(DIM_DOLAR[COTACAO_COMPRA]),
+			        REMOVEFILTERS(DIM_DOLAR),
+			        DIM_DOLAR[DATA_HORA] = data_max_cotacao
+			    )
+			VAR preco_referencia = COALESCE(ultimo_preco_dolar, 5.50)
+			VAR saldo_crypto_dolar = [saldo_crypto_usd]
+			RETURN
+			    saldo_crypto_dolar * preco_referencia
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		displayFolder: crypto
+		lineageTag: 36d77984-f9c0-4981-88d8-f015771c27ee
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	/// Lucro/prejuízo nominal da carteira de criptoativos em relação ao total investido
+	measure dif_rendido_crypto =
+			VAR valor_atual = [rendimento_crypto]
+			VAR valor_investido = [total_investido_crypto]
+			RETURN
+			    valor_atual - valor_investido
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		displayFolder: crypto
+		lineageTag: 15675467-fafc-4dd3-9e37-941b66585b05
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	/// Rentabilidade percentual da carteira de criptoativos sobre o total investido
+	measure dif_rendido_crypto_porcent =
+			VAR diferenca_nominal = [dif_rendido_crypto]
+			VAR capital_investido = [total_investido_crypto]
+			RETURN
+			    DIVIDE(diferenca_nominal, capital_investido, 0)
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: crypto
+		lineageTag: febc6ccd-dfa3-4640-96f3-821a0d6493be
+
+	/// Total de gastos na subcategoria Mercado Mãe
+	measure soma_mercado_mae =
+			VAR total_gasto =
+			    CALCULATE(
+			        [soma_valor],
+			        FAT_FINANCES[SUB_CATEGORY] = "Mercado Mãe"
+			    )
+			RETURN
+			    COALESCE(total_gasto, 0)
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		displayFolder: orcamentos
+		lineageTag: bac25db3-67dc-4c48-b1d8-e8276faffaa7
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	/// Saldo restante do orçamento mensal (R$ 500) para Mercado Mãe no mês de referência
+	measure saldo_mercado_mae =
+			VAR orcamento_mensal = [orcamento_mercado_mae]
+			VAR gasto_mes_atual = [gasto_mercado_mae_mes]
+			RETURN
+			    orcamento_mensal - gasto_mes_atual
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		displayFolder: orcamentos
+		lineageTag: 8cd79c9f-0200-47fa-833c-6689a080fa55
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
 	/// Saldo líquido total disponível somando as contas correntes e cartões pré-pagos (Inter Débito, Flash e Wise)
 	measure saldo_total_contas =
 			VAR total_liquido =
@@ -201,33 +359,64 @@ table Medidas
 
 		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
 
-	/// Entradas operacionais reais (exclui liquidações internas de fatura de cartão e resgates de aplicações)
+	/// Entradas operacionais de renda própria líquida (exclui reembolsos de empréstimos, liquidações de fatura e resgates de aplicações; inclui vendas pessoais)
 	measure receitas_operacionais =
 			VAR receitas =
 			    CALCULATE(
 			        [soma_valor],
 			        FAT_FINANCES[TYPE] = "Receita",
-			        NOT FAT_FINANCES[CATEGORY] IN { "Faturas", "Renda Extra & Investimentos" },
-			        NOT FAT_FINANCES[SUB_CATEGORY] IN { "Moedas Estrangeiras", "Saldo Inicial" }
+			        KEEPFILTERS(NOT ISBLANK(FAT_FINANCES[CATEGORY])),
+			        KEEPFILTERS(
+			            FILTER(
+			                ALL(FAT_FINANCES[CATEGORY], FAT_FINANCES[SUB_CATEGORY]),
+			                NOT FAT_FINANCES[CATEGORY] IN { "Faturas", "Investimentos - Rendimentos" } &&
+			                NOT (FAT_FINANCES[CATEGORY] = "Renda Extra & Investimentos" && FAT_FINANCES[SUB_CATEGORY] <> "Vendas") &&
+			                NOT FAT_FINANCES[SUB_CATEGORY] IN { "Moedas Estrangeiras", "Saldo Inicial", "Retorno - Empréstimos" }
+			            )
+			        )
 			    )
 			RETURN
-			    COALESCE(receitas, 0)
+			    IF(
+			        ISINSCOPE(DIM_CALENDARIO[ano_mes]) && ISBLANK(SELECTEDVALUE(DIM_CALENDARIO[ano_mes])),
+			        BLANK(),
+			        IF(
+			            ISINSCOPE(FAT_FINANCES[CATEGORY]) || ISINSCOPE(FAT_FINANCES[SUB_CATEGORY]),
+			            receitas,
+			            COALESCE(receitas, 0)
+			        )
+			    )
 		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
 		displayFolder: fluxo_caixa
 		lineageTag: 8f66d937-2a70-4b4c-b679-4e367a89b006
 
 		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
 
-	/// Despesas reais de custo de vida (exclui aportes em investimentos e pagamento duplicado de faturas)
+	/// Despesas reais de custo de vida próprio (exclui aportes, faturas, saída de empréstimos e transferências internas para Wise, considerando na Wise apenas gastos efetivos)
 	measure custo_vida_real =
 			VAR despesas_consumo =
 			    CALCULATE(
 			        [soma_valor],
 			        FAT_FINANCES[TYPE] = "Despesa",
-			        NOT FAT_FINANCES[CATEGORY] IN { "Investimentos - Aporte", "Faturas" }
+			        KEEPFILTERS(NOT ISBLANK(FAT_FINANCES[CATEGORY])),
+			        KEEPFILTERS(NOT FAT_FINANCES[CATEGORY] IN { "Investimentos - Aporte", "Faturas", "Investimentos - Rendimentos", "Renda Extra & Investimentos" }),
+			        KEEPFILTERS(
+			            FILTER(
+			                ALL(FAT_FINANCES[SUB_CATEGORY], FAT_FINANCES[ACCOUNT]),
+			                FAT_FINANCES[SUB_CATEGORY] <> "Saída - Empréstimos" &&
+			                NOT (FAT_FINANCES[SUB_CATEGORY] = "Moedas Estrangeiras" && FAT_FINANCES[ACCOUNT] <> "Wise")
+			            )
+			        )
 			    )
 			RETURN
-			    COALESCE(despesas_consumo, 0)
+			    IF(
+			        ISINSCOPE(DIM_CALENDARIO[ano_mes]) && ISBLANK(SELECTEDVALUE(DIM_CALENDARIO[ano_mes])),
+			        BLANK(),
+			        IF(
+			            ISINSCOPE(FAT_FINANCES[CATEGORY]) || ISINSCOPE(FAT_FINANCES[SUB_CATEGORY]),
+			            despesas_consumo,
+			            COALESCE(despesas_consumo, 0)
+			        )
+			    )
 		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
 		displayFolder: fluxo_caixa
 		lineageTag: 9a77e048-3b81-4c5d-a780-5f478b90c107
@@ -239,7 +428,15 @@ table Medidas
 			VAR entradas = [receitas_operacionais]
 			VAR saidas = [custo_vida_real]
 			RETURN
-			    entradas - saidas
+			    IF(
+			        ISINSCOPE(DIM_CALENDARIO[ano_mes]) && ISBLANK(SELECTEDVALUE(DIM_CALENDARIO[ano_mes])),
+			        BLANK(),
+			        IF(
+			            ISBLANK(entradas) && ISBLANK(saidas),
+			            BLANK(),
+			            COALESCE(entradas, 0) - COALESCE(saidas, 0)
+			        )
+			    )
 		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
 		displayFolder: fluxo_caixa
 		lineageTag: 0b88f159-4c92-4d6e-b891-6a589c01d208
@@ -266,50 +463,22 @@ table Medidas
 		displayFolder: fluxo_caixa
 		lineageTag: 2d00b371-6e14-4f8a-b013-8c701e23f410
 
-	/// Participação percentual da categoria sobre o custo de vida total selecionado
+	/// Participação percentual da categoria ou subcategoria sobre o custo de vida total selecionado
 	measure participacao_custo_vida =
 			VAR custo_atual = [custo_vida_real]
 			VAR custo_total =
 			    CALCULATE(
 			        [custo_vida_real],
-			        ALLSELECTED(FAT_FINANCES[CATEGORY])
+			        ALLSELECTED(FAT_FINANCES[CATEGORY], FAT_FINANCES[SUB_CATEGORY])
 			    )
 			RETURN
-			    DIVIDE(custo_atual, custo_total, 0)
+			    IF(
+			        NOT ISBLANK(custo_atual),
+			        DIVIDE(custo_atual, custo_total, 0)
+			    )
 		formatString: 0.0%;-0.0%;0.0%
 		displayFolder: fluxo_caixa
 		lineageTag: 3e11c482-7f25-4a9b-a124-9d812f34a511
-
-	/// Total desembolsado em compras/aportes de criptoativos
-	measure total_investido_crypto =
-			VAR total_compras =
-			    CALCULATE(
-			        [soma_valor],
-			        FAT_FINANCES[SUB_CATEGORY] = "Crypto",
-			        FAT_FINANCES[TYPE] = "Despesa"
-			    )
-			RETURN
-			    COALESCE(total_compras, 0)
-		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
-		displayFolder: crypto
-		lineageTag: 988f53db-a9bb-4417-91d6-a22d6e1f8e68
-
-		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
-
-	/// Total líquido de aportes realizados em aplicações atreladas ao CDI
-	measure total_investido_cdi =
-			VAR total_aporte =
-			    CALCULATE(
-			        -1 * [soma_valor_efetivo],
-			        FAT_FINANCES[SUB_CATEGORY] = "CDI"
-			    )
-			RETURN
-			    COALESCE(total_aporte, 0)
-		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
-		displayFolder: cdi
-		lineageTag: 983fce1d-4784-4d8b-af3f-4aed5781d91a
-
-		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
 
 	/// Volume bruto aportado em aplicações atreladas ao CDI
 	measure aportes_brutos_cdi =
@@ -343,111 +512,25 @@ table Medidas
 
 		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
 
-	/// Valor patrimonial atualizado dos aportes em CDI corrigidos diariamente pela taxa CDI
-	measure rendimento_cdi = ```
-			VAR data_atual = MAX(DIM_CALENDARIO[data])
-			VAR transacoes_cdi = 
-			    FILTER(
-			        FAT_FINANCES,
-			        FAT_FINANCES[DATE] <= data_atual &&
-			        FAT_FINANCES[SUB_CATEGORY] = "CDI"
-			    )
-			RETURN
-			SUMX(
-			    transacoes_cdi,
-			    VAR data_transacao = FAT_FINANCES[DATE]
-			    VAR valor_transacao = FAT_FINANCES[EFECTIVE_VALUE] * -1
-			    VAR fator_rendimento = 
-			        PRODUCTX(
-			            FILTER(
-			                DIM_CDI,
-			                DIM_CDI[DATA] > data_transacao && 
-			                DIM_CDI[DATA] <= data_atual
-			            ),
-			            1 + (DIM_CDI[TAXA] / 100)
-			        )
-			    RETURN
-			        valor_transacao * COALESCE(fator_rendimento, 1)
-			)
-			```
-		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
-		displayFolder: cdi
-		lineageTag: f96acef7-a031-4c28-a7a3-c6bc5ee3faf1
-
-		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
-
-	/// Lucro/prejuízo nominal obtido nos investimentos em CDI
-	measure dif_rendido_cdi =
-			VAR valor_atualizado = [rendimento_cdi]
-			VAR valor_investido = [total_investido_cdi]
-			RETURN
-			    valor_atualizado - valor_investido
-		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
-		displayFolder: cdi
-		lineageTag: cc155579-fcb1-4d2b-aa6a-ee65e7237bc4
-
-		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
-
-	/// Rentabilidade percentual dos aportes em CDI em relação ao capital investido
-	measure dif_rendido_cdi_porcent =
-			VAR diferenca_nominal = [dif_rendido_cdi]
-			VAR capital_investido = [total_investido_cdi]
-			RETURN
-			    DIVIDE(diferenca_nominal, capital_investido, 0)
-		formatString: 0.00%;-0.00%;0.00%
-		displayFolder: cdi
-		lineageTag: 11307902-4e78-4f39-a448-172ea3d2007d
-
-	/// Valor de mercado atual da carteira de criptoativos em BRL (saldo em USD x cotação)
-	measure rendimento_crypto = ```
-			VAR ultimo_preco_dolar = 
-			    CALCULATE(
-			        MAX(DIM_DOLAR[COTACAO_COMPRA]),
-			        DIM_DOLAR[DATA_HORA] = MAX(DIM_DOLAR[DATA_HORA])
-			    )
-			VAR preco_referencia = COALESCE(ultimo_preco_dolar, 5.50)
-			VAR saldo_crypto_dolar = 360
-			RETURN
-			    saldo_crypto_dolar * preco_referencia
-			```
-		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
-		displayFolder: crypto
-		lineageTag: 36d77984-f9c0-4981-88d8-f015771c27ed
-
-		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
-
-	/// Lucro/prejuízo nominal da carteira de criptoativos em relação ao total investido
-	measure dif_rendido_crypto =
-			VAR valor_atual = [rendimento_crypto]
-			VAR valor_investido = [total_investido_crypto]
-			RETURN
-			    valor_atual - valor_investido
-		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
-		displayFolder: crypto
-		lineageTag: 15675467-fafc-4dd3-9e37-941b66585b05
-
-		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
-
-	/// Rentabilidade percentual da carteira de criptoativos sobre o total investido
-	measure dif_rendido_crypto_porcent =
-			VAR diferenca_nominal = [dif_rendido_crypto]
-			VAR capital_investido = [total_investido_crypto]
-			RETURN
-			    DIVIDE(diferenca_nominal, capital_investido, 0)
-		formatString: 0.00%;-0.00%;0.00%
-		displayFolder: crypto
-		lineageTag: febc6ccd-dfa3-4640-96f3-821a0d6493be
-
 	/// Volume total aportado em investimentos (Renda Fixa, Tesouro, FIIs e Cripto)
 	measure aportes_totais =
 			VAR total_aportes =
 			    CALCULATE(
 			        [soma_valor],
-			        FAT_FINANCES[CATEGORY] = "Investimentos - Aporte",
-			        FAT_FINANCES[TYPE] = "Despesa"
+			        FAT_FINANCES[TYPE] = "Despesa",
+			        KEEPFILTERS(NOT ISBLANK(FAT_FINANCES[SUB_CATEGORY])),
+			        KEEPFILTERS(FAT_FINANCES[CATEGORY] = "Investimentos - Aporte")
 			    )
 			RETURN
-			    COALESCE(total_aportes, 0)
+			    IF(
+			        ISINSCOPE(DIM_CALENDARIO[ano_mes]) && ISBLANK(SELECTEDVALUE(DIM_CALENDARIO[ano_mes])),
+			        BLANK(),
+			        IF(
+			            ISINSCOPE(FAT_FINANCES[SUB_CATEGORY]) || ISINSCOPE(FAT_FINANCES[CATEGORY]),
+			            total_aportes,
+			            COALESCE(total_aportes, 0)
+			        )
+			    )
 		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
 		displayFolder: investimentos
 		lineageTag: 6b44f715-0c58-4d2e-b457-2a145c67d814
@@ -459,11 +542,36 @@ table Medidas
 			VAR total_resgates =
 			    CALCULATE(
 			        [soma_valor],
-			        FAT_FINANCES[CATEGORY] = "Renda Extra & Investimentos",
-			        FAT_FINANCES[TYPE] = "Receita"
+			        FAT_FINANCES[TYPE] = "Receita",
+			        KEEPFILTERS(NOT ISBLANK(FAT_FINANCES[SUB_CATEGORY])),
+			        KEEPFILTERS(FAT_FINANCES[CATEGORY] IN { "Renda Extra & Investimentos", "Investimentos - Rendimentos" }),
+			        KEEPFILTERS(FAT_FINANCES[SUB_CATEGORY] <> "Vendas")
+			    )
+			VAR total_aportes_contexto =
+			    CALCULATE(
+			        [soma_valor],
+			        FAT_FINANCES[TYPE] = "Despesa",
+			        KEEPFILTERS(NOT ISBLANK(FAT_FINANCES[SUB_CATEGORY])),
+			        KEEPFILTERS(FAT_FINANCES[CATEGORY] = "Investimentos - Aporte")
 			    )
 			RETURN
-			    COALESCE(total_resgates, 0)
+			    IF(
+			        ISINSCOPE(DIM_CALENDARIO[ano_mes]) && ISBLANK(SELECTEDVALUE(DIM_CALENDARIO[ano_mes])),
+			        BLANK(),
+			        IF(
+			            ISINSCOPE(DIM_CALENDARIO[ano_mes]),
+			            total_resgates,
+			            IF(
+			                ISINSCOPE(FAT_FINANCES[SUB_CATEGORY]) || ISINSCOPE(FAT_FINANCES[CATEGORY]),
+			                IF(
+			                    NOT ISBLANK(total_aportes_contexto) || NOT ISBLANK(total_resgates),
+			                    COALESCE(total_resgates, 0),
+			                    BLANK()
+			                ),
+			                COALESCE(total_resgates, 0)
+			            )
+			        )
+			    )
 		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
 		displayFolder: investimentos
 		lineageTag: 7c55a826-1d69-4e3f-a568-3b256d78e915
@@ -475,7 +583,15 @@ table Medidas
 			VAR aportado = [aportes_totais]
 			VAR resgatado = [resgates_totais]
 			RETURN
-			    aportado - resgatado
+			    IF(
+			        ISINSCOPE(DIM_CALENDARIO[ano_mes]) && ISBLANK(SELECTEDVALUE(DIM_CALENDARIO[ano_mes])),
+			        BLANK(),
+			        IF(
+			            ISBLANK(aportado) && ISBLANK(resgatado),
+			            BLANK(),
+			            COALESCE(aportado, 0) - COALESCE(resgatado, 0)
+			        )
+			    )
 		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
 		displayFolder: investimentos
 		lineageTag: 8d66b937-2e70-4f4a-b679-4c367e89f016
@@ -487,11 +603,20 @@ table Medidas
 			VAR contagem =
 			    CALCULATE(
 			        COUNTROWS(FAT_FINANCES),
-			        FAT_FINANCES[CATEGORY] = "Investimentos - Aporte",
-			        FAT_FINANCES[TYPE] = "Despesa"
+			        FAT_FINANCES[TYPE] = "Despesa",
+			        KEEPFILTERS(NOT ISBLANK(FAT_FINANCES[SUB_CATEGORY])),
+			        KEEPFILTERS(FAT_FINANCES[CATEGORY] = "Investimentos - Aporte")
 			    )
 			RETURN
-			    COALESCE(contagem, 0)
+			    IF(
+			        ISINSCOPE(FAT_FINANCES[SUB_CATEGORY]) || ISINSCOPE(FAT_FINANCES[CATEGORY]),
+			        IF(
+			            NOT ISBLANK([aportes_totais]) || NOT ISBLANK([resgates_totais]),
+			            COALESCE(contagem, 0),
+			            BLANK()
+			        ),
+			        COALESCE(contagem, 0)
+			    )
 		formatString: #,0
 		displayFolder: investimentos
 		lineageTag: 9e77c048-3f81-4a5b-a780-5d478f90a117
@@ -505,7 +630,15 @@ table Medidas
 			        ALLSELECTED(FAT_FINANCES[SUB_CATEGORY])
 			    )
 			RETURN
-			    DIVIDE(aporte_ativo, aporte_global, 0)
+			    IF(
+			        ISINSCOPE(FAT_FINANCES[SUB_CATEGORY]) || ISINSCOPE(FAT_FINANCES[CATEGORY]),
+			        IF(
+			            NOT ISBLANK(aporte_ativo) || NOT ISBLANK([resgates_totais]),
+			            DIVIDE(COALESCE(aporte_ativo, 0), aporte_global, 0),
+			            BLANK()
+			        ),
+			        DIVIDE(aporte_ativo, aporte_global, 0)
+			    )
 		formatString: 0.0%;-0.0%;0.0%
 		displayFolder: investimentos
 		lineageTag: 0f88d159-4a92-4b6c-b891-6e589a01b218
@@ -547,8 +680,8 @@ table Medidas
 			VAR total_fiis =
 			    CALCULATE(
 			        [soma_valor],
-			        FAT_FINANCES[SUB_CATEGORY] = "FII's & ETF’s",
-			        FAT_FINANCES[TYPE] = "Despesa"
+			        FAT_FINANCES[TYPE] = "Despesa",
+			        KEEPFILTERS(FAT_FINANCES[SUB_CATEGORY] IN { "FII's & ETF’s", "FII's / ETF’s", "FII's & ETF's", "FII's / ETF's" })
 			    )
 			RETURN
 			    COALESCE(total_fiis, 0)
@@ -558,26 +691,36 @@ table Medidas
 
 		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
 
-	/// Patrimônio ativo estimado na carteira somando posições em CDI corrigido, LCI, Tesouro, FIIs e Cripto
+	/// Patrimônio ativo estimado na carteira somando posições em CDI corrigido, LCI, LCA, Tesouro, FIIs e Cripto
 	measure patrimonio_investido_estimado =
 			VAR saldo_cdi = [rendimento_cdi]
 			VAR saldo_lci = [total_investido_lci]
+			VAR saldo_lca =
+			    COALESCE(
+			        CALCULATE(
+			            [soma_valor],
+			            FAT_FINANCES[SUB_CATEGORY] = "LCA",
+			            FAT_FINANCES[TYPE] = "Despesa"
+			        ),
+			        0
+			    )
 			VAR saldo_tesouro = [total_investido_tesouro]
 			VAR saldo_fiis = [total_investido_fiis]
 			VAR saldo_crypto = [rendimento_crypto]
 			RETURN
-			    saldo_cdi + saldo_lci + saldo_tesouro + saldo_fiis + saldo_crypto
+			    saldo_cdi + saldo_lci + saldo_lca + saldo_tesouro + saldo_fiis + saldo_crypto
 		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
 		displayFolder: investimentos
 		lineageTag: 4d22b593-8e36-4f0a-b235-0c923e45f622
 
 		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
 
-	/// Lucro nominal estimado acumulado nos indexadores monitorados (DIM_CDI + USD)
+	/// Lucro nominal estimado acumulado nos indexadores monitorados (DIM_CDI + Variação Cambial Cripto)
 	measure lucro_total_estimado =
 			VAR lucro_cdi = [dif_rendido_cdi]
+			VAR variacao_crypto = [dif_rendido_crypto]
 			RETURN
-			    lucro_cdi
+			    lucro_cdi + variacao_crypto
 		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
 		displayFolder: investimentos
 		lineageTag: 5e33c604-9f47-4a1b-a346-1d034f56a723
@@ -597,7 +740,10 @@ table Medidas
 	measure media_mensal_aportes =
 			VAR media_aportes =
 			    AVERAGEX(
-			        VALUES(DIM_CALENDARIO[ano_mes]),
+			        FILTER(
+			            VALUES(DIM_CALENDARIO[ano_mes]),
+			            NOT ISBLANK(DIM_CALENDARIO[ano_mes])
+			        ),
 			        [aportes_totais]
 			    )
 			RETURN
@@ -616,21 +762,6 @@ table Medidas
 		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
 		displayFolder: investimentos
 		lineageTag: 8b66f937-2c70-4d4e-b679-4a367c89d026
-
-		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
-
-	/// Total de gastos na subcategoria Mercado Mãe
-	measure soma_mercado_mae =
-			VAR total_gasto =
-			    CALCULATE(
-			        [soma_valor],
-			        FAT_FINANCES[SUB_CATEGORY] = "Mercado Mãe"
-			    )
-			RETURN
-			    COALESCE(total_gasto, 0)
-		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
-		displayFolder: orcamentos
-		lineageTag: bac25db3-67dc-4c48-b1d8-e8276faffaa7
 
 		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
 
@@ -668,18 +799,6 @@ table Medidas
 
 		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
 
-	/// Saldo restante do orçamento mensal (R$ 500) para Mercado Mãe no mês de referência
-	measure saldo_mercado_mae =
-			VAR orcamento_mensal = [orcamento_mercado_mae]
-			VAR gasto_mes_atual = [gasto_mercado_mae_mes]
-			RETURN
-			    orcamento_mensal - gasto_mes_atual
-		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
-		displayFolder: orcamentos
-		lineageTag: 8cd79c9f-0200-47fa-833c-6689a080fa55
-
-		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
-
 	/// Percentual consumido do teto mensal de R$ 500 para Mercado Mãe
 	measure porcent_mercado_mae_mes =
 			VAR gasto = [gasto_mercado_mae_mes]
@@ -694,7 +813,10 @@ table Medidas
 	measure media_mensal_mercado_mae =
 			VAR media_mensal =
 			    AVERAGEX(
-			        VALUES(DIM_CALENDARIO[ano_mes]),
+			        FILTER(
+			            VALUES(DIM_CALENDARIO[ano_mes]),
+			            NOT ISBLANK(DIM_CALENDARIO[ano_mes])
+			        ),
 			        [soma_mercado_mae]
 			    )
 			RETURN
@@ -720,6 +842,569 @@ table Medidas
 
 		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
 
+	/// Quantidade estimada de dólares (USD) acumulados nos aportes de criptoativos conforme cotação PTAX da data de cada aporte
+	measure saldo_crypto_usd =
+			VAR data_limite = MAX(DIM_CALENDARIO[data])
+			VAR transacoes_crypto =
+			    FILTER(
+			        ALL(FAT_FINANCES),
+			        FAT_FINANCES[DATE] <= data_limite &&
+			        FAT_FINANCES[SUB_CATEGORY] = "Crypto"
+			    )
+			RETURN
+			COALESCE(
+			    SUMX(
+			        transacoes_crypto,
+			        VAR data_transacao = FAT_FINANCES[DATE]
+			        VAR valor_brl = FAT_FINANCES[EFECTIVE_VALUE] * -1
+			        VAR ultima_data_ptax =
+			            CALCULATE(
+			                MAX(DIM_DOLAR[DATA_HORA]),
+			                REMOVEFILTERS(DIM_DOLAR),
+			                DIM_DOLAR[DATA_HORA] <= data_transacao
+			            )
+			        VAR primeira_data_ptax =
+			            CALCULATE(
+			                MIN(DIM_DOLAR[DATA_HORA]),
+			                REMOVEFILTERS(DIM_DOLAR)
+			            )
+			        VAR data_ref_ptax = COALESCE(ultima_data_ptax, primeira_data_ptax)
+			        VAR cotacao_na_data =
+			            CALCULATE(
+			                MAX(DIM_DOLAR[COTACAO_VENDA]),
+			                REMOVEFILTERS(DIM_DOLAR),
+			                DIM_DOLAR[DATA_HORA] = data_ref_ptax
+			            )
+			        RETURN
+			            DIVIDE(valor_brl, COALESCE(cotacao_na_data, 5.50), 0)
+			    ),
+			    0
+			)
+		formatString: "US$"\ #,0.00;-"US$"\ #,0.00;"US$"\ #,0.00
+		displayFolder: crypto
+		lineageTag: 9f8e7d6c-5b4a-4321-8765-a1b2c3d4e501
+
+	/// Saldo devedor atual (fatura em aberto) no cartão Inter - Crédito (Compras acumuladas menos Faturas pagas)
+	measure fatura_aberta_inter_credito =
+			VAR total_compras =
+			    CALCULATE(
+			        [soma_valor],
+			        REMOVEFILTERS(DIM_CALENDARIO),
+			        FAT_FINANCES[ACCOUNT] = "Inter - Crédito",
+			        FAT_FINANCES[TYPE] = "Despesa"
+			    )
+			VAR total_pagamentos =
+			    CALCULATE(
+			        [soma_valor],
+			        REMOVEFILTERS(DIM_CALENDARIO),
+			        FAT_FINANCES[ACCOUNT] = "Inter - Crédito",
+			        FAT_FINANCES[TYPE] = "Receita"
+			    )
+			RETURN
+			    COALESCE(total_compras - total_pagamentos, 0)
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		displayFolder: saldos
+		lineageTag: 9f8e7d6c-5b4a-4321-8765-a1b2c3d4e502
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	/// Total de entradas provenientes de reembolsos e retornos de empréstimos familiares/terceiros (isolado da renda própria)
+	measure reembolsos_emprestimos =
+			VAR total_reembolsos =
+			    CALCULATE(
+			        [soma_valor],
+			        FAT_FINANCES[TYPE] = "Receita",
+			        FAT_FINANCES[SUB_CATEGORY] = "Retorno - Empréstimos"
+			    )
+			RETURN
+			    COALESCE(total_reembolsos, 0)
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		displayFolder: fluxo_caixa
+		lineageTag: 9f8e7d6c-5b4a-4321-8765-a1b2c3d4e503
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	/// Total de saídas destinadas a empréstimos para familiares/terceiros (isolado do custo de vida próprio)
+	measure saida_emprestimos =
+			VAR total_saidas =
+			    CALCULATE(
+			        [soma_valor],
+			        FAT_FINANCES[TYPE] = "Despesa",
+			        FAT_FINANCES[SUB_CATEGORY] = "Saída - Empréstimos"
+			    )
+			RETURN
+			    COALESCE(total_saidas, 0)
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		displayFolder: fluxo_caixa
+		lineageTag: 9f8e7d6c-5b4a-4321-8765-a1b2c3d4e504
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	/// Saldo líquido de empréstimos e reembolsos (Retornos recebidos menos Saídas de empréstimos)
+	measure saldo_emprestimos_familiares = [reembolsos_emprestimos] - [saida_emprestimos]
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		displayFolder: fluxo_caixa
+		lineageTag: 9f8e7d6c-5b4a-4321-8765-a1b2c3d4e505
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	/// Folha de estilos CSS compartilhada para os visuais renderizados em HTML Content Secure
+	measure html_css_base =
+			"<style>" &
+			"html,body,#htmlViewer,#htmlContent{margin:0!important;padding:0!important;width:100%!important;height:100vh!important;min-height:100%!important;overflow:hidden!important;background:transparent!important;font-family:'DIN','wf_standard-font','wf_standard-font_din','DIN Pro','Bahnschrift',sans-serif;box-sizing:border-box;color:#252321;}" &
+			"*,*::before,*::after{box-sizing:border-box;font-family:inherit;}" &
+			".card{width:100%;height:100%;min-height:100%;background:transparent;border:none;border-radius:14px;position:relative;overflow:hidden;display:flex;flex-direction:column;}" &
+			".bcard-overlay{width:100%;height:62px;min-height:100%;display:flex;flex-direction:column;justify-content:space-between;color:#FFFFFF;overflow:hidden;}" &
+			".kpi{height:85px;min-height:100%;padding:12px 15px 10px 15px;justify-content:space-between;}" &
+			".kpi-bar{position:absolute;top:0;left:0;right:0;height:4px;}" &
+			".kpi-head{display:flex;justify-content:space-between;align-items:center;gap:6px;margin-top:1px;}" &
+			".head-l{display:flex;align-items:center;gap:6px;min-width:0;}" &
+			".sq-sm{width:8px;height:8px;border-radius:2.5px;flex:none;}" &
+			".sq-md{width:10px;height:10px;border-radius:3px;flex:none;}" &
+			".kpi-ttl{font-size:9px;font-weight:700;color:#6D6865;letter-spacing:0.4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}" &
+			".pill{font-size:7.5px;font-weight:700;padding:2px 7px;border-radius:9px;white-space:nowrap;letter-spacing:0.25px;flex:none;}" &
+			".kpi-val-row{display:flex;align-items:center;gap:8px;min-width:0;}" &
+			".kpi-val{font-size:20px;font-weight:700;line-height:1.1;white-space:nowrap;color:#252321;}" &
+			".kpi-sub{font-size:9px;font-weight:600;color:#6D6865;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}" &
+			".sec{padding:12px 16px 13px 16px;border-radius:15px;}" &
+			".sec-head{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;}" &
+			".sec-ttl{font-size:11.5px;font-weight:700;color:#252321;letter-spacing:0.35px;line-height:1.2;}" &
+			".sec-sub{font-size:9.5px;font-weight:400;color:#808080;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}" &
+			".div-line{height:1px;background:#F0F0F0;margin:8px 0;flex:none;}" &
+			".sub-box{background:#F8F9FA;border:1px solid #E9E9E9;border-radius:10px;padding:9px 12px;display:flex;flex-direction:column;justify-content:space-between;}" &
+			".sub-lbl{font-size:8.5px;font-weight:700;color:#6D6865;letter-spacing:0.35px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}" &
+			".sub-val{font-size:19px;font-weight:700;line-height:1.15;color:#252321;}" &
+			".sub-meta{font-size:9px;font-weight:600;color:#6D6865;display:flex;align-items:center;gap:6px;flex-wrap:nowrap;white-space:nowrap;overflow:hidden;}" &
+			".delta-pill{font-size:8px;font-weight:700;padding:2px 6px;border-radius:6px;color:#FFFFFF!important;line-height:1.1;flex:none;}" &
+			".bank-grid{flex:1;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:10px;min-height:0;}" &
+			".bcard{border-radius:13px;padding:11px 14px 10px 14px;color:#FFFFFF;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;}" &
+			".bcard-deco1{position:absolute;right:-26px;top:-26px;width:104px;height:104px;border-radius:50%;background:rgba(255,255,255,0.07);pointer-events:none;}" &
+			".bcard-deco2{position:absolute;right:-16px;bottom:-32px;width:84px;height:84px;border-radius:50%;background:rgba(255,255,255,0.05);pointer-events:none;}" &
+			".bcard-accent{position:absolute;left:0;top:20px;bottom:20px;width:3.5px;border-radius:2px;}" &
+			".b-top{display:flex;justify-content:space-between;align-items:center;position:relative;z-index:1;}" &
+			".b-brand{font-size:13px;font-weight:800;letter-spacing:0.2px;line-height:1;}" &
+			".b-badge{font-size:7px;font-weight:700;padding:2px 7px;border-radius:9px;letter-spacing:0.2px;}" &
+			".b-chip{display:flex;align-items:center;gap:6px;position:relative;z-index:1;}" &
+			".b-digits{font-size:8.5px;font-weight:600;opacity:0.78;letter-spacing:0.5px;}" &
+			".b-mid{position:relative;z-index:1;}" &
+			".b-lbl{font-size:7.5px;font-weight:700;letter-spacing:0.45px;opacity:0.84;margin-bottom:1px;}" &
+			".b-val-line{display:flex;align-items:baseline;gap:6px;}" &
+			".b-val{font-size:17.5px;font-weight:700;line-height:1.15;color:#FFFFFF;}" &
+			".b-tag{font-size:8px;font-weight:700;padding:1.5px 6px;border-radius:6px;}" &
+			".b-foot{display:flex;justify-content:space-between;align-items:center;position:relative;z-index:1;}" &
+			".b-ref{font-size:8.2px;font-weight:600;opacity:0.88;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}" &
+			".circles{display:flex;align-items:center;flex:none;}" &
+			".c1,.c2{width:13px;height:13px;border-radius:50%;}" &
+			".c2{margin-left:-5px;}" &
+			".mm-grid{flex:1;display:grid;grid-template-columns:238px 238px 250px 1fr;gap:11px;min-height:0;margin-top:8px;}" &
+			".mm-track{height:22px;width:100%;background:#E5E7EB;border-radius:6px;position:relative;overflow:hidden;margin:3px 0;}" &
+			".mm-fill{height:100%;border-radius:6px;display:flex;align-items:center;padding:0 8px;font-size:9px;font-weight:700;color:#FFFFFF;white-space:nowrap;}" &
+			".mm-limit{position:absolute;top:0;bottom:0;width:2.5px;background:#D97706;z-index:2;}" &
+			".mm-scale{display:flex;justify-content:space-between;font-size:8.5px;font-weight:600;color:#808080;}" &
+			".alloc-list{flex:1;display:flex;flex-direction:column;justify-content:space-between;gap:6px;min-height:0;margin-bottom:8px;}" &
+			".alloc-row{background:#F8F9FA;border:1px solid #EDEDED;border-radius:8px;padding:7px 10px;}" &
+			".alloc-top{display:flex;justify-content:space-between;align-items:baseline;font-size:10px;margin-bottom:4px;gap:6px;}" &
+			".alloc-name{font-weight:700;color:#252321;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}" &
+			".alloc-nums{white-space:nowrap;flex:none;}" &
+			".alloc-val{font-weight:700;color:#252321;}" &
+			".alloc-pct{font-size:9px;font-weight:600;color:#6D6865;margin-left:3px;}" &
+			".prog-track{height:6px;width:100%;background:#DCE1E7;border-radius:3px;overflow:hidden;}" &
+			".prog-fill{height:100%;border-radius:3px;}" &
+			".callout{border-radius:9px;padding:8px 11px;flex:none;}" &
+			"</style>"
+		displayFolder: html_visuais
+		lineageTag: a1b2c3d4-0001-4000-8000-000000000001
+
+	/// Visual HTML: KPI 1 da Visão Geral (Saldo Líquido em Contas)
+	measure html_vg_kpi_saldo =
+			VAR v_total = FORMAT([saldo_total_contas], """R$"" #,0.00;-""R$"" #,0.00;""R$"" 0.00", "pt-BR")
+			VAR v_inter = FORMAT([saldo_inter], """R$"" #,0.00;-""R$"" #,0.00;""R$"" 0.00", "pt-BR")
+			VAR v_flash = FORMAT([saldo_flash], """R$"" #,0.00;-""R$"" #,0.00;""R$"" 0.00", "pt-BR")
+			RETURN
+			[html_css_base] &
+			"<div class='card kpi'>" &
+			"<div class='kpi-bar' style='background:#3B89E2;'></div>" &
+			"<div class='kpi-head'>" &
+			"<div class='head-l'><span class='sq-sm' style='background:#3B89E2;'></span><span class='kpi-ttl'>SALDO LÍQUIDO EM CONTAS</span></div>" &
+			"<span class='pill' style='background:#EFF6FF;color:#3B89E2;'>CAIXA ATUAL</span>" &
+			"</div>" &
+			"<div class='kpi-val-row'><span class='kpi-val'>" & v_total & "</span></div>" &
+			"<div class='kpi-sub'>Inter Débito: " & v_inter & " &bull; Flash: " & v_flash & "</div>" &
+			"</div>"
+		displayFolder: html_visuais
+		lineageTag: a1b2c3d4-0002-4000-8000-000000000002
+
+	/// Visual HTML: KPI 2 da Visão Geral (Entradas Operacionais / Renda Própria)
+	measure html_vg_kpi_entradas =
+			VAR v_rec = FORMAT([receitas_operacionais], """R$"" #,0.00;-""R$"" #,0.00;""R$"" 0.00", "pt-BR")
+			VAR v_caixa = FORMAT([fluxo_caixa_liquido], """R$"" #,0.00;-""R$"" #,0.00;""R$"" 0.00", "pt-BR")
+			VAR v_reemb = FORMAT([reembolsos_emprestimos], """R$"" #,0.00;-""R$"" #,0.00;""R$"" 0.00", "pt-BR")
+			RETURN
+			[html_css_base] &
+			"<div class='card kpi'>" &
+			"<div class='kpi-bar' style='background:#10715A;'></div>" &
+			"<div class='kpi-head'>" &
+			"<div class='head-l'><span class='sq-sm' style='background:#10715A;'></span><span class='kpi-ttl'>ENTRADAS OPERACIONAIS</span></div>" &
+			"<span class='pill' style='background:#DCFCE7;color:#10715A;'>RENDA PRÓPRIA</span>" &
+			"</div>" &
+			"<div class='kpi-val-row'><span class='kpi-val' style='color:#10715A;'>" & v_rec & "</span></div>" &
+			"<div class='kpi-sub'>Caixa Livre: " & v_caixa & " &bull; Reemb.: " & v_reemb & "</div>" &
+			"</div>"
+		displayFolder: html_visuais
+		lineageTag: a1b2c3d4-0003-4000-8000-000000000003
+
+	/// Visual HTML: KPI 3 da Visão Geral (Custo de Vida Real)
+	measure html_vg_kpi_custo_vida =
+			VAR v_custo = FORMAT([custo_vida_real], """R$"" #,0.00;-""R$"" #,0.00;""R$"" 0.00", "pt-BR")
+			VAR v_comp = FORMAT([taxa_comprometimento_renda], "0.0%", "pt-BR")
+			VAR v_emp = [saida_emprestimos]
+			VAR txt_emp = IF(v_emp > 0, " &bull; Emprést.: " & FORMAT(v_emp, """R$"" #,0.00", "pt-BR"), "")
+			RETURN
+			[html_css_base] &
+			"<div class='card kpi'>" &
+			"<div class='kpi-bar' style='background:#FF4A53;'></div>" &
+			"<div class='kpi-head'>" &
+			"<div class='head-l'><span class='sq-sm' style='background:#FF4A53;'></span><span class='kpi-ttl'>CUSTO DE VIDA REAL</span></div>" &
+			"<span class='pill' style='background:#FEE2E2;color:#FF4A53;'>CONSUMO REAL</span>" &
+			"</div>" &
+			"<div class='kpi-val-row'><span class='kpi-val' style='color:#FF4A53;'>" & v_custo & "</span></div>" &
+			"<div class='kpi-sub'>Comprometimento: " & v_comp & " da renda" & txt_emp & "</div>" &
+			"</div>"
+		displayFolder: html_visuais
+		lineageTag: a1b2c3d4-0004-4000-8000-000000000004
+
+	/// Visual HTML: KPI 4 da Visão Geral (Total Aportado em Investimentos)
+	measure html_vg_kpi_aportes =
+			VAR v_ap = FORMAT([aportes_totais], """R$"" #,0.00;-""R$"" #,0.00;""R$"" 0.00", "pt-BR")
+			VAR v_liq = FORMAT([aporte_liquido_investimentos], """R$"" #,0.00;-""R$"" #,0.00;""R$"" 0.00", "pt-BR")
+			VAR v_poup = FORMAT([taxa_poupanca], "0.0%", "pt-BR")
+			RETURN
+			[html_css_base] &
+			"<div class='card kpi'>" &
+			"<div class='kpi-bar' style='background:#F99C3E;'></div>" &
+			"<div class='kpi-head'>" &
+			"<div class='head-l'><span class='sq-sm' style='background:#F99C3E;'></span><span class='kpi-ttl'>APORTES EM INVESTIMENTOS</span></div>" &
+			"<span class='pill' style='background:#FEF3C7;color:#D97706;'>PATRIMÔNIO</span>" &
+			"</div>" &
+			"<div class='kpi-val-row'><span class='kpi-val'>" & v_ap & "</span></div>" &
+			"<div class='kpi-sub'>Aporte Líquido: " & v_liq & " &bull; Poupança: " & v_poup & "</div>" &
+			"</div>"
+		displayFolder: html_visuais
+		lineageTag: a1b2c3d4-0005-4000-8000-000000000005
+
+	/// Visual HTML: Overlay transparente para o Cartão Inter Débito na Carteira Digital
+	measure html_vg_card_inter_debito =
+			VAR v_inter = FORMAT([saldo_inter], """R$"" #,0.00;-""R$"" #,0.00;""R$"" 0.00", "pt-BR")
+			VAR v_inter_ont = FORMAT([saldo_inter_ontem], """R$"" #,0.00;-""R$"" #,0.00;""R$"" 0.00", "pt-BR")
+			RETURN
+			[html_css_base] &
+			"<div class='bcard-overlay'>" &
+			"<div class='b-val-line'><span class='b-val' style='font-size:21px;'>" & v_inter & "</span></div>" &
+			"<div class='b-ref' style='padding-right:32px;font-size:9px;color:#FFF7ED;'>Ontem: " & v_inter_ont & " &bull; Conta Corrente Ativa</div>" &
+			"</div>"
+		displayFolder: html_visuais
+		lineageTag: a1b2c3d4-0006-4000-8000-000000000006
+
+	/// Visual HTML: Controle de Meta Mercado Mãe com KPIs e Termômetro Visual
+	measure html_vg_mercado_mae =
+			VAR n_gasto = [gasto_mercado_mae_mes]
+			VAR n_saldo = [saldo_mercado_mae]
+			VAR n_teto = [orcamento_mercado_mae]
+			VAR n_pct = [porcent_mercado_mae_mes]
+			VAR v_gasto = FORMAT(n_gasto, """R$"" #,0.00;-""R$"" #,0.00;""R$"" 0.00", "pt-BR")
+			VAR v_saldo = FORMAT(n_saldo, "+""R$"" #,0.00;-""R$"" #,0.00;""R$"" 0.00", "pt-BR")
+			VAR v_acum = FORMAT([soma_mercado_mae], """R$"" #,0.00;-""R$"" #,0.00;""R$"" 0.00", "pt-BR")
+			VAR v_media = FORMAT([media_mensal_mercado_mae], """R$"" #,0.00;-""R$"" #,0.00;""R$"" 0.00", "pt-BR")
+			VAR v_ticket = FORMAT([ticket_medio_mercado_mae], """R$"" #,0.00;-""R$"" #,0.00;""R$"" 0.00", "pt-BR")
+			VAR v_pct = FORMAT(n_pct, "0.0%", "pt-BR")
+			VAR cor_status = IF(n_gasto > n_teto, "#FF4A53", IF(n_pct >= 0.85, "#D97706", "#10715A"))
+			VAR escala_max = MAX(n_teto * 1.25, n_gasto * 1.05)
+			VAR fill_num = MIN(MAX(DIVIDE(n_gasto, escala_max, 0) * 100, 0), 100)
+			VAR w_fill = FORMAT(fill_num, "0.0", "en-US") & "%"
+			VAR pos_teto = FORMAT(MIN(MAX(DIVIDE(n_teto, escala_max, 0) * 100, 0), 100), "0.0", "en-US") & "%"
+			VAR txt_barra = v_gasto & " (" & v_pct & ")"
+			VAR inner_bar = IF(fill_num >= 32, "<div class='mm-fill' style='width:" & w_fill & ";background:" & cor_status & ";'>" & txt_barra & "</div>", "<div class='mm-fill' style='width:" & w_fill & ";padding:0;background:" & cor_status & ";'></div><span style='font-size:9px;font-weight:700;color:#252321;padding-left:6px;white-space:nowrap;'>" & txt_barra & "</span>")
+			VAR status_txt = IF(n_gasto > n_teto, "Teto ultrapassado", "Dentro da meta")
+			RETURN
+			[html_css_base] &
+			"<div class='card sec' style='height:155px;padding:11px 16px 12px 16px;'>" &
+			"<div class='sec-head'>" &
+			"<div><div class='head-l'><span class='sq-md' style='background:#F99C3E;'></span><span class='sec-ttl'>CONTROLE DE META: MERCADO MÃE (SUBSÍDIO MENSAL R$ 500,00)</span></div><div class='sec-sub'>Monitoramento direto do teto mensal no cartão Flash, saldo remanescente, acumulado histórico e termômetro visual</div></div>" &
+			"<span class='pill' style='background:#FEF3C7;color:#D97706;'>TETO R$ 500/MÊS</span>" &
+			"</div>" &
+			"<div class='mm-grid'>" &
+			"<div class='sub-box'><span class='sub-lbl'>GASTO NO MÊS ATUAL</span><span class='sub-val' style='color:" & cor_status & ";'>" & v_gasto & "</span><span class='sub-meta' style='color:" & cor_status & ";'>" & v_pct & " do teto (" & status_txt & ")</span></div>" &
+			"<div class='sub-box'><span class='sub-lbl'>SALDO DISPONÍVEL DA META</span><span class='sub-val' style='color:" & IF(n_saldo >= 0, "#10715A", "#FF4A53") & ";'>" & v_saldo & "</span><span class='sub-meta'>Orçamento Fixo: R$ 500,00</span></div>" &
+			"<div class='sub-box'><span class='sub-lbl'>ACUMULADO HISTÓRICO</span><span class='sub-val'>" & v_acum & "</span><span class='sub-meta'>Média: " & v_media & " &bull; Ticket: " & v_ticket & "</span></div>" &
+			"<div class='sub-box'>" &
+			"<span class='sub-lbl'>TERMÔMETRO DE CONSUMO DO MÊS ATUAL VS TETO (R$ 500,00)</span>" &
+			"<div class='mm-track' style='display:flex;align-items:center;'>" & inner_bar & "<div class='mm-limit' style='left:" & pos_teto & ";'></div></div>" &
+			"<div class='mm-scale'><span>R$ 0</span><span>R$ 250 (50%)</span><span style='color:#D97706;font-weight:700;'>Limite R$ 500 (100%)</span></div>" &
+			"</div>" &
+			"</div></div>"
+		displayFolder: html_visuais
+		lineageTag: a1b2c3d4-0007-4000-8000-000000000007
+
+	/// Visual HTML: KPI 1 de Investimentos (Total Aportado Histórico)
+	measure html_inv_kpi_aportado =
+			VAR v_ap = FORMAT([aportes_totais], """R$"" #,0.00;-""R$"" #,0.00;""R$"" 0.00", "pt-BR")
+			VAR v_qtd = FORMAT(COALESCE([qtd_aportes], 0), "#,0", "pt-BR")
+			RETURN
+			[html_css_base] &
+			"<div class='card kpi'>" &
+			"<div class='kpi-bar' style='background:#10715A;'></div>" &
+			"<div class='kpi-head'>" &
+			"<div class='head-l'><span class='sq-sm' style='background:#10715A;'></span><span class='kpi-ttl'>TOTAL APORTADO (HISTÓRICO)</span></div>" &
+			"<span class='pill' style='background:#DCFCE7;color:#10715A;'>APORTE BRUTO</span>" &
+			"</div>" &
+			"<div class='kpi-val-row'><span class='kpi-val' style='color:#3B89E2;'>" & v_ap & "</span></div>" &
+			"<div class='kpi-sub'>Qtd. Aportes: " & v_qtd & " operações registradas</div>" &
+			"</div>"
+		displayFolder: html_visuais
+		lineageTag: a1b2c3d4-0008-4000-8000-000000000008
+
+	/// Visual HTML: KPI 2 de Investimentos (Total Resgatado de Aplicações)
+	measure html_inv_kpi_resgatado =
+			VAR v_resg = FORMAT([resgates_totais], """R$"" #,0.00;-""R$"" #,0.00;""R$"" 0.00", "pt-BR")
+			VAR v_cdi = FORMAT([resgates_cdi], """R$"" #,0.00;-""R$"" #,0.00;""R$"" 0.00", "pt-BR")
+			RETURN
+			[html_css_base] &
+			"<div class='card kpi'>" &
+			"<div class='kpi-bar' style='background:#F99C3E;'></div>" &
+			"<div class='kpi-head'>" &
+			"<div class='head-l'><span class='sq-sm' style='background:#F99C3E;'></span><span class='kpi-ttl'>TOTAL RESGATADO (APLICAÇÕES)</span></div>" &
+			"<span class='pill' style='background:#FEF3C7;color:#D97706;'>SAQUES / LIQU.</span>" &
+			"</div>" &
+			"<div class='kpi-val-row'><span class='kpi-val' style='color:#D97706;'>" & v_resg & "</span></div>" &
+			"<div class='kpi-sub'>Resgates CDI: " & v_cdi & " &bull; Sem vendas pessoais</div>" &
+			"</div>"
+		displayFolder: html_visuais
+		lineageTag: a1b2c3d4-0009-4000-8000-000000000009
+
+	/// Visual HTML: KPI 3 de Investimentos (Aporte Líquido Acumulado)
+	measure html_inv_kpi_aporte_liquido =
+			VAR v_liq = FORMAT([aporte_liquido_investimentos], """R$"" #,0.00;-""R$"" #,0.00;""R$"" 0.00", "pt-BR")
+			VAR v_ret = FORMAT(DIVIDE([aporte_liquido_investimentos], [aportes_totais], 0), "0.0%", "pt-BR")
+			RETURN
+			[html_css_base] &
+			"<div class='card kpi'>" &
+			"<div class='kpi-bar' style='background:#3B89E2;'></div>" &
+			"<div class='kpi-head'>" &
+			"<div class='head-l'><span class='sq-sm' style='background:#3B89E2;'></span><span class='kpi-ttl'>APORTE LÍQUIDO ACUMULADO</span></div>" &
+			"<span class='pill' style='background:#EFF6FF;color:#3B89E2;'>CAPITAL RETIDO</span>" &
+			"</div>" &
+			"<div class='kpi-val-row'><span class='kpi-val' style='color:#10715A;'>" & v_liq & "</span></div>" &
+			"<div class='kpi-sub'>Taxa de retenção sobre aportes: " & v_ret & "</div>" &
+			"</div>"
+		displayFolder: html_visuais
+		lineageTag: a1b2c3d4-0010-4000-8000-000000000010
+
+	/// Visual HTML: KPI 4 de Investimentos (Patrimônio Ativo Estimado e Lucro nos Indexadores)
+	measure html_inv_kpi_rentabilidade =
+			VAR v_pat = FORMAT([patrimonio_investido_estimado], """R$"" #,0.00;-""R$"" #,0.00;""R$"" 0.00", "pt-BR")
+			VAR n_lucro = [lucro_total_estimado]
+			VAR v_lucro = FORMAT(n_lucro, "+""R$"" #,0.00;-""R$"" #,0.00;""R$"" 0.00", "pt-BR")
+			VAR n_rent = [dif_rendido_cdi_porcent]
+			VAR v_rent = FORMAT(n_rent, "+0.00%;-0.00%;0.00%", "pt-BR")
+			RETURN
+			[html_css_base] &
+			"<div class='card kpi'>" &
+			"<div class='kpi-bar' style='background:#10715A;'></div>" &
+			"<div class='kpi-head'>" &
+			"<div class='head-l'><span class='sq-sm' style='background:#10715A;'></span><span class='kpi-ttl'>PATRIMÔNIO ATIVO ESTIMADO</span></div>" &
+			"<span class='pill' style='background:#DCFCE7;color:#10715A;'>DIM_CDI + USD</span>" &
+			"</div>" &
+			"<div class='kpi-val-row'><span class='kpi-val' style='color:#10715A;'>" & v_pat & "</span><span class='delta-pill' style='background:#10715A;'>" & v_rent & " CDI</span></div>" &
+			"<div class='kpi-sub'>Lucro Est. (CDI + Câmbio): " & v_lucro & "</div>" &
+			"</div>"
+		displayFolder: html_visuais
+		lineageTag: a1b2c3d4-0011-4000-8000-000000000011
+
+	/// Visual HTML: Alocação por Ativo / Indexador com barras de progresso fiéis ao Figma
+	measure html_inv_alocacao_ativos =
+			VAR total_ap = COALESCE([aportes_totais], 0)
+			VAR v_cdi = COALESCE(CALCULATE([aportes_totais], KEEPFILTERS(FAT_FINANCES[SUB_CATEGORY] = "CDI")), 0)
+			VAR v_tes = COALESCE(CALCULATE([aportes_totais], KEEPFILTERS(FAT_FINANCES[SUB_CATEGORY] = "Tesouro Direto")), 0)
+			VAR v_lci = COALESCE(CALCULATE([aportes_totais], KEEPFILTERS(FAT_FINANCES[SUB_CATEGORY] = "LCI")), 0)
+			VAR v_fii = COALESCE(CALCULATE([aportes_totais], KEEPFILTERS(FAT_FINANCES[SUB_CATEGORY] IN { "FII's & ETF’s", "FII's / ETF’s", "FII's & ETF's", "FII's / ETF's" })), 0)
+			VAR v_cry = COALESCE(CALCULATE([aportes_totais], KEEPFILTERS(FAT_FINANCES[SUB_CATEGORY] = "Crypto")), 0)
+			VAR v_lca = COALESCE(CALCULATE([aportes_totais], KEEPFILTERS(FAT_FINANCES[SUB_CATEGORY] = "LCA")), 0)
+			VAR v_out = MAX(total_ap - (v_cdi + v_tes + v_lci + v_fii + v_cry), 0)
+			VAR p_cdi = DIVIDE(v_cdi, total_ap, 0)
+			VAR p_tes = DIVIDE(v_tes, total_ap, 0)
+			VAR p_lci = DIVIDE(v_lci, total_ap, 0)
+			VAR p_fii = DIVIDE(v_fii, total_ap, 0)
+			VAR p_cry = DIVIDE(v_cry, total_ap, 0)
+			VAR p_out = DIVIDE(v_out, total_ap, 0)
+			VAR pct_rf = FORMAT(DIVIDE(v_cdi + v_tes + v_lci + v_lca, total_ap, 0), "0.0%", "pt-BR")
+			VAR pct_rv = FORMAT(DIVIDE(MAX(total_ap - (v_cdi + v_tes + v_lci + v_lca), 0), total_ap, 0), "0.0%", "pt-BR")
+			RETURN
+			[html_css_base] &
+			"<div class='card sec' style='height:430px;'>" &
+			"<div class='sec-head'>" &
+			"<div><div class='head-l'><span class='sq-md' style='background:#3B89E2;'></span><span class='sec-ttl'>ALOCAÇÃO POR ATIVO / INDEXADOR</span></div><div class='sec-sub'>Volume total aportado por classe de ativo na carteira</div></div>" &
+			"<span class='pill' style='background:#EFF6FF;color:#3B89E2;'>PORTFÓLIO</span>" &
+			"</div>" &
+			"<div class='div-line'></div>" &
+			"<div class='alloc-list'>" &
+			"<div class='alloc-row' style='opacity:" & IF(v_cdi > 0, "1", "0.45") & ";'><div class='alloc-top'><span class='alloc-name'>CDI (Porquinho Inter / CDB)</span><span class='alloc-nums'><span class='alloc-val'>" & FORMAT(v_cdi, """R$"" #,0.00", "pt-BR") & "</span><span class='alloc-pct'>(" & FORMAT(p_cdi, "0.0%", "pt-BR") & ")</span></span></div><div class='prog-track'><div class='prog-fill' style='width:" & FORMAT(MIN(p_cdi * 100, 100), "0.0", "en-US") & "%;background:#3B89E2;'></div></div></div>" &
+			"<div class='alloc-row' style='opacity:" & IF(v_tes > 0, "1", "0.45") & ";'><div class='alloc-top'><span class='alloc-name'>Tesouro Direto (Selic / IPCA)</span><span class='alloc-nums'><span class='alloc-val'>" & FORMAT(v_tes, """R$"" #,0.00", "pt-BR") & "</span><span class='alloc-pct'>(" & FORMAT(p_tes, "0.0%", "pt-BR") & ")</span></span></div><div class='prog-track'><div class='prog-fill' style='width:" & FORMAT(MIN(p_tes * 100, 100), "0.0", "en-US") & "%;background:#1E3A5F;'></div></div></div>" &
+			"<div class='alloc-row' style='opacity:" & IF(v_lci > 0, "1", "0.45") & ";'><div class='alloc-top'><span class='alloc-name'>LCI (Isento de IR)</span><span class='alloc-nums'><span class='alloc-val'>" & FORMAT(v_lci, """R$"" #,0.00", "pt-BR") & "</span><span class='alloc-pct'>(" & FORMAT(p_lci, "0.0%", "pt-BR") & ")</span></span></div><div class='prog-track'><div class='prog-fill' style='width:" & FORMAT(MIN(p_lci * 100, 100), "0.0", "en-US") & "%;background:#10715A;'></div></div></div>" &
+			"<div class='alloc-row' style='opacity:" & IF(v_fii > 0, "1", "0.45") & ";'><div class='alloc-top'><span class='alloc-name'>FII's &amp; ETF's (Renda Passiva)</span><span class='alloc-nums'><span class='alloc-val'>" & FORMAT(v_fii, """R$"" #,0.00", "pt-BR") & "</span><span class='alloc-pct'>(" & FORMAT(p_fii, "0.0%", "pt-BR") & ")</span></span></div><div class='prog-track'><div class='prog-fill' style='width:" & FORMAT(MIN(p_fii * 100, 100), "0.0", "en-US") & "%;background:#F99C3E;'></div></div></div>" &
+			"<div class='alloc-row' style='opacity:" & IF(v_cry > 0, "1", "0.45") & ";'><div class='alloc-top'><span class='alloc-name'>Crypto (Criptoativos)</span><span class='alloc-nums'><span class='alloc-val'>" & FORMAT(v_cry, """R$"" #,0.00", "pt-BR") & "</span><span class='alloc-pct'>(" & FORMAT(p_cry, "0.0%", "pt-BR") & ")</span></span></div><div class='prog-track'><div class='prog-fill' style='width:" & FORMAT(MIN(p_cry * 100, 100), "0.0", "en-US") & "%;background:#CA0AA7;'></div></div></div>" &
+			"<div class='alloc-row' style='opacity:" & IF(v_out > 0, "1", "0.45") & ";'><div class='alloc-top'><span class='alloc-name'>LCA &amp; Moedas Estrangeiras</span><span class='alloc-nums'><span class='alloc-val'>" & FORMAT(v_out, """R$"" #,0.00", "pt-BR") & "</span><span class='alloc-pct'>(" & FORMAT(p_out, "0.0%", "pt-BR") & ")</span></span></div><div class='prog-track'><div class='prog-fill' style='width:" & FORMAT(MIN(p_out * 100, 100), "0.0", "en-US") & "%;background:#6D6865;'></div></div></div>" &
+			"</div>" &
+			"<div class='callout' style='background:#EFF6FF;border:1px solid #DBEAFE;color:#1E3A5F;font-size:9px;font-weight:700;'>Perfil: " & pct_rf & " Renda Fixa Segura &bull; " & pct_rv & " Renda Variável &amp; Alternativos</div>" &
+			"</div>"
+		displayFolder: html_visuais
+		lineageTag: a1b2c3d4-0012-4000-8000-000000000012
+
+	/// Visual HTML: Card Inferior 1 de Investimentos (Renda Fixa Pós / CDI + Moldura p/ Gráfico Nativo)
+	measure html_inv_card_cdi =
+			VAR v_saldo = FORMAT([rendimento_cdi], """R$"" #,0.00;-""R$"" #,0.00;""R$"" 0.00", "pt-BR")
+			VAR n_lucro = [dif_rendido_cdi]
+			VAR v_lucro = FORMAT(n_lucro, "+""R$"" #,0.00;-""R$"" #,0.00;""R$"" 0.00", "pt-BR")
+			VAR v_pct = FORMAT([dif_rendido_cdi_porcent], "+0.00%;-0.00%;0.00%", "pt-BR")
+			VAR cor_badge = IF(n_lucro >= 0, "#10715A", "#FF4A53")
+			RETURN
+			[html_css_base] &
+			"<div class='card sec' style='height:320px;padding:13px 15px 14px 15px;'>" &
+			"<div class='sec-head'>" &
+			"<div><div class='head-l'><span class='sq-md' style='background:#10715A;'></span><span class='sec-ttl'>RENDA FIXA PÓS (CDI / PORQUINHO)</span></div><div class='sec-sub'>Capitalização diária real via API do Banco Central (DIM_CDI)</div></div>" &
+			"<span class='pill' style='background:#DCFCE7;color:#10715A;'>100% DO CDI</span>" &
+			"</div>" &
+			"<div class='div-line' style='margin:7px 0 8px 0;'></div>" &
+			"<div class='sub-box' style='height:82px;margin-bottom:9px;'>" &
+			"<span class='sub-lbl'>SALDO ATUALIZADO NO CDI (R$)</span>" &
+			"<span class='sub-val' style='color:#10715A;'>" & v_saldo & "</span>" &
+			"<span class='sub-meta'><span>Lucro CDI: <b>" & v_lucro & "</b></span><span class='delta-pill' style='background:" & cor_badge & ";'>" & v_pct & "</span></span>" &
+			"</div>" &
+			"<div class='sub-box' style='height:144px;flex:1;min-height:144px;justify-content:flex-start;padding:8px 11px;'>" &
+			"<span class='sub-lbl'>EVOLUÇÃO DA TAXA DIÁRIA CDI (% A.D.)</span>" &
+			"</div></div>"
+		displayFolder: html_visuais
+		lineageTag: a1b2c3d4-0013-4000-8000-000000000013
+
+	/// Visual HTML: Card Inferior 2 de Investimentos (Carteira Cripto & Cotação PTAX + Moldura p/ Gráfico Nativo)
+	measure html_inv_card_crypto =
+			VAR v_pos = FORMAT([rendimento_crypto], """R$"" #,0.00;-""R$"" #,0.00;""R$"" 0.00", "pt-BR")
+			VAR v_usd = FORMAT([saldo_crypto_usd], """US$"" #,0.00;-""US$"" #,0.00;""US$"" 0.00", "pt-BR")
+			VAR n_dif = [dif_rendido_crypto]
+			VAR v_dif = FORMAT(n_dif, "+""R$"" #,0.00;-""R$"" #,0.00;""R$"" 0.00", "pt-BR")
+			VAR v_pct = FORMAT([dif_rendido_crypto_porcent], "+0.00%;-0.00%;0.00%", "pt-BR")
+			VAR cor_badge = IF(n_dif >= 0, "#3B89E2", "#FF4A53")
+			RETURN
+			[html_css_base] &
+			"<div class='card sec' style='height:320px;padding:13px 15px 14px 15px;'>" &
+			"<div class='sec-head'>" &
+			"<div><div class='head-l'><span class='sq-md' style='background:#3B89E2;'></span><span class='sec-ttl'>CARTEIRA CRIPTO &amp; COTAÇÃO PTAX</span></div><div class='sec-sub'>Posição cambial em USD convertida pela PTAX (DIM_DOLAR)</div></div>" &
+			"<span class='pill' style='background:#EFF6FF;color:#3B89E2;'>CÂMBIO PTAX</span>" &
+			"</div>" &
+			"<div class='div-line' style='margin:7px 0 8px 0;'></div>" &
+			"<div class='sub-box' style='height:82px;margin-bottom:9px;'>" &
+			"<span class='sub-lbl'>POSIÇÃO CAMBIAL CRIPTO (USD DINÂMICO &times; PTAX)</span>" &
+			"<span class='sub-val' style='color:#10715A;'>" & v_pos & "</span>" &
+			"<span class='sub-meta'><span>" & v_usd & " &bull; Var. Cambial: <b>" & v_dif & "</b></span><span class='delta-pill' style='background:" & cor_badge & ";'>" & v_pct & "</span></span>" &
+			"</div>" &
+			"<div class='sub-box' style='height:144px;flex:1;min-height:144px;justify-content:flex-start;padding:8px 11px;'>" &
+			"<span class='sub-lbl'>HISTÓRICO COTAÇÃO DÓLAR PTAX (COMPRA)</span>" &
+			"</div></div>"
+		displayFolder: html_visuais
+		lineageTag: a1b2c3d4-0014-4000-8000-000000000014
+
+	/// Visual HTML: Card Inferior 3 de Investimentos (Estratégia & Metas de Acúmulo)
+	measure html_inv_card_estrategia =
+			VAR n_media = [media_mensal_aportes]
+			VAR n_meta = [meta_aporte_mensal]
+			VAR v_media = FORMAT(n_media, """R$"" #,0.00;-""R$"" #,0.00;""R$"" 0.00", "pt-BR")
+			VAR v_meta = FORMAT(n_meta, """R$"" #,0.00;-""R$"" #,0.00;""R$"" 0.00", "pt-BR")
+			VAR pct_meta = DIVIDE(n_media, n_meta, 0)
+			VAR v_pct_meta = FORMAT(pct_meta, "0.0%", "pt-BR")
+			VAR cor_meta = IF(n_media >= n_meta, "#10715A", "#D97706")
+			VAR v_poup = FORMAT([taxa_poupanca], "0.0%", "pt-BR")
+			VAR v_caixa = FORMAT([fluxo_caixa_liquido], """R$"" #,0.00;-""R$"" #,0.00;""R$"" 0.00", "pt-BR")
+			RETURN
+			[html_css_base] &
+			"<div class='card sec' style='height:320px;padding:13px 15px 14px 15px;'>" &
+			"<div class='sec-head'>" &
+			"<div><div class='head-l'><span class='sq-md' style='background:#F99C3E;'></span><span class='sec-ttl'>ESTRATÉGIA &amp; METAS DE ACÚMULO</span></div><div class='sec-sub'>Ritmo mensal de aportes, poupança e diretriz de alocação</div></div>" &
+			"<span class='pill' style='background:#FEF3C7;color:#D97706;'>PLANEJAMENTO</span>" &
+			"</div>" &
+			"<div class='div-line' style='margin:7px 0 8px 0;'></div>" &
+			"<div class='sub-box' style='height:82px;margin-bottom:9px;'>" &
+			"<span class='sub-lbl'>MÉDIA MENSAL DE APORTES VS META</span>" &
+			"<span class='sub-val'>" & v_media & "</span>" &
+			"<span class='sub-meta'><span>Meta Planejada: <b>" & v_meta & "</b></span><span class='delta-pill' style='background:" & cor_meta & ";'>" & v_pct_meta & "</span></span>" &
+			"</div>" &
+			"<div class='sub-box' style='height:82px;margin-bottom:9px;'>" &
+			"<span class='sub-lbl'>TAXA DE POUPANÇA OPERACIONAL (% DA RENDA)</span>" &
+			"<span class='sub-val' style='color:#3B89E2;'>" & v_poup & "</span>" &
+			"<span class='sub-meta'>Caixa Livre Acum.: <b>" & v_caixa & "</b></span>" &
+			"</div>" &
+			"<div class='callout' style='flex:1;display:flex;flex-direction:column;justify-content:center;background:#FEF3C7;border:1px solid #FDE68A;'>" &
+			"<div style='font-size:8.5px;font-weight:700;color:#B45309;letter-spacing:0.3px;'>DIRETRIZ DE ALOCAÇÃO DE NOVOS APORTES</div>" &
+			"<div style='font-size:9.5px;font-weight:700;color:#92400E;margin-top:2px;'>50% CDI Liquidez &bull; 30% LCI &amp; Tesouro &bull; 20% FIIs &amp; Cripto</div>" &
+			"</div>" &
+			"</div>"
+		displayFolder: html_visuais
+		lineageTag: a1b2c3d4-0015-4000-8000-000000000015
+
+	/// Visual HTML: Overlay transparente para o Cartão Inter Crédito na Carteira Digital
+	measure html_vg_card_inter_credito =
+			VAR n_aberta = [fatura_aberta_inter_credito]
+			VAR v_aberta = FORMAT(n_aberta, """R$"" #,0.00;-""R$"" #,0.00;""R$"" 0.00", "pt-BR")
+			VAR v_gasto_ic = FORMAT([gasto_inter_credito], """R$"" #,0.00;-""R$"" #,0.00;""R$"" 0.00", "pt-BR")
+			VAR v_ult_fat = FORMAT([ultima_fatura_inter_credito], """R$"" #,0.00;-""R$"" #,0.00;""R$"" 0.00", "pt-BR")
+			VAR tag_ic = IF(n_aberta <= 0, "<span class='b-tag' style='background:rgba(201,253,138,0.18);color:#C9FD8A;'>Quitada</span>", "<span class='b-tag' style='background:rgba(255,152,56,0.22);color:#FFB366;'>Em aberto</span>")
+			RETURN
+			[html_css_base] &
+			"<div class='bcard-overlay'>" &
+			"<div class='b-val-line'><span class='b-val' style='font-size:21px;'>" & v_aberta & "</span>" & tag_ic & "</div>" &
+			"<div class='b-ref' style='padding-right:32px;font-size:9px;color:#FFB366;'>No Período: " & v_gasto_ic & " | Últ. Fat.: " & v_ult_fat & "</div>" &
+			"</div>"
+		displayFolder: html_visuais
+		lineageTag: a1b2c3d4-0016-4000-8000-000000000016
+
+	/// Visual HTML: Overlay transparente para o Cartão Flash Benefícios na Carteira Digital
+	measure html_vg_card_flash =
+			VAR v_flash = FORMAT([saldo_flash], """R$"" #,0.00;-""R$"" #,0.00;""R$"" 0.00", "pt-BR")
+			VAR v_flash_ont = FORMAT([saldo_flash_ontem], """R$"" #,0.00;-""R$"" #,0.00;""R$"" 0.00", "pt-BR")
+			RETURN
+			[html_css_base] &
+			"<div class='bcard-overlay'>" &
+			"<div class='b-val-line'><span class='b-val' style='font-size:21px;'>" & v_flash & "</span></div>" &
+			"<div class='b-ref' style='padding-right:32px;font-size:9px;color:#FFE4E6;'>Ontem: " & v_flash_ont & " &bull; Cartão Pré-Pago VR/VA</div>" &
+			"</div>"
+		displayFolder: html_visuais
+		lineageTag: a1b2c3d4-0017-4000-8000-000000000017
+
+	/// Visual HTML: Overlay transparente para o Cartão Wise Internacional na Carteira Digital
+	measure html_vg_card_wise =
+			VAR v_wise = FORMAT([saldo_wise], """R$"" #,0.00;-""R$"" #,0.00;""R$"" 0.00", "pt-BR")
+			VAR v_cambio = FORMAT([cambio_acumulado_wise], """R$"" #,0.00;-""R$"" #,0.00;""R$"" 0.00", "pt-BR")
+			RETURN
+			[html_css_base] &
+			"<div class='bcard-overlay'>" &
+			"<div class='b-val-line'><span class='b-val' style='font-size:21px;color:#C9FD8A;'>" & v_wise & "</span></div>" &
+			"<div class='b-ref' style='padding-right:32px;font-size:9px;color:#D9F99D;'>Câmbio Acum.: " & v_cambio & " &bull; Conta Multimoeda</div>" &
+			"</div>"
+		displayFolder: html_visuais
+		lineageTag: a1b2c3d4-0018-4000-8000-000000000018
+
+	/// Taxa média diária do CDI (% a.d.) para o gráfico de evolução na aba Investimentos
+	measure taxa_cdi_media = AVERAGE(DIM_CDI[TAXA])
+		formatString: 0.0000
+		displayFolder: investimentos
+		lineageTag: 4e8a9c10-7b2f-4d1e-9a3c-5f6e7d8c9b01
+
+	/// Cotação média de compra do Dólar PTAX (DIM_DOLAR) para o gráfico de câmbio na aba Investimentos
+	measure cotacao_dolar_ptax = AVERAGE(DIM_DOLAR[COTACAO_COMPRA])
+		formatString: "R$"\ #,0.0000;-"R$"\ #,0.0000;"R$"\ #,0.0000
+		displayFolder: investimentos
+		lineageTag: 4e8a9c10-7b2f-4d1e-9a3c-5f6e7d8c9b02
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
 	partition Medidas = m
 		mode: import
 		source =
@@ -733,3 +1418,4 @@ table Medidas
 	annotation PBI_ResultType = Table
 
 	annotation PBI_NavigationStepName = Navegação
+

@@ -1,278 +1,190 @@
 <svg width="1280" height="1420" viewBox="0 0 1280 1420" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <!-- DEFINIÇÕES, ESTILOS E GRADIENTES DOS CARTÕES -->
   <defs>
-    <style>
-      .text-title { font-family: 'Segoe UI', -apple-system, sans-serif; font-size: 11px; font-weight: 700; fill: #252321; letter-spacing: 0.5px; }
-      .text-sub { font-family: 'Segoe UI', -apple-system, sans-serif; font-size: 10px; font-weight: 400; fill: #808080; }
-      .text-badge { font-family: 'Segoe UI', -apple-system, sans-serif; font-size: 9px; font-weight: 700; }
-      .card-label { font-family: 'Segoe UI', -apple-system, sans-serif; font-size: 8.5px; font-weight: 600; fill: rgba(255,255,255,0.75); letter-spacing: 0.8px; }
-      .card-meta { font-family: 'Segoe UI', -apple-system, sans-serif; font-size: 9px; font-weight: 500; fill: rgba(255,255,255,0.82); }
-    </style>
-
-    <!-- Gradiente Cartão 1: Inter Débito (Laranja Oficial Inter) -->
-    <linearGradient id="gradInterDebito" x1="0" y1="0" x2="291" y2="148" gradientUnits="userSpaceOnUse">
+    <filter id="cardShadow" x="-2%" y="-2%" width="104%" height="106%" filterUnits="objectBoundingBox">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000000" flood-opacity="0.04"/>
+    </filter>
+    <clipPath id="cardClip">
+      <rect x="0" y="0" width="289" height="148" rx="14"/>
+    </clipPath>
+    <linearGradient id="gradInterDebito" x1="0" y1="0" x2="289" y2="148" gradientUnits="userSpaceOnUse">
       <stop offset="0%" stop-color="#FF7A00"/>
-      <stop offset="60%" stop-color="#F26500"/>
-      <stop offset="100%" stop-color="#C84B00"/>
+      <stop offset="100%" stop-color="#CC5200"/>
     </linearGradient>
-
-    <!-- Gradiente Cartão 2: Inter Crédito (Graphite Black / Carbon) -->
-    <linearGradient id="gradInterCredito" x1="0" y1="0" x2="291" y2="148" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#2B303C"/>
-      <stop offset="55%" stop-color="#1C2029"/>
-      <stop offset="100%" stop-color="#101218"/>
+    <linearGradient id="gradInterCredito" x1="0" y1="0" x2="289" y2="148" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#2C2927"/>
+      <stop offset="100%" stop-color="#181615"/>
     </linearGradient>
-
-    <!-- Gradiente Cartão 3: Flash Benefícios (Pink / Magenta Vibrante) -->
-    <linearGradient id="gradFlash" x1="0" y1="0" x2="291" y2="148" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#FF1F8F"/>
-      <stop offset="55%" stop-color="#D60B72"/>
-      <stop offset="100%" stop-color="#8A064B"/>
+    <linearGradient id="gradFlash" x1="0" y1="0" x2="289" y2="148" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#E11D48"/>
+      <stop offset="100%" stop-color="#9F1239"/>
     </linearGradient>
-
-    <!-- Gradiente Cartão 4: Wise Internacional (Forest Green & Neon Lime) -->
-    <linearGradient id="gradWise" x1="0" y1="0" x2="291" y2="148" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#1E4620"/>
-      <stop offset="55%" stop-color="#132F15"/>
-      <stop offset="100%" stop-color="#0B1E0D"/>
-    </linearGradient>
-
-    <!-- Gradiente Chip Metálico Dourado -->
-    <linearGradient id="gradChipGold" x1="0" y1="0" x2="32" y2="24" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#FFE082"/>
-      <stop offset="50%" stop-color="#F6C445"/>
-      <stop offset="100%" stop-color="#D49B1A"/>
-    </linearGradient>
-
-    <!-- Gradiente Chip Metálico Prateado -->
-    <linearGradient id="gradChipSilver" x1="0" y1="0" x2="32" y2="24" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#F1F5F9"/>
-      <stop offset="50%" stop-color="#CBD5E1"/>
-      <stop offset="100%" stop-color="#94A3B8"/>
+    <linearGradient id="gradWise" x1="0" y1="0" x2="289" y2="148" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#163300"/>
+      <stop offset="100%" stop-color="#0D1F00"/>
     </linearGradient>
   </defs>
 
-  <!-- 1. FUNDO DO CANVAS (#E9E9E9) -->
+  <!-- Fundo Geral -->
   <rect width="1280" height="1420" fill="#E9E9E9"/>
 
-  <!-- 2. TOP HEADER BAR (#3A3633, h=55) -->
-  <rect x="0" y="0" width="1280" height="55" fill="#3A3633"/>
+  <!-- ================= HEADER (h=60) & PÍLULA DE FILTROS EXPANDIDA ================= -->
+  <rect width="1280" height="60" fill="#3A3633"/>
+  <rect x="15" y="13.5" width="33" height="33" rx="8" fill="#10715A"/>
+  <text x="31.5" y="36" text-anchor="middle" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="18" font-weight="700" fill="#FFFFFF">$</text>
+  <text x="58" y="28" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="14" font-weight="700" fill="#FFFFFF" letter-spacing="0.5px">PERSONAL FINANCES BI</text>
+  <text x="58" y="45" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="10" font-weight="400" fill="#B8B4B0">VISÃO GERAL • GESTÃO DE CAIXA, CUSTO DE VIDA, CARTÕES &amp; METAS</text>
 
-  <!-- Logo Icon ($) -->
-  <rect x="15" y="11" width="33" height="33" rx="8" fill="#10715A"/>
-  <text x="26" y="33" font-family="'Segoe UI', sans-serif" font-size="16" font-weight="900" fill="#C9FD8A">$</text>
+  <!-- Container pílula ampliado (w=570, h=46) -->
+  <rect x="695" y="7" width="570" height="46" rx="10" fill="#252321" stroke="#4D4845" stroke-width="1"/>
+  <path d="M712 24H724L719.5 29.5V34.5L716.5 36V29.5L712 24Z" stroke="#10715A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="734" y="33.5" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="9" font-weight="700" fill="#A09D9A" letter-spacing="0.4px">PERÍODO:</text>
+  <line x1="990" y1="14" x2="990" y2="46" stroke="#4D4845" stroke-width="1"/>
+  <text x="1004" y="33.5" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="9" font-weight="700" fill="#A09D9A" letter-spacing="0.4px">CONTA:</text>
 
-  <!-- Título do Dashboard -->
-  <text x="58" y="27" font-family="'Segoe UI', sans-serif" font-size="13" font-weight="700" fill="#FFFFFF" letter-spacing="0.5px">CONTROLE FINANCEIRO PESSOAL • VISÃO GERAL</text>
-  <text x="58" y="41" font-family="'Segoe UI', sans-serif" font-size="9.5" font-weight="400" fill="#A09D9A" letter-spacing="1px">NOTION ETL • FLUXO DE CAIXA, CARTÕES &amp; ORÇAMENTO FAMILIAR</text>
+  <!-- ================= LINHA 1: FUNDOS DOS 4 KPI CARDS (y=70, h=85) ================= -->
+  <rect x="15" y="70" width="301" height="85" rx="14" fill="#FFFFFF" stroke="#E2E2E2" stroke-width="1" filter="url(#cardShadow)"/>
+  <rect x="331" y="70" width="301" height="85" rx="14" fill="#FFFFFF" stroke="#E2E2E2" stroke-width="1" filter="url(#cardShadow)"/>
+  <rect x="647" y="70" width="301" height="85" rx="14" fill="#FFFFFF" stroke="#E2E2E2" stroke-width="1" filter="url(#cardShadow)"/>
+  <rect x="964" y="70" width="301" height="85" rx="14" fill="#FFFFFF" stroke="#E2E2E2" stroke-width="1" filter="url(#cardShadow)"/>
 
-  <!-- Slicer Pill Container no Topo Direito (x=810, y=10, w=455, h=35, rx=15) -->
-  <rect x="810" y="10" width="455" height="35" rx="15" fill="#FFFFFF"/>
-  <rect x="820" y="18" width="18" height="18" rx="4" fill="#EFF6FF"/>
-  <path d="M824 23H834M824 27H831M824 31H833" stroke="#3B89E2" stroke-width="1.5" stroke-linecap="round"/>
-  <line x1="1035" y1="16" x2="1035" y2="39" stroke="#E9E9E9" stroke-width="1.5"/>
+  <!-- ================= LINHA 2: EVOLUÇÃO MENSAL FULL WIDTH (y=170, h=320) ================= -->
+  <rect x="15" y="170" width="1250" height="320" rx="15" fill="#FFFFFF" stroke="#E2E2E2" stroke-width="1" filter="url(#cardShadow)"/>
+  <rect x="31" y="184" width="10" height="10" rx="3" fill="#3B89E2"/>
+  <text x="47" y="193" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="11.5" font-weight="700" fill="#252321" letter-spacing="0.4px">EVOLUÇÃO MENSAL: ENTRADAS × CUSTO DE VIDA × SALDO LÍQUIDO</text>
+  <rect x="1144" y="179" width="105" height="20" rx="10" fill="#EFF6FF"/>
+  <text x="1196.5" y="192" text-anchor="middle" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="8" font-weight="700" fill="#3B89E2">FLUXO MENSAL</text>
+  <text x="31" y="210" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="9.5" font-weight="400" fill="#808080">Comparativo histórico mensal entre renda própria operacional, custo de vida real e geração de caixa livre</text>
+  <line x1="31" y1="220" x2="1249" y2="220" stroke="#F0F0F0" stroke-width="1"/>
 
+  <!-- ================= LINHA 3: CUSTO DE VIDA (BARRAS) + CARTEIRA DIGITAL (y=505, h=380) ================= -->
+  <!-- Esquerda: Composição do Custo de Vida (Visual Nativo) -->
+  <rect x="15" y="505" width="618" height="380" rx="15" fill="#FFFFFF" stroke="#E2E2E2" stroke-width="1" filter="url(#cardShadow)"/>
+  <rect x="31" y="519" width="10" height="10" rx="3" fill="#FF4A53"/>
+  <text x="47" y="528" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="11.5" font-weight="700" fill="#252321" letter-spacing="0.4px">COMPOSIÇÃO DO CUSTO DE VIDA POR CATEGORIA</text>
+  <rect x="515" y="513" width="102" height="20" rx="10" fill="#FEE2E2"/>
+  <text x="566" y="526" text-anchor="middle" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="8" font-weight="700" fill="#FF4A53">RANKING DE GASTOS</text>
+  <text x="31" y="545" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="9.5" font-weight="400" fill="#808080">Ranking por categoria e subcategoria (use o drill-down ↑↓ no topo do gráfico para detalhar)</text>
+  <line x1="31" y1="555" x2="617" y2="555" stroke="#F0F0F0" stroke-width="1"/>
 
-  <!-- ======================================================================= -->
-  <!-- BLOCO 1: CARDS DE KPI SUPERIORES (y=70, 4 colunas, w=301.2, h=85, rx=15) -->
-  <!-- ======================================================================= -->
+  <!-- Direita: Carteira Digital com Logos (SVG + Overlays HTML alinhados) -->
+  <rect x="647" y="505" width="618" height="380" rx="15" fill="#FFFFFF" stroke="#E2E2E2" stroke-width="1" filter="url(#cardShadow)"/>
+  <rect x="663" y="519" width="10" height="10" rx="3" fill="#F99C3E"/>
+  <text x="679" y="528" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="11.5" font-weight="700" fill="#252321" letter-spacing="0.4px">CARTEIRA DIGITAL • SALDOS &amp; FATURAS POR CONTA</text>
+  <rect x="1145" y="513" width="104" height="20" rx="10" fill="#FEF3C7"/>
+  <text x="1197" y="526" text-anchor="middle" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="8" font-weight="700" fill="#D97706">4 CONTAS ATIVAS</text>
+  <text x="663" y="544" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="9.5" font-weight="400" fill="#808080">Posição consolidada em conta corrente, cartão de crédito, benefícios VR/VA e câmbio</text>
+  <line x1="663" y1="552" x2="1249" y2="552" stroke="#F0F0F0" stroke-width="1"/>
 
-  <!-- KPI 1: Saldo Líquido Contas (x=15) -->
-  <rect x="15" y="70" width="301.2" height="85" rx="15" fill="#FFFFFF" stroke="#E9E9E9" stroke-width="1"/>
-  <rect x="27" y="82" width="10" height="10" rx="3" fill="#10715A"/>
-  <text x="43" y="91" class="text-title">SALDO LÍQUIDO EM CONTAS</text>
-  <rect x="245" y="79" width="58" height="18" rx="9" fill="#DCFCE7"/>
-  <text x="254" y="91" class="text-badge" fill="#10715A">LÍQUIDO</text>
-
-  <!-- KPI 2: Entradas Operacionais (x=331.2) -->
-  <rect x="331.2" y="70" width="301.2" height="85" rx="15" fill="#FFFFFF" stroke="#E9E9E9" stroke-width="1"/>
-  <rect x="343.2" y="82" width="10" height="10" rx="3" fill="#C9FD8A"/>
-  <text x="359.2" y="91" class="text-title">ENTRADAS OPERACIONAIS</text>
-  <rect x="555.2" y="79" width="65" height="18" rx="9" fill="#DCFCE7"/>
-  <text x="564.2" y="91" class="text-badge" fill="#10715A">RECEITAS</text>
-
-  <!-- KPI 3: Custo de Vida Real (x=647.5) -->
-  <rect x="647.5" y="70" width="301.2" height="85" rx="15" fill="#FFFFFF" stroke="#E9E9E9" stroke-width="1"/>
-  <rect x="659.5" y="82" width="10" height="10" rx="3" fill="#FF4A53"/>
-  <text x="675.5" y="91" class="text-title">CUSTO DE VIDA REAL</text>
-  <rect x="873.5" y="79" width="63" height="18" rx="9" fill="#FEE2E2"/>
-  <text x="883.5" y="91" class="text-badge" fill="#FF4A53">CONSUMO</text>
-
-  <!-- KPI 4: Total Aportado em Investimentos (x=963.8) -->
-  <rect x="963.8" y="70" width="301.2" height="85" rx="15" fill="#FFFFFF" stroke="#E9E9E9" stroke-width="1"/>
-  <rect x="975.8" y="82" width="10" height="10" rx="3" fill="#3B89E2"/>
-  <text x="991.8" y="91" class="text-title">TOTAL APORTADO (INVEST.)</text>
-  <rect x="1191.8" y="79" width="61" height="18" rx="9" fill="#EFF6FF"/>
-  <text x="1201.8" y="91" class="text-badge" fill="#3B89E2">APORTE</text>
-
-
-  <!-- ======================================================================= -->
-  <!-- BLOCO 2: EVOLUÇÃO MENSAL: ENTRADAS VS CUSTOS (LARGURA TOTAL w=1250)     -->
-  <!-- ======================================================================= -->
-  <rect x="15" y="170" width="1250" height="320" rx="15" fill="#FFFFFF" stroke="#E9E9E9" stroke-width="1"/>
-
-  <rect x="27" y="185" width="10" height="10" rx="3" fill="#10715A"/>
-  <text x="43" y="194" class="text-title">EVOLUÇÃO MENSAL: ENTRADAS VS CUSTOS (FLUXO DE CAIXA OPERACIONAL)</text>
-  <rect x="1142" y="182" width="110" height="18" rx="9" fill="#EFF6FF"/>
-  <text x="1152" y="194" class="text-badge" fill="#1E3A5F">LARGURA TOTAL</text>
-  <text x="27" y="210" class="text-sub">Comparativo histórico mensal entre receitas operacionais, despesas de custo de vida e geração de caixa livre</text>
-
-  <!-- Slot para o Gráfico lineClusteredColumnComboChart (x=27, y=220, w=1226, h=255) -->
-  <rect x="27" y="220" width="1226" height="255" rx="9.5" fill="#FDFDFD" stroke="#E9E9E9"/>
-
-
-  <!-- ======================================================================= -->
-  <!-- BLOCO 3: COMPOSIÇÃO CUSTO DE VIDA (BARRAS) & CARTEIRA DE CARTÕES (y=505) -->
-  <!-- ======================================================================= -->
-
-  <!-- Card Esquerda: Composição do Custo de Vida - Gráfico de Barras (x=15, y=505, w=618, h=380) -->
-  <rect x="15" y="505" width="618" height="380" rx="15" fill="#FFFFFF" stroke="#E9E9E9" stroke-width="1"/>
-  <rect x="27" y="520" width="10" height="10" rx="3" fill="#FF4A53"/>
-  <text x="43" y="529" class="text-title">COMPOSIÇÃO DO CUSTO DE VIDA (GRÁFICO DE BARRAS)</text>
-  <rect x="512" y="517" width="108" height="18" rx="9" fill="#FEE2E2"/>
-  <text x="524" y="529" class="text-badge" fill="#FF4A53">POR CATEGORIA</text>
-  <text x="27" y="545" class="text-sub">Distribuição proporcional dos desembolsos por categoria (visual barChart nativo)</text>
-
-  <!-- Slot para o Gráfico barChart (x=27, y=558, w=594, h=312) -->
-  <rect x="27" y="558" width="594" height="312" rx="9.5" fill="#FDFDFD" stroke="#E9E9E9"/>
-
-
-  <!-- Card Direita: Carteira Digital • Saldos & Faturas em Estilo Cartão de Crédito (x=647, y=505, w=618, h=380) -->
-  <rect x="647" y="505" width="618" height="380" rx="15" fill="#FFFFFF" stroke="#E9E9E9" stroke-width="1"/>
-  <rect x="659" y="520" width="10" height="10" rx="3" fill="#F99C3E"/>
-  <text x="675" y="529" class="text-title">CARTEIRA DIGITAL • SALDOS &amp; FATURAS POR CARTÃO</text>
-  <rect x="1152" y="517" width="101" height="18" rx="9" fill="#FEF3C7"/>
-  <text x="1162" y="529" class="text-badge" fill="#D97706">4 CARTÕES ATIVOS</text>
-  <text x="659" y="545" class="text-sub">Saldos acumulados em conta e faturas do cartão de crédito por instituição</text>
-
-  <!-- GRID 2x2 DE CARTÕES DE CRÉDITO/DÉBITO -->
-  <!-- CARTÃO 1: INTER DÉBITO (x=659, y=560, w=291, h=148) -->
-  <g transform="translate(659, 560)">
-    <rect x="0" y="0" width="291" height="148" rx="14" fill="url(#gradInterDebito)"/>
-    <circle cx="255" cy="30" r="55" fill="#FFFFFF" fill-opacity="0.08"/>
-    <circle cx="275" cy="120" r="45" fill="#FFFFFF" fill-opacity="0.06"/>
-    <!-- Top Row: Brand & Type Badge -->
-    <text x="18" y="25" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="900" fill="#FFFFFF" letter-spacing="0.5px">inter</text>
-    <rect x="202" y="12" width="73" height="18" rx="9" fill="#000000" fill-opacity="0.25"/>
-    <text x="214" y="24" font-family="'Segoe UI', sans-serif" font-size="8.5" font-weight="700" fill="#FFFFFF">DÉBITO • CC</text>
-    <!-- EMV Chip & Contactless Icon -->
-    <rect x="18" y="40" width="32" height="24" rx="4" fill="url(#gradChipGold)" stroke="#B7791F" stroke-width="0.6"/>
-    <line x1="18" y1="52" x2="50" y2="52" stroke="#B7791F" stroke-width="0.6"/>
-    <line x1="34" y1="40" x2="34" y2="64" stroke="#B7791F" stroke-width="0.6"/>
-    <path d="M58 47C60 49.5 60 54.5 58 57M62 44C65.5 48.5 65.5 55.5 62 60" stroke="#FFFFFF" stroke-opacity="0.8" stroke-width="1.5" stroke-linecap="round"/>
-    <text x="95" y="55" class="card-meta">•••• 4821</text>
-    <!-- Label para o cardVisual sobreposto (x=670, y=642) -->
-    <text x="18" y="80" class="card-label">SALDO CONTA CORRENTE</text>
-    <!-- Mastercard Circles -->
-    <circle cx="256" cy="128" r="9" fill="#EB001B" fill-opacity="0.85"/>
-    <circle cx="268" cy="128" r="9" fill="#F79E1B" fill-opacity="0.85"/>
+  <!-- Cartão 1: Inter Débito (x=663, y=560, w=289, h=148) -->
+  <g transform="translate(663, 560)">
+    <rect x="0" y="0" width="289" height="148" rx="14" fill="url(#gradInterDebito)"/>
+    <g clip-path="url(#cardClip)">
+      <circle cx="255" cy="28" r="54" fill="#FFFFFF" fill-opacity="0.08"/>
+      <circle cx="272" cy="122" r="44" fill="#FFFFFF" fill-opacity="0.05"/>
+    </g>
+    <!-- Logo Inter real (design/logo_inter.svg) -->
+    <g transform="translate(18, 12) scale(0.125)">
+      <path d="m0 120.83h53.298l0.2835-1.4758-52.56-10.898 1.0214-5.846 52.56 11.352 0.4541-2.0436-49.665-21.569 2.1568-5.9597 49.779 20.944 1.0215-1.4755-44.102-32.751 4.5406-7.1517 43.819 32.75 1.3053-1.7594-34.51-43.819 8.4574-6.8681 34.226 41.776 1.4759-1.3054-19.923-50.687 12.09-5.1084 18.788 49.665 1.4758-0.45402v-55.057h19.298v101.94h-105.29zm306.73-18.05h20.831v22.421h-17.312c-18.22 0-29.402-6.3004-29.402-29.402v-50.063h-12.374c-2.1571 0-3.2923-2.6111-1.8165-4.2004l35.816-40.64c1.5325-1.646 4.3138-0.56759 4.3138 1.7028v20.717h20.66v22.42h-20.66v57.044zm-74.242-81.11c-12.431 0-21.739 7.1518-26.28 18.39h-0.8517v-16.801h-24.691v101.94h25.94v-79.01h17.312c7.549 0 10.33 1.5893 10.33 9.649v69.361h25.94v-74.413c-0.055-20.49-9.8766-29.118-27.699-29.118zm-96.663 103.53h25.939v-101.94h-25.939zm339.37-83.892h-1.0754v-18.05h-25.772v101.94h27.473v-77.591h24.181v-25.939h-3.3507c-12.715 0-18.334 5.6192-21.456 19.639zm-38.878 30.31v7.7191h-77.762c1.4177 15.155 10.896 25.202 25.54 25.202 13.112 0 22.591-6.9816 24.52-15.609h27.643c-5.7885 21.512-25.54 37.973-52.56 37.973-31.502 0-52.899-22.42-52.899-51.822 0-29.402 20.661-53.411 53.581-53.411 31.104 0 51.938 21.399 51.938 49.949zm-76.97-11.068h50.178c-3.9179-10.217-12.203-17.539-25.032-17.539-11.238 0.0567-21.114 5.9597-25.146 17.539z" fill="#FFFFFF"/>
+    </g>
+    <rect x="196" y="12" width="77" height="18" rx="9" fill="#000000" fill-opacity="0.24"/>
+    <text x="234.5" y="24" text-anchor="middle" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="7.5" font-weight="700" fill="#FFFFFF">DÉBITO • CC</text>
+    <!-- Chip EMV + Contactless + Dígitos na mesma linha -->
+    <rect x="18" y="37" width="25" height="18" rx="3.5" fill="#FDE68A" fill-opacity="0.92"/>
+    <line x1="18" y1="46" x2="43" y2="46" stroke="#B45309" stroke-width="0.8" stroke-opacity="0.45"/>
+    <line x1="30.5" y1="37" x2="30.5" y2="55" stroke="#B45309" stroke-width="0.8" stroke-opacity="0.45"/>
+    <path d="M49 41.5C51 43.5 51 48.5 49 50.5M53 39.5C55.8 42.5 55.8 49.5 53 52.5" stroke="#FFFFFF" stroke-width="1.4" stroke-linecap="round" stroke-opacity="0.82"/>
+    <text x="64" y="49.5" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="9" font-weight="600" fill="#FFFFFF" fill-opacity="0.82" letter-spacing="0.5px">•••• 4821</text>
+    <!-- Rótulo acima da área HTML -->
+    <text x="18" y="71" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="8" font-weight="700" fill="#FFF7ED" fill-opacity="0.88" letter-spacing="0.5px">SALDO CONTA CORRENTE</text>
+    <!-- Bandeira decorativa -->
+    <circle cx="254" cy="130" r="7" fill="#FFFFFF" fill-opacity="0.35"/>
+    <circle cx="264" cy="130" r="7" fill="#FDE68A" fill-opacity="0.58"/>
   </g>
 
-  <!-- CARTÃO 2: INTER CRÉDITO (x=962, y=560, w=291, h=148) -->
-  <g transform="translate(962, 560)">
-    <rect x="0" y="0" width="291" height="148" rx="14" fill="url(#gradInterCredito)"/>
-    <circle cx="255" cy="30" r="55" fill="#FF7A00" fill-opacity="0.09"/>
-    <rect x="0" y="25" width="4" height="98" rx="2" fill="#FF7A00"/>
-    <!-- Top Row: Brand & Type Badge -->
-    <text x="18" y="25" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="900" fill="#FFFFFF" letter-spacing="0.5px">inter <tspan font-weight="400" font-size="10" fill="#FF7A00">black</tspan></text>
-    <rect x="195" y="12" width="80" height="18" rx="9" fill="#FF7A00" fill-opacity="0.22"/>
-    <text x="205" y="24" font-family="'Segoe UI', sans-serif" font-size="8.5" font-weight="700" fill="#FF9838">CRÉDITO • FAT.</text>
-    <!-- EMV Chip & Contactless Icon -->
-    <rect x="18" y="40" width="32" height="24" rx="4" fill="url(#gradChipSilver)" stroke="#64748B" stroke-width="0.6"/>
-    <line x1="18" y1="52" x2="50" y2="52" stroke="#64748B" stroke-width="0.6"/>
-    <line x1="34" y1="40" x2="34" y2="64" stroke="#64748B" stroke-width="0.6"/>
-    <path d="M58 47C60 49.5 60 54.5 58 57M62 44C65.5 48.5 65.5 55.5 62 60" stroke="#FFFFFF" stroke-opacity="0.7" stroke-width="1.5" stroke-linecap="round"/>
-    <text x="95" y="55" class="card-meta">•••• 9014</text>
-    <!-- Label para o cardVisual sobreposto (x=973, y=642) -->
-    <text x="18" y="80" class="card-label">GASTO ACUMULADO • FATURA</text>
-    <!-- Mastercard Circles -->
-    <circle cx="256" cy="128" r="9" fill="#EB001B" fill-opacity="0.85"/>
-    <circle cx="268" cy="128" r="9" fill="#F79E1B" fill-opacity="0.85"/>
+  <!-- Cartão 2: Inter Crédito (x=960, y=560, w=289, h=148) -->
+  <g transform="translate(960, 560)">
+    <rect x="0" y="0" width="289" height="148" rx="14" fill="url(#gradInterCredito)"/>
+    <g clip-path="url(#cardClip)">
+      <circle cx="255" cy="28" r="54" fill="#FF7A00" fill-opacity="0.09"/>
+      <circle cx="272" cy="122" r="44" fill="#FFFFFF" fill-opacity="0.04"/>
+      <rect x="0" y="20" width="3.5" height="108" rx="1.75" fill="#FF7A00"/>
+    </g>
+    <!-- Logo Inter Black real (design/logo_inter.svg) -->
+    <g transform="translate(18, 12) scale(0.125)">
+      <path d="m0 120.83h53.298l0.2835-1.4758-52.56-10.898 1.0214-5.846 52.56 11.352 0.4541-2.0436-49.665-21.569 2.1568-5.9597 49.779 20.944 1.0215-1.4755-44.102-32.751 4.5406-7.1517 43.819 32.75 1.3053-1.7594-34.51-43.819 8.4574-6.8681 34.226 41.776 1.4759-1.3054-19.923-50.687 12.09-5.1084 18.788 49.665 1.4758-0.45402v-55.057h19.298v101.94h-105.29zm306.73-18.05h20.831v22.421h-17.312c-18.22 0-29.402-6.3004-29.402-29.402v-50.063h-12.374c-2.1571 0-3.2923-2.6111-1.8165-4.2004l35.816-40.64c1.5325-1.646 4.3138-0.56759 4.3138 1.7028v20.717h20.66v22.42h-20.66v57.044zm-74.242-81.11c-12.431 0-21.739 7.1518-26.28 18.39h-0.8517v-16.801h-24.691v101.94h25.94v-79.01h17.312c7.549 0 10.33 1.5893 10.33 9.649v69.361h25.94v-74.413c-0.055-20.49-9.8766-29.118-27.699-29.118zm-96.663 103.53h25.939v-101.94h-25.939zm339.37-83.892h-1.0754v-18.05h-25.772v101.94h27.473v-77.591h24.181v-25.939h-3.3507c-12.715 0-18.334 5.6192-21.456 19.639zm-38.878 30.31v7.7191h-77.762c1.4177 15.155 10.896 25.202 25.54 25.202 13.112 0 22.591-6.9816 24.52-15.609h27.643c-5.7885 21.512-25.54 37.973-52.56 37.973-31.502 0-52.899-22.42-52.899-51.822 0-29.402 20.661-53.411 53.581-53.411 31.104 0 51.938 21.399 51.938 49.949zm-76.97-11.068h50.178c-3.9179-10.217-12.203-17.539-25.032-17.539-11.238 0.0567-21.114 5.9597-25.146 17.539z" fill="#FF7A00"/>
+    </g>
+    <text x="86" y="26" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="11" font-weight="600" fill="#A09D9A">black</text>
+    <rect x="194" y="12" width="79" height="18" rx="9" fill="#FF7A00" fill-opacity="0.22"/>
+    <text x="233.5" y="24" text-anchor="middle" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="7.5" font-weight="700" fill="#FF9E44">CRÉDITO • FAT.</text>
+    <!-- Chip + Contactless + Dígitos -->
+    <rect x="18" y="37" width="25" height="18" rx="3.5" fill="#E2E8F0" fill-opacity="0.88"/>
+    <line x1="18" y1="46" x2="43" y2="46" stroke="#475569" stroke-width="0.8" stroke-opacity="0.45"/>
+    <line x1="30.5" y1="37" x2="30.5" y2="55" stroke="#475569" stroke-width="0.8" stroke-opacity="0.45"/>
+    <path d="M49 41.5C51 43.5 51 48.5 49 50.5M53 39.5C55.8 42.5 55.8 49.5 53 52.5" stroke="#A09D9A" stroke-width="1.4" stroke-linecap="round"/>
+    <text x="64" y="49.5" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="9" font-weight="600" fill="#A09D9A" letter-spacing="0.5px">•••• 9014</text>
+    <text x="18" y="71" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="8" font-weight="700" fill="#D4D4D8" fill-opacity="0.88" letter-spacing="0.5px">FATURA EM ABERTO (SALDO DEVEDOR)</text>
+    <circle cx="254" cy="130" r="7" fill="#FF4A53" fill-opacity="0.68"/>
+    <circle cx="264" cy="130" r="7" fill="#F99C3E" fill-opacity="0.68"/>
   </g>
 
-  <!-- CARTÃO 3: FLASH BENEFÍCIOS (x=659, y=722, w=291, h=148) -->
-  <g transform="translate(659, 722)">
-    <rect x="0" y="0" width="291" height="148" rx="14" fill="url(#gradFlash)"/>
-    <circle cx="255" cy="30" r="55" fill="#FFFFFF" fill-opacity="0.08"/>
-    <!-- Top Row: Brand & Type Badge -->
-    <text x="18" y="25" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="900" fill="#FFFFFF" letter-spacing="0.5px">flash</text>
-    <rect x="188" y="12" width="87" height="18" rx="9" fill="#000000" fill-opacity="0.25"/>
-    <text x="197" y="24" font-family="'Segoe UI', sans-serif" font-size="8.5" font-weight="700" fill="#FFFFFF">BENEFÍCIOS VR/VA</text>
-    <!-- EMV Chip & Contactless Icon -->
-    <rect x="18" y="40" width="32" height="24" rx="4" fill="url(#gradChipGold)" stroke="#B7791F" stroke-width="0.6"/>
-    <line x1="18" y1="52" x2="50" y2="52" stroke="#B7791F" stroke-width="0.6"/>
-    <line x1="34" y1="40" x2="34" y2="64" stroke="#B7791F" stroke-width="0.6"/>
-    <path d="M58 47C60 49.5 60 54.5 58 57M62 44C65.5 48.5 65.5 55.5 62 60" stroke="#FFFFFF" stroke-opacity="0.8" stroke-width="1.5" stroke-linecap="round"/>
-    <text x="95" y="55" class="card-meta">•••• 3319</text>
-    <!-- Label para o cardVisual sobreposto (x=670, y=804) -->
-    <text x="18" y="80" class="card-label">SALDO DISPONÍVEL FLASH</text>
-    <!-- Brand Circles -->
-    <circle cx="256" cy="128" r="9" fill="#EB001B" fill-opacity="0.85"/>
-    <circle cx="268" cy="128" r="9" fill="#F79E1B" fill-opacity="0.85"/>
+  <!-- Cartão 3: Flash Benefícios (x=663, y=720, w=289, h=148) -->
+  <g transform="translate(663, 720)">
+    <rect x="0" y="0" width="289" height="148" rx="14" fill="url(#gradFlash)"/>
+    <g clip-path="url(#cardClip)">
+      <circle cx="255" cy="28" r="54" fill="#FFFFFF" fill-opacity="0.08"/>
+      <circle cx="272" cy="122" r="44" fill="#FFFFFF" fill-opacity="0.05"/>
+    </g>
+    <!-- Logo Flash real (design/logo_flash.svg) -->
+    <g transform="translate(11, 10) scale(0.185)">
+      <path d="M245.2 100c0 4.2 3 7.2 7 7.2s7-3 7-7.2V70.8c0-11.7 6.6-18.1 16.8-18.1s14.3 5.5 14.3 15.1V100c0 4.2 3 7.2 7 7.2s7-3 7-7.2V66.4c0-16-9.4-26.7-25-26.7s-14.9 3.1-18.6 8.3c-.7.9-1.6.7-1.6-.5V20.4c0-4.2-3-7.2-7-7.2s-7 3-7 7.2V100ZM187 59.6c0 10.2 7 15.6 15.9 18.2l11.7 3.4c5.1 1.4 7.7 3.1 7.7 6.6s-4.2 7.3-11.6 7.3-9-2-11.9-5c-2.5-2.5-6.4-3-9.5-.7-3 2.3-3.6 6.8-.8 9.9 5.2 5.7 13.8 8.5 22.2 8.5 12.5 0 25.4-6 25.4-20.7s-6.6-15.5-16.8-18.5l-11.7-3.4c-5.2-1.6-6.8-3.4-6.8-6.4s3.9-6.5 10-6.5 8.9 2 12.3 4.4c3.4 2.5 7.7 2.1 9.8-.8 2.1-2.7 2.2-6.6-1-9.5-5-4.3-11.7-6.9-21.1-6.9s-23.7 7.2-23.7 19.9M123 73.8c0-12.4 8.3-21.1 20.5-21.1S164 61.6 164 73.8s-8.3 21.1-20.5 21.1S123 86 123 73.8m-14.4 0c0 19.3 14.1 34.1 32.5 34.1s16.7-3.8 21.1-9.8c.8-1 1.6-.7 1.6.5v1.3c0 4.2 3 7.2 7 7.2s7-3 7-7.2V47.5c0-4.2-3-7.2-7-7.2s-7 3-7 7.2v1c0 1.2-.8 1.6-1.6.5-4.4-5.9-11.1-9.5-21-9.5-18.2 0-32.6 15.1-32.6 34.1M85.4 100c0 4.2 3 7.2 7 7.2s7-3 7-7.2V20.4c0-4.2-3-7.2-7-7.2s-7 3-7 7.2zm-31.1 7.2c4 0 7-3 7-7.2V55.8c0-.8.5-1.3 1.3-1.3h7.8c3.9 0 6.9-2.9 6.9-6.6s-3-6.6-6.9-6.6h-7.8c-.8 0-1.3-.5-1.3-1.3v-3.3c0-6 3.3-9.5 9.1-10 4.7-.4 7.3-2.9 7.3-6.9s-2.3-6.5-7.6-6.5c-13.3 0-22.9 10.2-22.9 23.9v2.9c0 .8-.5 1.3-1.3 1.3h-1.7c-3.9 0-6.9 2.9-6.9 6.6s3 6.6 6.9 6.6h1.7c.8 0 1.3.5 1.3 1.3v44.2c0 4.2 3 7.2 7 7.2" fill="#FFFFFF"/>
+    </g>
+    <rect x="185" y="12" width="88" height="18" rx="9" fill="#000000" fill-opacity="0.24"/>
+    <text x="229" y="24" text-anchor="middle" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="7.5" font-weight="700" fill="#FFE4E6">BENEFÍCIOS VR/VA</text>
+    <!-- Chip + Contactless + Dígitos -->
+    <rect x="18" y="37" width="25" height="18" rx="3.5" fill="#FDE68A" fill-opacity="0.92"/>
+    <line x1="18" y1="46" x2="43" y2="46" stroke="#B45309" stroke-width="0.8" stroke-opacity="0.45"/>
+    <line x1="30.5" y1="37" x2="30.5" y2="55" stroke="#B45309" stroke-width="0.8" stroke-opacity="0.45"/>
+    <path d="M49 41.5C51 43.5 51 48.5 49 50.5M53 39.5C55.8 42.5 55.8 49.5 53 52.5" stroke="#FFFFFF" stroke-width="1.4" stroke-linecap="round" stroke-opacity="0.82"/>
+    <text x="64" y="49.5" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="9" font-weight="600" fill="#FFE4E6" fill-opacity="0.85" letter-spacing="0.5px">•••• 3319</text>
+    <text x="18" y="71" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="8" font-weight="700" fill="#FFE4E6" fill-opacity="0.9" letter-spacing="0.5px">SALDO BENEFÍCIOS (VR / VA)</text>
+    <circle cx="254" cy="130" r="7" fill="#FFFFFF" fill-opacity="0.35"/>
+    <circle cx="264" cy="130" r="7" fill="#FDA4AF" fill-opacity="0.58"/>
   </g>
 
-  <!-- CARTÃO 4: WISE INTERNACIONAL (x=962, y=722, w=291, h=148) -->
-  <g transform="translate(962, 722)">
-    <rect x="0" y="0" width="291" height="148" rx="14" fill="url(#gradWise)"/>
-    <circle cx="255" cy="30" r="55" fill="#C9FD8A" fill-opacity="0.1"/>
-    <rect x="0" y="25" width="4" height="98" rx="2" fill="#C9FD8A"/>
-    <!-- Top Row: Brand & Type Badge -->
-    <text x="18" y="25" font-family="'Segoe UI', sans-serif" font-size="14" font-weight="900" fill="#C9FD8A" letter-spacing="0.8px">WISE</text>
-    <rect x="192" y="12" width="83" height="18" rx="9" fill="#C9FD8A" fill-opacity="0.2"/>
-    <text x="202" y="24" font-family="'Segoe UI', sans-serif" font-size="8.5" font-weight="700" fill="#C9FD8A">INTERNACIONAL</text>
-    <!-- EMV Chip & Contactless Icon -->
-    <rect x="18" y="40" width="32" height="24" rx="4" fill="url(#gradChipSilver)" stroke="#64748B" stroke-width="0.6"/>
-    <line x1="18" y1="52" x2="50" y2="52" stroke="#64748B" stroke-width="0.6"/>
-    <line x1="34" y1="40" x2="34" y2="64" stroke="#64748B" stroke-width="0.6"/>
-    <path d="M58 47C60 49.5 60 54.5 58 57M62 44C65.5 48.5 65.5 55.5 62 60" stroke="#C9FD8A" stroke-opacity="0.85" stroke-width="1.5" stroke-linecap="round"/>
-    <text x="95" y="55" class="card-meta">•••• 7740</text>
-    <!-- Label para o cardVisual sobreposto (x=973, y=804) -->
-    <text x="18" y="80" class="card-label">SALDO CONTA MULTIMOEDA</text>
-    <!-- Visa/Network Circles -->
-    <circle cx="256" cy="128" r="9" fill="#3B89E2" fill-opacity="0.85"/>
-    <circle cx="268" cy="128" r="9" fill="#C9FD8A" fill-opacity="0.85"/>
+  <!-- Cartão 4: Wise Internacional (x=960, y=720, w=289, h=148) -->
+  <g transform="translate(960, 720)">
+    <rect x="0" y="0" width="289" height="148" rx="14" fill="url(#gradWise)"/>
+    <g clip-path="url(#cardClip)">
+      <circle cx="255" cy="28" r="54" fill="#9FE870" fill-opacity="0.1"/>
+      <circle cx="272" cy="122" r="44" fill="#FFFFFF" fill-opacity="0.05"/>
+      <rect x="0" y="20" width="3.5" height="108" rx="1.75" fill="#9FE870"/>
+    </g>
+    <!-- Logo Wise real (design/logo_wise.svg) -->
+    <g transform="translate(12.2, 3.5) scale(0.16)">
+      <path d="M280.616 58.4942H307.679L294.064 155.62H267.002L280.616 58.4942ZM246.498 58.4942L228.235 114.445L220.265 58.4942H201.338L177.43 114.279L174.442 58.4942H148.209L157.341 155.62H179.091L205.987 94.1901L215.451 155.62H236.868L272.232 58.4942H246.498ZM473.706 114.943H409.453C409.785 127.562 417.34 135.863 428.463 135.863C436.848 135.863 443.489 131.38 448.636 122.83L470.327 132.692C462.873 147.377 447.166 156.948 427.799 156.948C401.401 156.948 383.885 139.183 383.885 110.627C383.885 79.2476 404.472 57 433.527 57C459.095 57 475.2 74.2668 475.2 101.163C475.2 105.646 474.702 110.129 473.706 114.943ZM449.632 96.3484C449.632 85.0586 443.323 77.9194 433.195 77.9194C423.068 77.9194 414.102 85.3906 411.778 96.3484H449.632ZM63.6269 87.7648L36 120.049H85.3267L90.872 104.824H69.7367L82.6536 89.89L82.6952 89.4915L74.2942 75.0389H112.074L82.7865 155.62H102.826L138.19 58.4942H46.825L63.6186 87.7648H63.6269ZM351.676 77.9194C361.222 77.9194 369.59 83.0497 376.895 91.8491L380.731 64.4712C373.923 59.864 364.709 57 352.506 57C328.266 57 314.652 71.1953 314.652 89.2093C314.652 101.703 321.625 109.34 333.081 114.279L338.56 116.77C348.77 121.128 351.51 123.286 351.51 127.894C351.51 132.501 346.903 135.697 339.888 135.697C328.307 135.738 318.927 129.803 311.871 119.675L307.961 147.576C315.997 153.703 326.299 156.948 339.888 156.948C362.924 156.948 377.078 143.666 377.078 125.237C377.078 112.702 371.516 104.65 357.487 98.3408L351.51 95.5183C343.208 91.8242 340.386 89.7904 340.386 85.7227C340.386 81.323 344.246 77.9194 351.676 77.9194Z" fill="#9FE870"/>
+    </g>
+    <rect x="190" y="12" width="83" height="18" rx="9" fill="#9FE870" fill-opacity="0.20"/>
+    <text x="231.5" y="24" text-anchor="middle" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="7.5" font-weight="700" fill="#9FE870">INTERNACIONAL</text>
+    <!-- Chip + Contactless + Dígitos -->
+    <rect x="18" y="37" width="25" height="18" rx="3.5" fill="#D9F99D" fill-opacity="0.88"/>
+    <line x1="18" y1="46" x2="43" y2="46" stroke="#365314" stroke-width="0.8" stroke-opacity="0.45"/>
+    <line x1="30.5" y1="37" x2="30.5" y2="55" stroke="#365314" stroke-width="0.8" stroke-opacity="0.45"/>
+    <path d="M49 41.5C51 43.5 51 48.5 49 50.5M53 39.5C55.8 42.5 55.8 49.5 53 52.5" stroke="#9FE870" stroke-width="1.4" stroke-linecap="round"/>
+    <text x="64" y="49.5" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="9" font-weight="600" fill="#D9F99D" fill-opacity="0.85" letter-spacing="0.5px">•••• 7740</text>
+    <text x="18" y="71" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="8" font-weight="700" fill="#D9F99D" fill-opacity="0.9" letter-spacing="0.5px">SALDO CONTA MULTIMOEDA</text>
+    <circle cx="254" cy="130" r="7" fill="#9FE870" fill-opacity="0.52"/>
+    <circle cx="264" cy="130" r="7" fill="#FFFFFF" fill-opacity="0.35"/>
   </g>
 
+  <!-- ================= LINHA 4: FUNDO BRANCO DA SEÇÃO MERCADO MÃE (y=900, h=155) ================= -->
+  <rect x="15" y="900" width="1250" height="155" rx="15" fill="#FFFFFF" stroke="#E2E2E2" stroke-width="1" filter="url(#cardShadow)"/>
 
-  <!-- ======================================================================= -->
-  <!-- BLOCO 4: MERCADO MÃE • FAIXA COMPACTA INFERIOR SEM GRÁFICO (y=900, h=155) -->
-  <!-- ======================================================================= -->
-  <rect x="15" y="900" width="1250" height="155" rx="15" fill="#FFFFFF" stroke="#E9E9E9" stroke-width="1"/>
-
-  <rect x="27" y="915" width="10" height="10" rx="3" fill="#CA0AA7"/>
-  <text x="43" y="924" class="text-title">MERCADO MÃE • CONTROLE DO ORÇAMENTO MENSAL (SUBSÍDIO R$ 500,00)</text>
-  <rect x="1142" y="912" width="110" height="18" rx="9" fill="#FCE7F3"/>
-  <text x="1153" y="924" class="text-badge" fill="#CA0AA7">TETO R$ 500/MÊS</text>
-  <text x="27" y="940" class="text-sub">Acompanhamento direto do limite mensal disponibilizado no cartão Flash (indicadores enxutos sem gráfico histórico)</text>
-
-  <!-- Sub-card 1: Gasto no Mês Atual (x=27, y=952, w=290, h=88) -->
-  <rect x="27" y="952" width="290" height="88" rx="9.5" fill="#F9F9F9" stroke="#E9E9E9"/>
-  <text x="39" y="969" font-family="'Segoe UI', sans-serif" font-size="9.5" font-weight="700" fill="#6D6865">GASTO NO MÊS ATUAL</text>
-
-  <!-- Sub-card 2: Saldo Restante do Orçamento (x=330, y=952, w=290, h=88) -->
-  <rect x="330" y="952" width="290" height="88" rx="9.5" fill="#F9F9F9" stroke="#E9E9E9"/>
-  <text x="342" y="969" font-family="'Segoe UI', sans-serif" font-size="9.5" font-weight="700" fill="#6D6865">SALDO RESTANTE DO TETO (R$ 500)</text>
-
-  <!-- Sub-card 3: Total Acumulado & Média Mensal (x=633, y=952, w=290, h=88) -->
-  <rect x="633" y="952" width="290" height="88" rx="9.5" fill="#F9F9F9" stroke="#E9E9E9"/>
-  <text x="645" y="969" font-family="'Segoe UI', sans-serif" font-size="9.5" font-weight="700" fill="#6D6865">ACUMULADO &amp; MÉDIA MENSAL</text>
-
-  <!-- Sub-card 4: Consumo Percentual & Ticket Médio (x=936, y=952, w=317, h=88) -->
-  <rect x="936" y="952" width="317" height="88" rx="9.5" fill="#F9F9F9" stroke="#E9E9E9"/>
-  <text x="948" y="969" font-family="'Segoe UI', sans-serif" font-size="9.5" font-weight="700" fill="#6D6865">CONSUMO DO TETO MENSAL (%)</text>
-
-
-  <!-- ======================================================================= -->
-  <!-- BLOCO 5: TABELA DE TRANSAÇÕES DETALHADAS (y=1070, h=335, w=1250)        -->
-  <!-- ======================================================================= -->
-  <rect x="15" y="1070" width="1250" height="335" rx="15" fill="#FFFFFF" stroke="#E9E9E9" stroke-width="1"/>
-
-  <rect x="27" y="1085" width="10" height="10" rx="3" fill="#1E3A5F"/>
-  <text x="43" y="1094" class="text-title">DETALHAMENTO DE TRANSAÇÕES RECENTES (EXTRATO ANALÍTICO NOTION)</text>
-  <rect x="1140" y="1082" width="113" height="18" rx="9" fill="#EFF6FF"/>
-  <text x="1152" y="1094" class="text-badge" fill="#1E3A5F">EXTRATO NOTION</text>
-  <text x="27" y="1110" class="text-sub">Tabela analítica (tableEx) com lançamentos sincronizados do Notion</text>
-
-  <!-- Slot para o Visual tableEx (x=27, y=1122, w=1226, h=268) -->
-  <rect x="27" y="1122" width="1226" height="268" rx="8" fill="#FDFDFD" stroke="#E9E9E9"/>
+  <!-- ================= LINHA 5: TABELA DE TRANSAÇÕES RECENTES (y=1070, h=335) ================= -->
+  <rect x="15" y="1070" width="1250" height="335" rx="15" fill="#FFFFFF" stroke="#E2E2E2" stroke-width="1" filter="url(#cardShadow)"/>
+  <rect x="31" y="1082" width="10" height="10" rx="3" fill="#1E3A5F"/>
+  <text x="47" y="1091" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="11.5" font-weight="700" fill="#252321" letter-spacing="0.4px">HISTÓRICO DETALHADO DE LANÇAMENTOS (EXTRATO NOTION)</text>
+  <rect x="1144" y="1077" width="105" height="20" rx="10" fill="#EFF6FF"/>
+  <text x="1196.5" y="1090" text-anchor="middle" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="8" font-weight="700" fill="#3B89E2">BASE TRANSACIONAL</text>
+  <text x="31" y="1107" font-family="'DIN', 'Bahnschrift', sans-serif" font-size="9.5" font-weight="400" fill="#808080">Detalhamento analítico das movimentações financeiras por data, descrição, categoria, subcategoria, conta e valor efetivo</text>
+  <line x1="31" y1="1117" x2="1249" y2="1117" stroke="#F0F0F0" stroke-width="1"/>
 </svg>
